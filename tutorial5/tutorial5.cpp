@@ -24,7 +24,7 @@
 #include <solid/devicemanager.h>
 #include <solid/networkmanager.h>
 #include <solid/device.h>
-#include <solid/networkhw.h>
+#include <solid/networkinterface.h>
 
 //kde specific includes
 #include <kcomponentdata.h>
@@ -44,17 +44,17 @@ int main(int args, char **argv)
     Solid::DeviceManager &manager = Solid::DeviceManager::self();
     
     //get a network device
-    Solid::DeviceList netlist = manager.findDevicesFromQuery(Solid::Capability::NetworkHw, QString());
+    Solid::DeviceList netlist = manager.findDevicesFromQuery(Solid::DeviceInterface::NetworkInterface, QString());
     
     //check to see if no network devices were found
-    if(netlist.empty() )
+    if(netlist.empty())
     {
         kDebug() << "No network devices found!" << endl;
         return 0;
     }
     
     Solid::Device device = netlist[0];
-    Solid::NetworkHw *netdev = device.as<Solid::NetworkHw>();
+    Solid::NetworkInterface *netdev = device.as<Solid::NetworkInterface>();
     //keep the program from crashing in the event that there's a bug in solid
     if(!netdev)
     {
