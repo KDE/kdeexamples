@@ -21,9 +21,9 @@
 #include <QList>
 
 //solid specific includes
-#include <solid/devicemanager.h>
+#include <solid/devicenotifier.h>
 #include <solid/device.h>
-#include <solid/capability.h>
+#include <solid/deviceinterface.h>
 #include <solid/processor.h>
 
 //kde specific includes
@@ -40,14 +40,14 @@ int main(int args, char **argv)
 {
     KComponentData componentData("tutorial3");
     
-    Solid::DeviceManager &manager = Solid::DeviceManager::self();
+    Solid::DeviceNotifier *notifier = Solid::DeviceNotifier::instance();
     
     //get a Processor
-    Solid::DeviceList list = manager.findDevicesFromQuery(Solid::Capability::Processor, QString());
+    QList<Solid::Device> list = Solid::Device::listFromType(Solid::DeviceInterface::Processor, QString());
 
     //take the first processor
     Solid::Device device = list[0];
-    if(device.is<Solid::Processor>() ) kDebug() << "We've got a processor!" << endl;
+    if(device.is<Solid::Processor>()) kDebug() << "We've got a processor!" << endl;
     else kDebug() << "Device is not a processor." << endl;
 
     Solid::Processor *processor = device.as<Solid::Processor>();
