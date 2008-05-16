@@ -4,10 +4,12 @@ include_directories(${KDE4_KIO_INCLUDES} ${CMAKE_SOURCE_DIR}/includes)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
 
 macro(PHONON_DECLARE_EXAMPLES)
-    foreach(_examplename ${ARGN})
-        kde4_add_executable(${_examplename} ${_examplename}.cpp)
-        target_link_libraries(${_examplename} ${KDE4_PHONON_LIBS})
-    endforeach(_examplename)
+   foreach(_examplename ${ARGN})
+      set(_SRCS ${_examplename}.cpp)
+      automoc4(${_examplename} _SRCS)
+      add_executable(${_examplename} ${_SRCS})
+      target_link_libraries(${_examplename} ${PHONON_LIBS})
+   endforeach(_examplename)
 endmacro(PHONON_DECLARE_EXAMPLES)
 
 phonon_declare_examples(
