@@ -43,7 +43,8 @@ private:
 private slots:
     void on_actionOpen_triggered();
     void on_actionOpenAsync_triggered();
-    void actionExecuted(ActionReply reply);
+    void action1Executed(ActionReply reply);
+    void action2Executed(ActionReply reply);
 };
 
 #endif // MAINWINDOW_H
