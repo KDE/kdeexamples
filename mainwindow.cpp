@@ -71,7 +71,7 @@ void MainWindow::on_actionOpen_triggered()
             Action readAction("org.kde.auth.example.read");
             readAction.addArgument("filename", filename);
 
-            ActionReply reply = readAction.execute();
+            ActionReply reply = readAction.execute("org.kde.kauth.example");
             if (reply.failed())
                 QMessageBox::information(this, "Error", QString("KAuth returned an error code: %1").arg(reply.errorCode()));
             else
@@ -99,7 +99,7 @@ void MainWindow::on_actionSave_triggered()
             writeAction.addArgument("filename", filename);
             writeAction.addArgument("contents", ui->plainTextEdit->toPlainText());
 
-            ActionReply reply = writeAction.execute();
+            ActionReply reply = writeAction.execute("org.kde.kauth.example");
             if (reply.failed())
                 QMessageBox::information(this, "Error", QString("KAuth returned an error code: %1").arg(reply.errorCode()));
         } else
@@ -117,7 +117,7 @@ void MainWindow::on_longAction_triggered()
     connect(longAction.watcher(), SIGNAL(actionPerformed(ActionReply)), this, SLOT(longActionPerformed(ActionReply)));
 
 
-    if (longAction.executeAsync() != Action::Authorized)
+    if (longAction.executeAsync("org.kde.kauth.example") != Action::Authorized)
         this->statusBar()->showMessage("Could not execute the long action");
     else {
         pushButton->show();
