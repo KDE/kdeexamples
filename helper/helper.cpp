@@ -65,6 +65,8 @@ ActionReply MyHelper::write(QVariantMap args)
 
 ActionReply MyHelper::longaction(QVariantMap args)
 {
+    qDebug() << "hello";
+
     for (int i = 1; i <= 100; i++) {
         if (HelperSupport::isStopped())
             break;
