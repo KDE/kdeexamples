@@ -117,11 +117,11 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_longAction_triggered()
 {
     Action longAction("org.kde.auth.example.longaction");
+    longAction.setExecutesAsync(true);
     connect(longAction.watcher(), SIGNAL(progressStep(int)), progressBar, SLOT(setValue(int)));
     connect(longAction.watcher(), SIGNAL(actionPerformed(ActionReply)), this, SLOT(longActionPerformed(ActionReply)));
 
-
-    if (longAction.executeAsync("org.kde.auth.example") != Action::Authorized)
+    if (longAction.execute("org.kde.auth.example") != ActionReply::SuccessReply)
         this->statusBar()->showMessage("Could not execute the long action");
     else {
         pushButton->show();

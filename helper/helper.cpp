@@ -77,4 +77,4 @@ ActionReply MyHelper::longaction(QVariantMap args)
     return ActionReply::SuccessReply;
 }
 
-KDE4_AUTH_HELPER("org.kde.auth.example", MyHelper)
+KDE4_AUTH_HELPER_MAIN("org.kde.auth.example", MyHelper)
