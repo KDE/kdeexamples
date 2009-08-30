@@ -27,6 +27,7 @@
 #include <QMessageBox>
 #include <QDebug>
 
+#include "../../../kdeui/widgets/kpushbutton.h"
 #include "ui_mainwindow.h"
 #include <Action.h>
 #include "ActionWatcher.h"
@@ -49,8 +50,11 @@ MainWindow::MainWindow(QWidget *parent)
     KAction *action = new KAction(this);
     ui->menuFile->addAction(action);
     action->setIcon(KIcon("dialog-ok-apply"));
-    action->setNeedsAuthorization(true, "org.kde.auth.example.kactionaction");
+    action->setAuthAction("org.kde.auth.example.kactionaction");
     connect(action, SIGNAL(authorized(KAuth::Action)), this, SLOT(kactionTriggered()));
+    ui->openButton->setAuthAction("org.kde.auth.example.read");
+    ui->saveButton->setAuthAction("org.kde.auth.example.write");
+    ui->longButton->setAuthAction("org.kde.auth.example.longaction");
 }
 
 MainWindow::~MainWindow()
