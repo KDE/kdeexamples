@@ -6,4 +6,5 @@ include (KDE4Defaults)
 include (MacroLibrary)
 
 add_subdirectory(plasma)
+add_subdirectory(phonon)
 

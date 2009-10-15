@@ -1,7 +1,5 @@
-include_directories(${KDE4_KIO_INCLUDES} ${CMAKE_SOURCE_DIR}/includes)
-
-# Examples don't need to go into toplevel/bin, they are fine in the current dir.
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
+find_package(Phonon REQUIRED)
+include_directories(${PHONON_INCLUDES})
 
 macro(PHONON_DECLARE_EXAMPLES)
    foreach(_examplename ${ARGN})
@@ -24,4 +22,3 @@ phonon_declare_examples(
     #videoplayback
     )
 
-#target_link_libraries(videoplayer ${KDE4_KDEUI_LIBS})
