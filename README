@@ -1,0 +1,11 @@
+This module contains code snippets and examples for various KDE technologies.
+
+Each set of examples is grouped by topic into a subdirectory of this module. Note
+that some of the examples may be augmented by tutorials on Techbase, the KDE
+technical wiki found at http://techbase.kde.org. If they are, this will be noted in
+a README file with the code.
+
+All examples are licensed under one of the Free Software licenses listed on this
+page: http://techbase.kde.org/Policies/Licensing_Policy and maybe used accordingly.
+
+Share and enjoy!
