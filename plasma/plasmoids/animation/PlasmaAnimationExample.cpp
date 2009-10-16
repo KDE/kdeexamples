@@ -1,4 +1,5 @@
-#include "pltest.h"
+#include "PlasmaAnimationExample.h"
+
 #include <QPainter>
 #include <QPushButton>
 #include <QFontMetrics>
@@ -18,21 +19,16 @@
 
 using namespace Plasma;
 
-K_EXPORT_PLASMA_APPLET(plasma-applet-pltest, PlasmaAnimTest)
+K_EXPORT_PLASMA_APPLET(plasma-applet-pltest, PlasmaAnimationExample)
 
-PlasmaAnimTest::PlasmaAnimTest(QObject *parent, const QVariantList &args)
+PlasmaAnimationExample::PlasmaAnimationExample(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args)
 {
-    setBackgroundHints(DefaultBackground);
+    // set a default size
     resize(300, 400);
 }
 
-
-PlasmaAnimTest::~PlasmaAnimTest()
-{
-}
-
-void PlasmaAnimTest::init()
+void PlasmaAnimationExample::init()
 {
 
     PushButton* button1 = new PushButton(this);
@@ -79,4 +75,4 @@ void PlasmaAnimTest::init()
 
 }
 
-#include "pltest.moc"
+#include "PlasmaAnimationExample.moc"
