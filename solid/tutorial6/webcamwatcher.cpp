@@ -94,3 +94,4 @@ void WebcamWatcher::deviceRemoved( const QString & udi )
         m_videoDevices.removeAt( i );
     }
 }
+#include "webcamwatcher.moc"
