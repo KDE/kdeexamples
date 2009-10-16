@@ -11,6 +11,7 @@ include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
 
 add_subdirectory(authorization)
 add_subdirectory(kconfigxt)
+add_subdirectory(kidletime)
 add_subdirectory(phonon)
 add_subdirectory(plasma)
 add_subdirectory(solid)
