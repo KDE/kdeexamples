@@ -1,5 +1,5 @@
 find_package(Phonon REQUIRED)
-include_directories(${PHONON_INCLUDES})
+include_directories(${PHONON_INCLUDES} ${QT_INCLUDES})
 
 macro(PHONON_DECLARE_EXAMPLES)
    foreach(_examplename ${ARGN})
