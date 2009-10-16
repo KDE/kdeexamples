@@ -21,18 +21,19 @@
 
 #include "mainwindow.h"
 
-#include <QFileDialog>
 #include <QFile>
 #include <QTextStream>
-#include <QMessageBox>
-#include <QDebug>
 
-#include "../../../kdeui/widgets/kpushbutton.h"
+#include <KAction>
+#include <KAuth/Action>
+#include <KAuth/ActionWatcher>
+#include <KDebug>
+#include <KLocale>
+#include <KFileDialog>
+#include <KMessageBox>
+#include <KPushButton>
+
 #include "ui_mainwindow.h"
-#include <kauthaction.h>
-#include "kauthactionwatcher.h"
-#include "../../../kdeui/actions/kaction.h"
-
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindowClass)
@@ -43,8 +44,8 @@ MainWindow::MainWindow(QWidget *parent)
     pushButton->setText("Stop");
     connect(pushButton, SIGNAL(clicked()), this, SLOT(stopLongAction()));
     progressBar->setRange(0, 100);
-    this->statusBar()->addPermanentWidget(progressBar);
-    this->statusBar()->addPermanentWidget(pushButton);
+    statusBar()->addPermanentWidget(progressBar);
+    statusBar()->addPermanentWidget(pushButton);
     pushButton->hide();
     progressBar->hide();
     KAction *action = new KAction(this);
@@ -64,7 +65,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("All (*.*)"));
+    QString filename = KFileDialog::getOpenFileName(KUrl("/"), i18n("All (*.*)"), this);
 
     QFile file(filename);
     QTextStream stream(&file);
@@ -76,14 +77,17 @@ void MainWindow::on_actionOpen_triggered()
             readAction.addArgument("filename", filename);
 
             ActionReply reply = readAction.execute("org.kde.auth.example");
-            if (reply.failed())
-                QMessageBox::information(this, "Error", QString("KAuth returned an error code: %1").arg(reply.errorCode()));
-            else
+            if (reply.failed()) {
+                KMessageBox::information(this, "Error", i18n("KAuth returned an error code: %1", reply.errorCode()));
+            } else {
                 contents = reply.data()["contents"].toString();
-        } else
-            QMessageBox::information(this, "Error", QString("Unable to open file: %1").arg(file.error()));
-    } else
+            }
+        } else {
+            KMessageBox::information(this, "Error", i18n("Unable to open file: %1", file.error()));
+        }
+    } else {
         contents = stream.readAll();
+    }
 
     ui->plainTextEdit->setPlainText(contents);
 
@@ -92,8 +96,7 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, tr("Save File"), "/home", tr("All (*.*)"));
-
+    QString filename = KFileDialog::getSaveFileName(KUrl("/"), i18n("All (*.*)"), this);
     QFile file(filename);
     QTextStream stream(&file);
 
@@ -105,11 +108,13 @@ void MainWindow::on_actionSave_triggered()
 
             ActionReply reply = writeAction.execute("org.kde.auth.example");
             if (reply.failed())
-                QMessageBox::information(this, "Error", QString("KAuth returned an error code: %1").arg(reply.errorCode()));
-        } else
-            QMessageBox::information(this, "Error", QString("Unable to open file: %1").arg(file.error()));
-    } else
+                KMessageBox::information(this, i18n("Error"), i18n("KAuth returned an error code: %1", reply.errorCode()));
+        } else {
+            KMessageBox::information(this, i18n("Error"), i18n("Unable to open file: %1", file.error()));
+        }
+    } else {
         stream << ui->plainTextEdit->toPlainText();
+    }
 
     file.close();
 }
@@ -121,9 +126,9 @@ void MainWindow::on_longAction_triggered()
     connect(longAction.watcher(), SIGNAL(progressStep(int)), progressBar, SLOT(setValue(int)));
     connect(longAction.watcher(), SIGNAL(actionPerformed(ActionReply)), this, SLOT(longActionPerformed(ActionReply)));
 
-    if (longAction.execute("org.kde.auth.example") != ActionReply::SuccessReply)
+    if (longAction.execute("org.kde.auth.example") != ActionReply::SuccessReply) {
         this->statusBar()->showMessage("Could not execute the long action");
-    else {
+    } else {
         pushButton->show();
         progressBar->show();
     }
@@ -140,13 +145,16 @@ void MainWindow::longActionPerformed(ActionReply reply)
     pushButton->hide();
     progressBar->setValue(0);
 
-    if (reply.succeeded())
+    if (reply.succeeded()) {
         statusBar()->showMessage("Action succeeded", 10000);
-    else
+    } else {
         statusBar()->showMessage(QString("Could not execute the long action: %1").arg(reply.errorCode()), 10000);
+    }
 }
 
 void MainWindow::kactionTriggered()
 {
-    qDebug() << "Eat that!!!";
+    kDebug() << "Action triggered!";
+    KMessageBox::information(this, "Error", i18n("Action triggered!"));
 }
+
