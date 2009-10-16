@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 2.6.2 FATAL_ERROR)
+
 project(kdeexamples)
 
 add_subdirectory(authorization)
