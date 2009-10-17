@@ -14,7 +14,7 @@ macro(PHONON_DECLARE_EXAMPLES)
    foreach(_examplename ${ARGN})
       set(_SRCS ${_examplename}.cpp)
       automoc4_add_executable(${_examplename} ${_SRCS})
-      target_link_libraries(${_examplename} ${PHONON_LIBS})
+      target_link_libraries(${_examplename} ${PHONON_LIBS} ${QT_QTXML_LIBRARY} ${QT_QTDBUS_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY})
    endforeach(_examplename)
 endmacro(PHONON_DECLARE_EXAMPLES)
 
