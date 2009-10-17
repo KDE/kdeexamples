@@ -15,7 +15,7 @@
 #include <plasma/animations/expand.h>
 #include <plasma/animations/fade.h>
 #include <plasma/animations/rotation.h>
-
+#include <plasma/animations/pulser.h>
 
 using namespace Plasma;
 
@@ -44,32 +44,33 @@ void PlasmaAnimationExample::init()
     button3->setGeometry(QRectF(100, 300, 100, 25));
 
     //animation
-    //GrowAnimation *a = new GrowAnimation(2.0);
-    RotationAnimation *a = new RotationAnimation;
-    a->setAxis(Qt::ZAxis);
-    a->setReference(RotationAnimation::Center);
-    a->setAngle(180);
-    a->setWidget(button1);
+    RotationAnimation *rotAnim = new RotationAnimation;
+    rotAnim->setAxis(Qt::ZAxis);
+    rotAnim->setReference(RotationAnimation::Center);
+    rotAnim->setAngle(180);
+    rotAnim->setWidget(button1);
+    FadeAnimation *fadeAnim = new FadeAnimation(0.40);
+    fadeAnim->setWidget(button1);
 
-    GrowAnimation *b = new GrowAnimation(2.0);
-    b->setWidget(button2);
+    PulseAnimation *pulseAnim = new PulseAnimation;
+    pulseAnim->setWidget(button2);
 
-    SlideAnimation *c = new SlideAnimation(MoveDown, 30);
-    c->setWidget(button3);
-
-    FadeAnimation *d = new FadeAnimation(0.40);
-    d->setWidget(button1);
+    GrowAnimation *growAnim = new GrowAnimation(2.0);
+    growAnim->setWidget(button3);
+    SlideAnimation *slideAnim = new SlideAnimation(MoveDown, 30);
+    slideAnim->setWidget(button3);
 
     //group 'em up!
     AnimationGroup *inner_g = new AnimationGroup();
     inner_g->setParallel(true);
-    inner_g->add(a);
-    inner_g->add(b);
+    inner_g->add(rotAnim);
+    inner_g->add(pulseAnim);
+    inner_g->add(growAnim);
 
     AnimationGroup *outer_g = new AnimationGroup(this);
     outer_g->add(inner_g);
-    outer_g->add(c);
-    outer_g->add(d);
+    outer_g->add(slideAnim);
+    outer_g->add(fadeAnim);
 
     QObject::connect(button1, SIGNAL(clicked()), outer_g, SLOT(start()));
 
