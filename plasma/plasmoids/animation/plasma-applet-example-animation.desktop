@@ -1,15 +1,15 @@
 [Desktop Entry]
-Name=pltest
-Comment=pltest
+Name=animation_example
+Comment=animation_example
 Type=Service
 ServiceTypes=Plasma/Applet
 
 X-Plasma-Defaultsize=300,400
 
-X-KDE-Library=plasma_applet_pltest
+X-KDE-Library=plasma_applet_example_animation
 X-KDE-PluginInfo-Author=Mehmet Ali Akmanalp
 X-KDE-PluginInfo-Email=foo@bar.com
-X-KDE-PluginInfo-Name=plasma_applet_pltest
+X-KDE-PluginInfo-Name=plasma_applet_example_animation
 X-KDE-PluginInfo-Version=0.1
 X-KDE-PluginInfo-Website=http://plasma.kde.org/
 X-KDE-PluginInfo-Category=Examples
