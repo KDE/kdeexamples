@@ -18,7 +18,11 @@
 #include "../lib/category.h"
 #include "../lib/content.h"
 #include "../lib/listjob.h"
-#include <QtGui/QStandardItemModel>
+#include "../lib/content.h"
+#include <QtGui/QTreeWidgetItem>
+#include <KDebug>
+#include <downloaditem.h>
+#include <qt4/QtGui/QMessageBox>
 
 using namespace Attica;
 
@@ -28,8 +32,13 @@ ContentDownload::ContentDownload(Attica::Provider provider, QWidget* parent)
 {
     ui.setupUi(this);
     
-    connect(ui.category, SIGNAL(currentIndexChanged()), SLOT(updateContentsList()));
-    connect(ui.search, SIGNAL(returnPressed()), SLOT(updateContentsList()));
+    connect(ui.category, SIGNAL(currentIndexChanged(int)), SLOT(categoryChanged()));
+    connect(ui.search, SIGNAL(returnPressed()), SLOT(categoryChanged()));
+    connect(ui.nextButton, SIGNAL(clicked()), SLOT(nextPage()));
+    connect(ui.voteGood, SIGNAL(clicked()), SLOT(voteGood()));
+    connect(ui.downloadButton, SIGNAL(clicked()), SLOT(download()));
+    
+    connect(ui.contentList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(selectedContentChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
     
     // get the available categories from the server
     ListJob<Category>* job = m_provider.requestCategories();
@@ -47,6 +56,18 @@ void ContentDownload::categoriesLoaded(Attica::BaseJob* job)
     ui.category->model()->sort(0);
 }
 
+void ContentDownload::categoryChanged()
+{
+    m_page = 1;
+    updateContentsList();
+}
+
+void ContentDownload::nextPage()
+{
+    ++m_page;
+    updateContentsList();
+}
+
 void ContentDownload::updateContentsList()
 {
     ui.contentList->clear();
@@ -54,7 +75,7 @@ void ContentDownload::updateContentsList()
     QString name = ui.category->currentText();
     QString id = ui.category->itemData(ui.category->currentIndex()).toString();
     ui.currentCategoryLabel->setText(name);
-    ui.currentCategoryIdLabel->setText(id);
+    ui.currentCategoryIdLabel->setText("Category Id: " + id);
     
     Category cat;
     cat.setId(id);
@@ -62,9 +83,11 @@ void ContentDownload::updateContentsList()
     catList << cat;
     
     QString searchString(ui.search->text());
-    ListJob<Content>* job = m_provider.searchContents(catList, searchString);
+    ListJob<Content>* job = m_provider.searchContents(catList, searchString, Provider::Rating, m_page, 20);
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(categoryContentsLoaded(Attica::BaseJob*)));
 }
+
+Q_DECLARE_METATYPE(Content)
 
 void ContentDownload::categoryContentsLoaded(BaseJob* job)
 {
@@ -72,14 +95,54 @@ void ContentDownload::categoryContentsLoaded(BaseJob* job)
     Content::List contents = listJob->itemList();
     
     Q_FOREACH(Content content, contents) {
-        QListWidgetItem* item = new QListWidgetItem;
-        item->setText(content.name());
-        ui.contentList->addItem(item);
+        QTreeWidgetItem* item = new QTreeWidgetItem;
+        item->setText(0, content.name());
+        item->setText(1, QString("%1%").arg(content.rating()));
+        item->setData(0, Qt::UserRole, qVariantFromValue(content));
+        ui.contentList->addTopLevelItem(item);
     }
-    
-    ui.countLabel->setText(tr("Total: %1").arg(listJob->metadata().totalItems));
-        
+    ui.countLabel->setText(tr("Total items: %1").arg(listJob->metadata().totalItems));
 }
+
+void ContentDownload::selectedContentChanged(QTreeWidgetItem* , QTreeWidgetItem* selectedItem)
+{
+    kDebug() << "selection changed";
+    if (selectedItem && qVariantCanConvert<Content>(selectedItem->data(0, Qt::UserRole))) {
+        Content c = qvariant_cast<Content>(selectedItem->data(0, Qt::UserRole));
+        ui.person->setText(c.extendedAttribute("personid"));
+        ui.score->setText(QString::number(c.rating()));
+        ui.numberDownloads->setText(QString::number(c.downloads()));
+    }
+}
+
+void ContentDownload::voteGood()
+{
+    QTreeWidgetItem* selectedItem = ui.contentList->currentItem();
+    if (selectedItem && qVariantCanConvert<Content>(selectedItem->data(0, Qt::UserRole))) {
+        Content c = qvariant_cast<Content>(selectedItem->data(0, Qt::UserRole));
+        m_provider.voteForContent(c.id(), true);
+    }
+}
+
+void ContentDownload::download()
+{
+    qDebug() << "download";
+    QTreeWidgetItem* selectedItem = ui.contentList->currentItem();
+    if (selectedItem && qVariantCanConvert<Content>(selectedItem->data(0, Qt::UserRole))) {
+        Content c = qvariant_cast<Content>(selectedItem->data(0, Qt::UserRole));
+        ItemJob<DownloadItem>* job = m_provider.downloadLink(c.id());
+        connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(downloadLinkLoaded(Attica::BaseJob*)));
+    }
+}
+
+void ContentDownload::downloadLinkLoaded(BaseJob* baseJob)
+{
+    qDebug() << "downloadLinkLoaded";
+    ItemJob<DownloadItem>* job = static_cast<ItemJob<DownloadItem>*>(baseJob);
+    DownloadItem item = job->result();
+    QMessageBox::information(0, "Download from: ", item.url().toString());
+}
+
 
 
 #include "contentdownload.moc"

@@ -29,15 +29,21 @@ public:
     
 public Q_SLOTS:
     void categoriesLoaded(Attica::BaseJob *job);
+    void categoryChanged();
     void updateContentsList();
+    void nextPage();
     void categoryContentsLoaded(Attica::BaseJob*);
+    void selectedContentChanged(QTreeWidgetItem*,QTreeWidgetItem*);
+    void download();
+    void downloadLinkLoaded(Attica::BaseJob*);
+    
+    void voteGood();
     
 private:
     Attica::Provider m_provider;    
     Ui::ContentDownload ui;
     
-    int page;
-    
+    int m_page;
 };
 
 #endif // CONTENTDOWNLOAD_H

@@ -52,6 +52,7 @@ void SimplePersonRequest::nickChanged(const QString& nick)
     mNick = nick;
     Attica::PersonJob* job = m_provider.requestPerson(mNick);
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(onPersonJobFinished(Attica::BaseJob*)));
+    job->start();
 }
 
 void SimplePersonRequest::onPersonJobFinished( Attica::BaseJob *job )

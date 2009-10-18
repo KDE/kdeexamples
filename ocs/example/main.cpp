@@ -7,11 +7,11 @@
  
 int main (int argc, char *argv[])
 {
-    KAboutData aboutData( "tutorial2", 0,
-    ki18n("Tutorial 2"), "1.0",
-    ki18n("A simple text area"),
+    KAboutData aboutData( "libatticademo", 0,
+    ki18n("Attica Demo"), "1.0",
+    ki18n("Show how to use libattica to access the Open Collaboration Services"),
     KAboutData::License_GPL,
-    ki18n("Copyright (c) 2007 Developer") );
+    ki18n("Copyright (c) 2009 Frederik Gladhorn") );
     KCmdLineArgs::init( argc, argv, &aboutData );
      
     KApplication app;

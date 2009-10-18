@@ -6,15 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>472</width>
-    <height>387</height>
+    <width>612</width>
+    <height>492</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="category"/>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="currentCategoryLabel">
@@ -23,30 +26,136 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QLabel" name="currentCategoryIdLabel">
+       <property name="text">
+        <string>Id</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="search"/>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLineEdit" name="search"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="countLabel">
+       <property name="text">
+        <string>total</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="nextButton">
+       <property name="text">
+        <string>&amp;Next Page</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="countLabel">
-     <property name="text">
-      <string>total</string>
-     </property>
+   <item>
+    <widget class="QTreeWidget" name="contentList">
+     <column>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Rating</string>
+      </property>
+     </column>
     </widget>
    </item>
-   <item row="3" column="1" colspan="2">
-    <widget class="QListWidget" name="contentList"/>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="currentCategoryIdLabel">
-     <property name="text">
-      <string>Id</string>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>GroupBox</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Uploaded by:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="person">
+          <property name="text">
+           <string>person</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Downloads:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="numberDownloads">
+          <property name="text">
+           <string>number</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Score:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="score">
+          <property name="text">
+           <string>score</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Vote:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="voteGood">
+          <property name="text">
+           <string>Good</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="voteBad">
+          <property name="text">
+           <string>Bad</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="downloadButton">
+        <property name="text">
+         <string>Download</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="category"/>
    </item>
   </layout>
  </widget>
