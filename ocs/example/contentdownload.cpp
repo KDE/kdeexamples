@@ -43,6 +43,7 @@ ContentDownload::ContentDownload(Attica::Provider provider, QWidget* parent)
     // get the available categories from the server
     ListJob<Category>* job = m_provider.requestCategories();
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(categoriesLoaded(Attica::BaseJob*)));
+    job->start();
 }
 
 void ContentDownload::categoriesLoaded(Attica::BaseJob* job)
@@ -85,6 +86,7 @@ void ContentDownload::updateContentsList()
     QString searchString(ui.search->text());
     ListJob<Content>* job = m_provider.searchContents(catList, searchString, Provider::Rating, m_page, 20);
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(categoryContentsLoaded(Attica::BaseJob*)));
+    job->start();
 }
 
 Q_DECLARE_METATYPE(Content)
@@ -132,6 +134,7 @@ void ContentDownload::download()
         Content c = qvariant_cast<Content>(selectedItem->data(0, Qt::UserRole));
         ItemJob<DownloadItem>* job = m_provider.downloadLink(c.id());
         connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(downloadLinkLoaded(Attica::BaseJob*)));
+        job->start();
     }
 }
 
