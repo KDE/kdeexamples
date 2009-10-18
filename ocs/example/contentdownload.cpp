@@ -114,7 +114,7 @@ void ContentDownload::selectedContentChanged(QTreeWidgetItem* , QTreeWidgetItem*
     kDebug() << "selection changed";
     if (selectedItem && qVariantCanConvert<Content>(selectedItem->data(0, Qt::UserRole))) {
         Content c = qvariant_cast<Content>(selectedItem->data(0, Qt::UserRole));
-        ui.person->setText(c.extendedAttribute("personid"));
+        ui.person->setText(c.attribute("personid"));
         ui.score->setText(QString::number(c.rating()));
         ui.numberDownloads->setText(QString::number(c.downloads()));
     }

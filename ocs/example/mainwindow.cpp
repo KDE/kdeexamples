@@ -5,13 +5,20 @@
 #include <QVBoxLayout>
 #include "simplepersonrequest.h"
 #include "contentdownload.h"
+#include "contentcreation.h"
+#include "providermanager.h"
 
 MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent)
 {
-    m_provider = Attica::Provider::createProvider("opendesktop");
+    Attica::ProviderManager pm;
+    m_provider = pm.providerById("opendesktop");
+    //m_provider = Attica::Provider::createProvider("opendesktop");
     
     QTabWidget* mainWidget = new QTabWidget(this);
     setCentralWidget(mainWidget);
+ 
+    ContentCreation* contentCreationWidget = new ContentCreation(m_provider, this);
+    mainWidget->addTab(contentCreationWidget, tr("Add Content"));
        
     ContentDownload* contentWidget = new ContentDownload(m_provider, this);
     mainWidget->addTab(contentWidget, tr("Content"));

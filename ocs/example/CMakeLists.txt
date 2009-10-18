@@ -8,10 +8,12 @@ set(opencollaborationexample_SRCS
     mainwindow.cpp
     simplepersonrequest.cpp
     contentdownload.cpp
+    contentcreation.cpp
 )
 
 kde4_add_ui_files(opencollaborationexample_SRCS
     contentdownload.ui
+    contentcreation.ui
 )
 
 kde4_add_executable(opencollaborationexample ${opencollaborationexample_SRCS})
