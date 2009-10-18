@@ -23,6 +23,7 @@
 #include <KDebug>
 #include <downloaditem.h>
 #include <qt4/QtGui/QMessageBox>
+#include <postjob.h>
 
 using namespace Attica;
 
@@ -36,6 +37,8 @@ ContentDownload::ContentDownload(Attica::Provider provider, QWidget* parent)
     connect(ui.search, SIGNAL(returnPressed()), SLOT(categoryChanged()));
     connect(ui.nextButton, SIGNAL(clicked()), SLOT(nextPage()));
     connect(ui.voteGood, SIGNAL(clicked()), SLOT(voteGood()));
+    connect(ui.voteBad, SIGNAL(clicked()), SLOT(voteBad()));
+
     connect(ui.downloadButton, SIGNAL(clicked()), SLOT(download()));
     
     connect(ui.contentList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(selectedContentChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
@@ -59,7 +62,7 @@ void ContentDownload::categoriesLoaded(Attica::BaseJob* job)
 
 void ContentDownload::categoryChanged()
 {
-    m_page = 1;
+    m_page = 0;
     updateContentsList();
 }
 
@@ -119,10 +122,21 @@ void ContentDownload::selectedContentChanged(QTreeWidgetItem* , QTreeWidgetItem*
 
 void ContentDownload::voteGood()
 {
+    vote(true);
+}
+
+void ContentDownload::voteBad()
+{
+    vote(false);
+}
+
+void ContentDownload::vote(bool positive)
+{
     QTreeWidgetItem* selectedItem = ui.contentList->currentItem();
     if (selectedItem && qVariantCanConvert<Content>(selectedItem->data(0, Qt::UserRole))) {
         Content c = qvariant_cast<Content>(selectedItem->data(0, Qt::UserRole));
-        m_provider.voteForContent(c.id(), true);
+        PostJob * job = m_provider.voteForContent(c.id(), positive);
+        job->start();
     }
 }
 

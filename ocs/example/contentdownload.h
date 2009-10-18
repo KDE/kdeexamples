@@ -38,8 +38,11 @@ public Q_SLOTS:
     void downloadLinkLoaded(Attica::BaseJob*);
     
     void voteGood();
+    void voteBad();
     
 private:
+    void vote(bool positive);
+    
     Attica::Provider m_provider;    
     Ui::ContentDownload ui;
     
