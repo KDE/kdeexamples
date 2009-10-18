@@ -5,6 +5,9 @@
 #include <KLineEdit>
 #include <QLabel>
 
+
+#include "../lib/provider.h"
+
 namespace Attica {
     class BaseJob;
 }
@@ -28,6 +31,7 @@ private:
     QLabel* mNameLabel;
     QLabel* mPictureLabel;
     QString mNick;
+    Attica::Provider m_provider;
 };
  
 #endif

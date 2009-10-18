@@ -2,7 +2,6 @@
 
 #include "../lib/person.h"
 #include "../lib/personjob.h"
-#include "../lib/provider.h"
 
 #include <KDebug>
 #include <QVBoxLayout>
@@ -43,12 +42,13 @@ void MainWindow::nickChanged(const QString& nick)
 
 void MainWindow::initOcs()
 {
+    m_provider = Attica::Provider::createProvider("opendesktop");
+    kDebug() << "base" << m_provider.baseUrl();
+    
     kDebug() << "init OCS";
-    Attica::Provider p(Attica::Provider::createProvider("opendesktop"));
-    kDebug() << "base" << p.baseUrl();
 
-    Attica::PersonJob *personJob = p.requestPerson( mNick );
-    connect( personJob, SIGNAL( finished(Attica::BaseJob*) ), this, SLOT( onPersonJobFinished(Attica::BaseJob *) ) );
+    Attica::PersonJob* job = m_provider.requestPerson(mNick);
+    connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(onPersonJobFinished(Attica::BaseJob*)));
 }
 
 void MainWindow::onPersonJobFinished( Attica::BaseJob *job )
