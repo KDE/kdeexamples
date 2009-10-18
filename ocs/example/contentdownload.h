@@ -29,12 +29,15 @@ public:
     
 public Q_SLOTS:
     void categoriesLoaded(Attica::BaseJob *job);
-    void categorySelected(int index);
+    void updateContentsList();
     void categoryContentsLoaded(Attica::BaseJob*);
     
 private:
     Attica::Provider m_provider;    
     Ui::ContentDownload ui;
+    
+    int page;
+    
 };
 
 #endif // CONTENTDOWNLOAD_H

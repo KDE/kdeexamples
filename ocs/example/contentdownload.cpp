@@ -28,7 +28,8 @@ ContentDownload::ContentDownload(Attica::Provider provider, QWidget* parent)
 {
     ui.setupUi(this);
     
-    connect(ui.category, SIGNAL(currentIndexChanged(int)), SLOT(categorySelected(int)));
+    connect(ui.category, SIGNAL(currentIndexChanged()), SLOT(updateContentsList()));
+    connect(ui.search, SIGNAL(returnPressed()), SLOT(updateContentsList()));
     
     // get the available categories from the server
     ListJob<Category>* job = m_provider.requestCategories();
@@ -46,12 +47,12 @@ void ContentDownload::categoriesLoaded(Attica::BaseJob* job)
     ui.category->model()->sort(0);
 }
 
-void ContentDownload::categorySelected(int index)
+void ContentDownload::updateContentsList()
 {
     ui.contentList->clear();
     
     QString name = ui.category->currentText();
-    QString id = ui.category->itemData(index).toString();
+    QString id = ui.category->itemData(ui.category->currentIndex()).toString();
     ui.currentCategoryLabel->setText(name);
     ui.currentCategoryIdLabel->setText(id);
     
@@ -76,7 +77,8 @@ void ContentDownload::categoryContentsLoaded(BaseJob* job)
         ui.contentList->addItem(item);
     }
     
-    
+    ui.countLabel->setText(tr("Total: %1").arg(listJob->metadata().totalItems));
+        
 }
 
 
