@@ -19,18 +19,7 @@ class MainWindow : public KXmlGuiWindow
 public:
     MainWindow(QWidget *parent=0);
 
-    void initOcs();
-
-public Q_SLOTS:
-    void nickChanged(const QString& nick);
-    void onPersonJobFinished( Attica::BaseJob *job );
-
-
 private:
-    KLineEdit* mLineEdit;
-    QLabel* mNameLabel;
-    QLabel* mPictureLabel;
-    QString mNick;
     Attica::Provider m_provider;
 };
  
