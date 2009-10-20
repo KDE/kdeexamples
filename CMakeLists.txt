@@ -7,12 +7,5 @@ include(MacroLibrary)
 include(MacroOptionalAddSubdirectory)
 
 add_subdirectory(ocs)
-
-
-
-
-
-
-
-
+add_subdirectory(plasma)
 
