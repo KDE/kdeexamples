@@ -18,6 +18,7 @@
 #include "../lib/provider.h"
 
 #include <QtGui/QLabel>
+#include <QBuffer>
 
 #include "ui_contentcreation.h"
 
@@ -33,11 +34,18 @@ public Q_SLOTS:
     void contentAdded(Attica::BaseJob*);
 
     void submit();
+    void uploadFile();
+    void fileUploadFinished(Attica::BaseJob*);
     
 private:    
     Attica::Provider m_provider;    
     Ui::ContentCreation ui;
-    
+
+    QString m_contentId;
+    QFile* m_file;
+
+    QByteArray m_byteArray;
+    QBuffer m_buffer;
 };
 
 #endif

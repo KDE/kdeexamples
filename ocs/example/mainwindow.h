@@ -6,6 +6,7 @@
 #include <QLabel>
 
 
+#include "../lib/providermanager.h"
 #include "../lib/provider.h"
 
 namespace Attica {
@@ -19,8 +20,12 @@ class MainWindow : public KXmlGuiWindow
 public:
     MainWindow(QWidget *parent=0);
 
+public Q_SLOTS:
+    void providersChanged();
+
 private:
     Attica::Provider m_provider;
+    Attica::ProviderManager m_pm;
 };
  
 #endif
