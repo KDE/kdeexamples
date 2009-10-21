@@ -22,7 +22,7 @@
 #include <QtGui/QTreeWidgetItem>
 #include <KDebug>
 #include <downloaditem.h>
-#include <qt4/QtGui/QMessageBox>
+#include <QtGui/QMessageBox>
 #include <postjob.h>
 #include <QFile>
 
