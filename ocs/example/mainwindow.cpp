@@ -11,10 +11,7 @@
 MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent)
 {
     connect(&m_pm, SIGNAL(providersChanged()), SLOT(providersChanged()));
-
-    if (m_pm.contains("opendesktop")) {
-        providersChanged();
-    }
+    m_pm.initialize();
  
     setupGUI();
 }
