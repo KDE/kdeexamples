@@ -1,0 +1,138 @@
+//***************** Animation Example *********************//
+// This example Plasmoid demonstrates how to use some
+// the animation system provided in Plasma which itself
+// builds on the QtKinetic framework in Qt.
+//
+// Requires KDE 4.4 at a minimum
+//
+// For more information see the Techbase tutorial at
+// http://techbase.kde.org/....?
+
+
+// Create a layout and set it to vertical;
+// since we don't define the parent item
+// it will become the layout for our Plasmoid
+layout = new LinearLayout();
+layout.setOrientation(QtVertical);
+
+
+//*************************************************************/
+//** A simple animation: Pulsing a button when it is clicked **/
+
+// Create a button; it will default to being a child of the Plasmoid
+// since we don't define a parent for it in the constructor. Then
+// add it to the layout. The i18n() call translates the text for us
+// if a translation is available.
+button = new PushButton();
+button.text = i18n('Pulse')
+layout.addItem(button)
+
+// Create a Pulse animation and set it to operate on the button
+// There are several stock animations provided in Plasma, and you
+// can access them by name (case insenseitive)
+pulseAnimation = animation('pulse')
+pulseAnimation.widgetToAnimate = button
+
+// Set the duration to be 1/5th of a second, or 200ms
+pulseAnimation.duration = 200
+
+// connect the button to the animation's start method and we're done!
+button.clicked.connect(pulseAnimation.start);
+
+
+//***************************************************************************/
+//** Combining animations: Fading and rotating a button when it is clicked **/
+
+// Create a button; it will default to being a child of the Plasmoid
+// since we don't define a parent for it in the constructor. Then
+// add it to the layout. The i18n() call translates the text for us
+// if a translation is available.
+button = new PushButton
+button.text = i18n('Rotate and Fade')
+layout.addItem(button)
+
+// Create a Fade animation and set it to operate on the button
+fadeAnimation = animation('fade')
+fadeAnimation.widgetToAnimate = button
+
+// Create a Rotation animation and set it to operate on the button
+rotateAnimation = animation('rotate')
+rotateAnimation.widgetToAnimate = button
+
+// Now we will add them to a group to run in parallel with each other
+// this coordinates the animations for us and we will just use the animation
+// group to start al of the animations
+rotateAndFadeAnimationGroup = new AnimationGroup
+rotateAndFadeAnimationGroup.parallel = true
+rotateAndFadeAnimationGroup.add(fadeAnimation)
+rotateAndFadeAnimationGroup.add(rotateAnimation)
+
+// this function will be triggered by the 'Rotate and Fade' button being clicked
+startRotateAndFadeAnimation = function()
+{
+    // start the animation
+    rotateAndFadeAnimationGroup.start()
+
+    // now reverse the direction for the next click!
+    rotateAndFadeAnimationGroup.forwards = !rotateAndFadeAnimationGroup.forwards
+}
+// connect the clicked signal to our function above
+button.clicked.connect(startRotateAndFadeAnimation);
+
+
+//**********************************************************************************/
+//** Combining animations sequentialy: Rotating two label when a butto is clicked **/
+
+// This button will trigger an animation to rotate the two labels
+// below it
+// add some space to the layout for the next bunch of widgets
+layout.addStretch(5)
+
+button = new PushButton
+button.text = i18n('Rotate Labels')
+layout.addItem(button)
+
+// Here is our first label, center aligned
+label1 = new Label
+label1.text = i18n('Rotates first')
+label1.alignment = QtAlignHCenter
+layout.addItem(label1)
+
+// Here is our second label, also center aligned
+label2 = new Label
+label2.text = i18n('Rotates second')
+label2.alignment = QtAlignHCenter
+layout.addItem(label2)
+
+// Now that we have our button and two labels, let's create the animation!
+
+// First, create an animation group, but this time don't set it to operate
+// in parallel; this will cause the animations in the group to trigger
+// one after the other, in sequence
+rotateLabelsAnimationGroup = new AnimationGroup
+
+// Create a Rotation animation and set it to operate on the first label,
+// then add it to the group
+rotateAnimation = animation('rotate')
+rotateAnimation.widgetToAnimate = label1
+rotateAnimation.angle = 360
+rotateLabelsAnimationGroup.add(rotateAnimation)
+
+// Let's create a pause to put between the two animations
+pause = animation('pause')
+pause.duration = 100
+rotateLabelsAnimationGroup.add(pause)
+
+// Create a Rotation animation and set it to operate on the second label,
+// then add it to the group
+rotateAnimation = animation('rotate')
+rotateAnimation.widgetToAnimate = label2
+rotateAnimation.angle = 360
+rotateLabelsAnimationGroup.add(rotateAnimation)
+
+// finally, connect the button's clicked event to the start method in the
+// animation group
+button.clicked.connect(rotateLabelsAnimationGroup.start)
+
+// add some space at the bottom of the widget
+layout.addStretch(10)
