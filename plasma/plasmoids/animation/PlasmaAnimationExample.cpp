@@ -57,12 +57,13 @@ void PlasmaAnimationExample::init()
 
     AbstractAnimation *growAnim =
       Plasma::Animator::create(Plasma::Animator::GrowAnimation);
-      //TODO: set factor  (2.0);
+    fadeAnim->setProperty("factor", 2.0);
     growAnim->setWidgetToAnimate(button3);
 
     AbstractAnimation *slideAnim =
       Plasma::Animator::create(Plasma::Animator::SlideAnimation);
-      //TODO: set (MoveDown, 30);
+    slideAnim->setProperty("direction", Plasma::MoveDown);
+    slideAnim->setProperty("distance", 30);
     slideAnim->setWidgetToAnimate(button3);
 
     //group 'em up!
