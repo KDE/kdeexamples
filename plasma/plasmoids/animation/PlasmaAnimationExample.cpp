@@ -10,12 +10,7 @@
 #include <plasma/widgets/pushbutton.h>
 
 #include <plasma/animations/animationgroup.h>
-#include <plasma/animations/grow.h>
-#include <plasma/animations/slide.h>
-#include <plasma/animations/expand.h>
-#include <plasma/animations/fade.h>
-#include <plasma/animations/rotation.h>
-#include <plasma/animations/pulser.h>
+#include <plasma/animations/animation.h>
 
 using namespace Plasma;
 
@@ -44,21 +39,31 @@ void PlasmaAnimationExample::init()
     button3->setGeometry(QRectF(100, 300, 100, 25));
 
     //animation
-    RotationAnimation *rotAnim = new RotationAnimation;
-    rotAnim->setAxis(Qt::ZAxis);
-    rotAnim->setReference(RotationAnimation::Center);
-    rotAnim->setAngle(180);
-    rotAnim->setWidget(button1);
-    FadeAnimation *fadeAnim = new FadeAnimation(0.40);
-    fadeAnim->setWidget(button1);
+    AbstractAnimation *rotAnim =
+      Plasma::Animator::create(Plasma::Animator::RotationAnimation);
+    rotAnim->setProperty("axis", Qt::ZAxis);
+    rotAnim->setProperty("reference", AbstractAnimation::Center);
+    rotAnim->setProperty("angle", 180);
+    rotAnim->setWidgetToAnimate(button1);
 
-    PulseAnimation *pulseAnim = new PulseAnimation;
-    pulseAnim->setWidget(button2);
+    AbstractAnimation *fadeAnim =
+      Plasma::Animator::create(Plasma::Animator::FadeAnimation);
+    fadeAnim->setProperty("factor", 0.40);
+    fadeAnim->setWidgetToAnimate(button1);
 
-    GrowAnimation *growAnim = new GrowAnimation(2.0);
-    growAnim->setWidget(button3);
-    SlideAnimation *slideAnim = new SlideAnimation(MoveDown, 30);
-    slideAnim->setWidget(button3);
+    AbstractAnimation *pulseAnim =
+      Plasma::Animator::create(Plasma::Animator::PulseAnimation);
+    pulseAnim->setWidgetToAnimate(button2);
+
+    AbstractAnimation *growAnim =
+      Plasma::Animator::create(Plasma::Animator::GrowAnimation);
+      //TODO: set factor  (2.0);
+    growAnim->setWidgetToAnimate(button3);
+
+    AbstractAnimation *slideAnim =
+      Plasma::Animator::create(Plasma::Animator::SlideAnimation);
+      //TODO: set (MoveDown, 30);
+    slideAnim->setWidgetToAnimate(button3);
 
     //group 'em up!
     AnimationGroup *inner_g = new AnimationGroup();
