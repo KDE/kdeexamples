@@ -1,6 +1,6 @@
-svg = new PlasmaSvg('tiger');
+svg = new PlasmaSvg('tiger')
 p = new QPixmap('kde.png')
-plasmoid.setAction('myAction', 'Toggle KDE Logo', 'plasma');
+plasmoid.setAction('myAction', i18n('Toggle KDE Logo'), 'plasma')
 drawLogo = true;
 
 print('size of pixmap is: ' + p.rect().width() + 'x' + p.rect().height())
@@ -10,9 +10,9 @@ plasmoid.action_myAction = function()
     drawLogo = !drawLogo
     plasmoid.update()
     if (drawLogo) {
-        print("Refreshing Plasmoid with the KDE logo.")
+        print(i18n("Refreshing Plasmoid with the KDE logo."))
     } else {
-        print("Refreshing Plasmoid without the KDE logo.")
+        print(i18n("Refreshing Plasmoid without the KDE logo."))
     }
 }
 
