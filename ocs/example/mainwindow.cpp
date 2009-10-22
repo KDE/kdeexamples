@@ -11,7 +11,7 @@
 MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent)
 {
     connect(&m_pm, SIGNAL(providersChanged()), SLOT(providersChanged()));
-    m_pm.initialize();
+    m_pm.loadDefaultProviders();
  
     setupGUI();
 }
