@@ -48,7 +48,8 @@ void PlasmaAnimationExample::init()
 
     AbstractAnimation *fadeAnim =
       Plasma::Animator::create(Plasma::Animator::FadeAnimation);
-    fadeAnim->setProperty("factor", 0.40);
+    fadeAnim->setProperty("startOpacity", 0.8);
+    fadeAnim->setProperty("targetOpacity", 0.2);
     fadeAnim->setWidgetToAnimate(button1);
 
     AbstractAnimation *pulseAnim =
