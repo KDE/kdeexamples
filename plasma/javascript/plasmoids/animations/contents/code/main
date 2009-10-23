@@ -53,6 +53,8 @@ layout.addItem(button)
 
 // Create a Fade animation and set it to operate on the button
 fadeAnimation = animation('fade')
+fadeAnimation.startOpacity = 1
+fadeAnimation.targetOpacity = 0.5
 fadeAnimation.widgetToAnimate = button
 
 // Create a Rotation animation and set it to operate on the button
