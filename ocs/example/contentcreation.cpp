@@ -116,16 +116,10 @@ void ContentCreation::uploadFile()
     */
 
     //m_file = new QFile("/home/frederik/testfile.txt");
-    m_byteArray.append("localfile=");
-    m_byteArray.append("hello world");
 
+    m_byteArray.append("hello world, this is test data for upload");
     
-    
-    m_buffer.setData(m_byteArray);
-
-qDebug() << m_byteArray;
-    
-    PostJob* job = m_provider.setDownloadFile(m_contentId, &m_buffer);
+    PostJob* job = m_provider.setDownloadFile(m_contentId, m_byteArray);
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(fileUploadFinished(Attica::BaseJob*)));
     job->start();
 }
