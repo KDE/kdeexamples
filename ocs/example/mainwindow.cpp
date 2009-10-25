@@ -18,8 +18,9 @@ MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent)
 
 void MainWindow::providersChanged()
 {
-    if (m_pm.contains("https://api.opendesktop.org/v1/")) {
-        m_provider = m_pm.providerByUrl(QUrl("https://api.opendesktop.org/v1/"));
+    if (!m_pm.providers().isEmpty()) {
+        m_provider = m_pm.providers().first();
+        kDebug() << "Using provider: " << m_provider.baseUrl().toString();
 
         QTabWidget* mainWidget = new QTabWidget(this);
         setCentralWidget(mainWidget);
