@@ -31,19 +31,28 @@
 #include <QtGui/QMessageBox>
 #include <postjob.h>
 #include <QFile>
+#include <QtCore/QFileInfo>
 
 using namespace Attica;
 
 ContentCreation::ContentCreation(Attica::Provider provider, QWidget* parent)
     : QWidget(parent)
     , m_provider(provider)
+    , m_editMode(false)
 {
     ui.setupUi(this);
     
     connect(ui.category, SIGNAL(currentIndexChanged(int)), SLOT(categoryChanged()));
     connect(ui.submitButton, SIGNAL(clicked()), SLOT(submit()));
+    
     connect(ui.upload, SIGNAL(clicked()), SLOT(uploadFile()));
-        
+    connect(ui.uploadPreview1Button, SIGNAL(clicked()), SLOT(uploadPreview1()));
+    connect(ui.uploadPreview2Button, SIGNAL(clicked()), SLOT(uploadPreview2()));
+    connect(ui.uploadPreview3Button, SIGNAL(clicked()), SLOT(uploadPreview3()));
+
+    connect(ui.deleteFile, SIGNAL(clicked()), SLOT(deleteFile()));
+    connect(ui.deletePreview1, SIGNAL(clicked()), SLOT(deletePreview1()));
+    
     // get the available categories from the server
     ListJob<Category>* job = m_provider.requestCategories();
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(categoriesLoaded(Attica::BaseJob*)));
@@ -63,7 +72,6 @@ void ContentCreation::categoriesLoaded(Attica::BaseJob* job)
 
 void ContentCreation::categoryChanged()
 {
-
 }
 
 void ContentCreation::submit()
@@ -83,10 +91,16 @@ void ContentCreation::submit()
     content.addAttribute("downloadlink2", ui.link2->text());
     content.addAttribute("homepage1", ui.homepage->text());
     content.addAttribute("blog1", ui.blog->text());
-    
-    ItemPostJob<Content>* job = m_provider.addNewContent(category, content);
-    connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(contentAdded(Attica::BaseJob*)));
-    job->start();
+
+    if (!m_editMode) {
+        ItemPostJob<Content>* job = m_provider.addNewContent(category, content);
+        connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(contentAdded(Attica::BaseJob*)));
+        job->start();
+    } else {
+        ItemPostJob<Content>* job = m_provider.editContent(category, m_contentId, content);
+        connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(contentAdded(Attica::BaseJob*)));
+        job->start();
+    }
 }
 
 void ContentCreation::contentAdded(Attica::BaseJob* baseJob)
@@ -100,41 +114,70 @@ void ContentCreation::contentAdded(Attica::BaseJob* baseJob)
     }
 
     m_contentId = id;
+    ui.contentId.setText(m_contentId);
+
+    m_editMode = true;
 }
 
 void ContentCreation::uploadFile()
 {
-    /*
-    m_file = new QFile("/home/frederik/testfile.txt"); //ui.uploadFile);
-    if (!m_file->open(QIODevice::ReadOnly)) {
-         return;
+    doUpload(QString(), ui.uploadFile->url().toLocalFile());
+}
+
+void ContentCreation::uploadPreview1()
+{
+    doUpload("1", ui.uploadPreview1->url().toLocalFile());
+}
+
+void ContentCreation::uploadPreview2()
+{
+    doUpload("2", ui.uploadPreview2->url().toLocalFile());
+}
+
+void ContentCreation::uploadPreview3()
+{
+    doUpload("3", ui.uploadPreview3->url().toLocalFile());
+}
+
+void ContentCreation::doUpload(const QString& index, const QString& path)
+{
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::warning(this, "Upload", QString("File not found: %1").arg(ui.uploadFile->text()));
+        return;
     }
     
-    if (m_file->isReadable()) {
-        qDebug() << "File contents: " << m_file->readAll();
-        
-        PostJob* job = m_provider.setDownloadFile(m_contentId, m_file);
-        connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(fileUploadFinished(Attica::BaseJob*)));
-        job->start();
+    QByteArray fileContents;
+    fileContents.append(file.readAll());
+    file.close();
+
+    QString fileName = QFileInfo(path).fileName();
+
+    PostJob* job;
+    if (index.isEmpty()) {
+        job = m_provider.setDownloadFile(m_contentId, fileName, fileContents);
     } else {
-        qDebug() << "file not readable";
+        job = m_provider.setPreviewImage(m_contentId, index, fileName, fileContents);
     }
-    */
-
-    //m_file = new QFile("/home/frederik/testfile.txt");
-
-    m_byteArray.append("hello world, this is test data for upload");
-    
-    PostJob* job = m_provider.setDownloadFile(m_contentId, m_byteArray);
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(fileUploadFinished(Attica::BaseJob*)));
     job->start();
+
 }
+
+void ContentCreation::deleteFile()
+{
+    m_provider.deleteDownloadFile(m_contentId);
+}
+
+void ContentCreation::deletePreview1()
+{
+    m_provider.deletePreviewImage(m_contentId, "1");
+}
+
 
 void ContentCreation::fileUploadFinished(BaseJob* )
 {
     QMessageBox::information(0, "Content Added", "File Uploaded");
-    //m_file->close();
-    //delete m_file;
 }
 
 #include "contentcreation.moc"

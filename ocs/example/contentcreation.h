@@ -42,17 +42,24 @@ public Q_SLOTS:
 
     void submit();
     void uploadFile();
-    void fileUploadFinished(Attica::BaseJob*);
+    void uploadPreview1();
+    void uploadPreview2();
+    void uploadPreview3();
+
+    void deleteFile();
+    void deletePreview1();
     
-private:    
+    void fileUploadFinished(Attica::BaseJob*);
+
+private:
+    void doUpload(const QString& index, const QString& filePath);
+    
     Attica::Provider m_provider;    
     Ui::ContentCreation ui;
 
+    bool m_editMode;
     QString m_contentId;
-    QFile* m_file;
-
     QByteArray m_byteArray;
-    QBuffer m_buffer;
 };
 
 #endif
