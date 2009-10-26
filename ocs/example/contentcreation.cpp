@@ -114,7 +114,7 @@ void ContentCreation::contentAdded(Attica::BaseJob* baseJob)
     }
 
     m_contentId = id;
-    ui.contentId.setText(m_contentId);
+    ui.contentId->setText(m_contentId);
 
     m_editMode = true;
 }
