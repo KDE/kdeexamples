@@ -58,7 +58,7 @@ void PlasmaAnimationExample::init()
 
     AbstractAnimation *growAnim =
       Plasma::Animator::create(Plasma::Animator::GrowAnimation);
-    fadeAnim->setProperty("factor", 2.0);
+    growAnim->setProperty("factor", 2.0);
     growAnim->setWidgetToAnimate(button3);
 
     AbstractAnimation *slideAnim =
