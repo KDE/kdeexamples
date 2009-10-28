@@ -38,6 +38,9 @@ HomeFilesRunner::HomeFilesRunner(QObject *parent, const QVariantList &args)
     setIgnoredTypes(Plasma::RunnerContext::NetworkLocation |
                     Plasma::RunnerContext::Executable |
                     Plasma::RunnerContext::ShellCommand);
+    setSpeed(SlowSpeed);
+    setPriority(LowPriority);
+    setHasRunOptions(true);
 }
 
 void HomeFilesRunner::init()
@@ -93,7 +96,6 @@ void HomeFilesRunner::match(Plasma::RunnerContext &context)
         query.prepend('*').append('*');
     }
 
-    kDebug() << "matching" << query << "in" << m_path << "with" << m_triggerWord;
     QDir dir(m_path);
     QList<Plasma::QueryMatch> matches;
 
@@ -123,6 +125,7 @@ void HomeFilesRunner::match(Plasma::RunnerContext &context)
 
         if (file.compare(query, Qt::CaseInsensitive)) {
             match.setRelevance(1.0);
+            match.setType(Plasma::QueryMatch::ExactMatch);
         } else {
             match.setRelevance(0.8);
         }
