@@ -25,8 +25,10 @@ are met:
 
 #include "homefilesrunner.h"
 
+#include <QCheckBox>
 #include <QDir>
 #include <QFileInfo>
+#include <QVBoxLayout>
 
 #include <KDebug>
 #include <KMimeType>
@@ -60,7 +62,6 @@ void HomeFilesRunner::reloadConfiguration()
 
     m_path = c.readPathEntry("path", QDir::homePath());
     QFileInfo pathInfo(m_path);
-    kDebug() << "path is" << m_path << QDir::homePath();
     if (!pathInfo.isDir()) {
         m_path = QDir::homePath();
     }
@@ -151,7 +152,10 @@ void HomeFilesRunner::run(const Plasma::RunnerContext &context, const Plasma::Qu
 
 void HomeFilesRunner::createRunOptions(QWidget *widget)
 {
-
+    QVBoxLayout *layout = new QVBoxLayout(widget);
+    QCheckBox *cb = new QCheckBox(widget);
+    cb->setText(i18n("This is just for show"));
+    layout->addWidget(cb);
 }
 
 K_EXPORT_PLASMA_RUNNER(example-homefiles, HomeFilesRunner)
