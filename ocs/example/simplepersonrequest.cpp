@@ -65,7 +65,7 @@ void SimplePersonRequest::onPersonJobFinished( Attica::BaseJob *job )
 {
     kDebug() << "onJobFinished";
     Attica::PersonJob *personJob = static_cast< Attica::PersonJob * >( job );
-    if( personJob->error() == 0 )
+    if( personJob->statusCode() == 0 )
     {
         Attica::Person p(personJob->result());
         mNameLabel->setText(p.firstName() + ' ' + p.lastName() + '\n' +
