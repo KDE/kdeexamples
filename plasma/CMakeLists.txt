@@ -6,5 +6,5 @@ include (MacroLibrary)
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
 
-add_subdirectory(plasmoids)
+add_subdirectory(c++)
 
