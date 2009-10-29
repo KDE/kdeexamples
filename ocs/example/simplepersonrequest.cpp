@@ -25,7 +25,7 @@
 #include <QtGui/QVBoxLayout>
 
 #include "../lib/person.h"
-#include "../lib/personjob.h"
+#include "../lib/itemjob.h"
 
 SimplePersonRequest::SimplePersonRequest(Attica::Provider provider, QWidget* parent)
     : QWidget(parent)
@@ -56,7 +56,7 @@ SimplePersonRequest::SimplePersonRequest(Attica::Provider provider, QWidget* par
 void SimplePersonRequest::nickChanged(const QString& nick)
 {
     mNick = nick;
-    Attica::PersonJob* job = m_provider.requestPerson(mNick);
+    Attica::ItemJob<Attica::Person>* job = m_provider.requestPerson(mNick);
     connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(onPersonJobFinished(Attica::BaseJob*)));
     job->start();
 }
@@ -64,7 +64,7 @@ void SimplePersonRequest::nickChanged(const QString& nick)
 void SimplePersonRequest::onPersonJobFinished( Attica::BaseJob *job )
 {
     kDebug() << "onJobFinished";
-    Attica::PersonJob *personJob = static_cast< Attica::PersonJob * >( job );
+    Attica::ItemJob<Attica::Person> *personJob = static_cast< Attica::ItemJob<Attica::Person> * >( job );
     if( personJob->statusCode() == 0 )
     {
         Attica::Person p(personJob->result());
