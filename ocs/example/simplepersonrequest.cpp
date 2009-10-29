@@ -70,7 +70,7 @@ void SimplePersonRequest::onPersonJobFinished( Attica::BaseJob *job )
         Attica::Person p(personJob->result());
         mNameLabel->setText(p.firstName() + ' ' + p.lastName() + '\n' +
         p.city() + "; " + p.country());
-        mPictureLabel->setPixmap(p.avatar());
+        //mPictureLabel->setPixmap(p.avatar());
     } else {
         mNameLabel->setText("Could not fetch information.");
     }
