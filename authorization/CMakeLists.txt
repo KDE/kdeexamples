@@ -26,7 +26,3 @@ install(TARGETS kauth_example_helper DESTINATION ${LIBEXEC_INSTALL_DIR})
 
 kde4_install_auth_helper_files(kauth_example_helper org.kde.auth.example root)
 kde4_install_auth_actions(org.kde.auth.example actions.actions)
-
-# miscellaneous
-set_target_properties(kauth_example PROPERTIES COMPILE_FLAGS "-Wall -ggdb")
-set_target_properties(kauth_example_helper PROPERTIES COMPILE_FLAGS "-Wall -ggdb")
