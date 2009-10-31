@@ -1,5 +1,5 @@
 # Project Needs a name, of course
-project(plasmaanimationexample)
+project(PlasmaAnimationExample)
 
 # We add our source code here
 set(example_SRCS PlasmaAnimationExample.cpp)

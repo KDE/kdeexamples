@@ -1,13 +1,12 @@
 # Project Needs a name, of course
-project(runnerexmaple)
+project(RunnerExample)
 
 set(KDE_MIN_VERSION "4.3.60") # for the < 4.2 macro
 find_package(KDE4 4.3.60 REQUIRED)
 include (KDE4Defaults)
-include (MacroLibrary)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
+include_directories(${KDE4_INCLUDES})
 
 # We add our source code here
 set(example_SRCS homefilesrunner.cpp)
