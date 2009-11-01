@@ -34,7 +34,7 @@ kde_ctest_setup("${CMAKE_CURRENT_LIST_FILE}")
 
 # now actually do the Nightly
 ctest_empty_binary_directory("${CTEST_BINARY_DIRECTORY}")
-ctest_start(Experimental) #Nightly)
+ctest_start(Nightly)
 ctest_update(SOURCE "${CTEST_SOURCE_DIRECTORY}" )
 
 # read some settings
@@ -48,7 +48,7 @@ kde_ctest_write_initial_cache("${CTEST_BINARY_DIRECTORY}" CMAKE_INSTALL_PREFIX)
 # configure, build, test, submit
 ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}" )
 ctest_build(BUILD "${CTEST_BINARY_DIRECTORY}" )
-#ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}" )
+ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}" )
 ctest_submit()
 
 # optionally install afterwards, so additional nightly builds can use this current install 
