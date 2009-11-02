@@ -5,6 +5,8 @@
 
 #include <Plasma/Applet>
 #include <Plasma/Svg>
+#include <Plasma/AnimationGroup>
+
 
 class PlasmaAnimationExample : public Plasma::Applet
 {
@@ -14,6 +16,15 @@ public:
     PlasmaAnimationExample(QObject *parent, const QVariantList &args);
 
     void init();
+
+private slots:
+
+    void startAll();
+
+private:
+    Plasma::AnimationGroup *inner_g;
+    Plasma::AnimationGroup *outer_g;
+
 };
- 
+
 #endif

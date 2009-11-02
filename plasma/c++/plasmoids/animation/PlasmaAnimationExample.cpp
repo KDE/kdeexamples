@@ -68,19 +68,31 @@ void PlasmaAnimationExample::init()
     slideAnim->setWidgetToAnimate(button3);
 
     //group 'em up!
-    AnimationGroup *inner_g = new AnimationGroup();
+    inner_g = new Plasma::AnimationGroup();
     inner_g->setParallel(true);
     inner_g->add(rotAnim);
     inner_g->add(pulseAnim);
     inner_g->add(growAnim);
 
-    AnimationGroup *outer_g = new AnimationGroup(this);
+    outer_g = new Plasma::AnimationGroup(this);
     outer_g->add(inner_g);
-    outer_g->add(slideAnim);
+    //TODO: fix slide
+    //outer_g->add(slideAnim);
     outer_g->add(fadeAnim);
 
-    QObject::connect(button1, SIGNAL(clicked()), outer_g, SLOT(start()));
-
+    QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
 }
+
+void PlasmaAnimationExample::startAll()
+{
+    /* revert to initial state by rewinding the animation */
+    outer_g->start();
+    outer_g->setProperty("forwards", !(outer_g->property("forwards").toBool()));
+    inner_g->setProperty("forwards", !(inner_g->property("forwards").toBool()));
+
+    AbstractAnimation *grow = inner_g->at(2);
+    grow->setProperty("forwards", !(grow->property("forwards").toBool()));
+}
+
 
 #include "PlasmaAnimationExample.moc"
