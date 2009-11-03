@@ -23,10 +23,12 @@
 
 #include <KDebug>
 #include <QVBoxLayout>
+
+#include <attica/providermanager.h>
+
 #include "simplepersonrequest.h"
 #include "contentdownload.h"
 #include "contentcreation.h"
-#include "providermanager.h"
 
 MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent)
 {

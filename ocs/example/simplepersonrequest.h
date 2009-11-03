@@ -22,7 +22,7 @@
 #ifndef SIMPLEPERSONREQUEST_H
 #define SIMPLEPERSONREQUEST_H
 
-#include "../lib/provider.h"
+#include <attica/provider.h>
 #include <KLineEdit>
 #include <QtGui/QLabel>
 

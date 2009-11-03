@@ -21,15 +21,16 @@
 
 #include "contentdownload.h"
 
-#include "../lib/category.h"
-#include "../lib/content.h"
-#include "../lib/listjob.h"
-#include "../lib/content.h"
 #include <QtGui/QTreeWidgetItem>
-#include <KDebug>
-#include <downloaditem.h>
 #include <QtGui/QMessageBox>
-#include <postjob.h>
+
+#include <KDebug>
+
+#include <attica/category.h>
+#include <attica/content.h>
+#include <attica/downloaditem.h>
+#include <attica/listjob.h>
+#include <attica/postjob.h>
 
 using namespace Attica;
 

@@ -22,7 +22,7 @@
 #ifndef CONTENTDOWNLOAD_H
 #define CONTENTDOWNLOAD_H
 
-#include "../lib/provider.h"
+#include <attica/provider.h>
 
 #include <QtGui/QLabel>
 

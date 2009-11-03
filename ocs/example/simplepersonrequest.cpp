@@ -24,8 +24,8 @@
 #include <KDebug>
 #include <QtGui/QVBoxLayout>
 
-#include "../lib/person.h"
-#include "../lib/itemjob.h"
+#include <attica/person.h>
+#include <attica/itemjob.h>
 
 SimplePersonRequest::SimplePersonRequest(Attica::Provider provider, QWidget* parent)
     : QWidget(parent)

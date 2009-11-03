@@ -27,8 +27,8 @@
 #include <QLabel>
 
 
-#include "../lib/providermanager.h"
-#include "../lib/provider.h"
+#include <attica/providermanager.h>
+#include <attica/provider.h>
 
 namespace Attica {
     class BaseJob;

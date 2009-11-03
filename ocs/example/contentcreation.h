@@ -22,7 +22,7 @@
 #ifndef CONTENTCREATION_H
 #define CONTENTCREATION_H
 
-#include "../lib/provider.h"
+#include <attica/provider.h>
 
 #include <QtGui/QLabel>
 #include <QBuffer>
