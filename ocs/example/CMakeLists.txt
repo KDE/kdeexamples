@@ -17,5 +17,5 @@ kde4_add_ui_files(opencollaborationexample_SRCS
 )
 
 kde4_add_executable(opencollaborationexample ${opencollaborationexample_SRCS})
-target_link_libraries(opencollaborationexample ocsclient ${KDE4_KIO_LIBS}  ${KDE4_KDEUI_LIBS})
+target_link_libraries(opencollaborationexample attica ${KDE4_KIO_LIBS}  ${KDE4_KDEUI_LIBS})
 
