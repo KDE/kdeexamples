@@ -113,7 +113,7 @@ void ContentDownload::categoryContentsLoaded(BaseJob* job)
         item->setData(0, Qt::UserRole, qVariantFromValue(content));
         ui.contentList->addTopLevelItem(item);
     }
-    ui.countLabel->setText(tr("Total items: %1").arg(listJob->metadata().totalItems));
+    ui.countLabel->setText(tr("Total items: %1").arg(listJob->metadata().totalItems()));
 }
 
 void ContentDownload::selectedContentChanged(QTreeWidgetItem* , QTreeWidgetItem* selectedItem)
