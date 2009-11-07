@@ -9,3 +9,5 @@ include(MacroOptionalAddSubdirectory)
 add_subdirectory(ocs)
 add_subdirectory(plasma)
 add_subdirectory(kcm)
+add_subdirectory(example)
+
