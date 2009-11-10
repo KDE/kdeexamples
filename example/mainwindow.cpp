@@ -30,12 +30,10 @@
 #include "contentdownload.h"
 #include "contentcreation.h"
 
-MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent)
+MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 {
     connect(&m_pm, SIGNAL(providersChanged()), SLOT(providersChanged()));
     m_pm.loadDefaultProviders();
- 
-    setupGUI();
 }
 
 void MainWindow::providersChanged()

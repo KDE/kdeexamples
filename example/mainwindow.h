@@ -22,7 +22,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
  
-#include <KXmlGuiWindow>
+#include <KMainWindow>
 #include <KLineEdit>
 #include <QLabel>
 
@@ -34,7 +34,7 @@ namespace Attica {
     class BaseJob;
 }
 
-class MainWindow : public KXmlGuiWindow
+class MainWindow : public KMainWindow
 {
     Q_OBJECT
 

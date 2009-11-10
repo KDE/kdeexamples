@@ -25,16 +25,19 @@
 #include <KLocale>
  
 #include "mainwindow.h"
- 
+
+// There is really nothing new in this file, you should look at more basic tutorial if you don't understand this.
+
+
 int main (int argc, char *argv[])
 {
-    KAboutData aboutData( "libatticademo", 0,
-    ki18n("Attica Demo"), "1.0",
+    KAboutData aboutData( "opencollaborationexample", 0,
+    ki18n("Open Collaboration Services Demo"), "1.0",
     ki18n("Show how to use libattica to access the Open Collaboration Services"),
     KAboutData::License_GPL,
     ki18n("Copyright (c) 2009 Frederik Gladhorn") );
     KCmdLineArgs::init( argc, argv, &aboutData );
-     
+
     KApplication app;
      
     MainWindow* window = new MainWindow();
