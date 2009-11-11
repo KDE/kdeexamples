@@ -23,7 +23,7 @@ layout.setOrientation(QtVertical);
 // since we don't define a parent for it in the constructor. Then
 // add it to the layout. The i18n() call translates the text for us
 // if a translation is available.
-button = new PushButton();
+button = new PushButton()
 button.text = i18n('Pulse')
 layout.addItem(button)
 
