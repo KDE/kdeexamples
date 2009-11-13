@@ -93,6 +93,11 @@ void PlasmaAnimationExample::init()
     slideAnim->setProperty("distance", 30);
     slideAnim->setWidgetToAnimate(button3);
 
+    AbstractAnimation *pauseAnim =
+        Plasma::Animator::create(Plasma::Animator::PauseAnimation);
+    pauseAnim->setWidgetToAnimate(button3);
+    pauseAnim->setProperty("duration", 700);
+
     //group 'em up!
     inner_g = new Plasma::AnimationGroup();
     inner_g->setParallel(true);
@@ -105,6 +110,7 @@ void PlasmaAnimationExample::init()
     //TODO: fix slide
     //outer_g->add(slideAnim);
     outer_g->add(fadeAnim);
+    outer_g->add(pauseAnim);
     outer_g->add(rotStackedAnim);
 
     QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
