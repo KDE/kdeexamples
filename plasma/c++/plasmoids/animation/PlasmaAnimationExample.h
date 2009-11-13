@@ -24,7 +24,6 @@ private slots:
 private:
     Plasma::AnimationGroup *inner_g;
     Plasma::AnimationGroup *outer_g;
-
 };
 
 #endif

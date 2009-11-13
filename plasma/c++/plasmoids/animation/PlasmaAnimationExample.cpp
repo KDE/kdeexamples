@@ -12,7 +12,13 @@
 #include <plasma/animations/animationgroup.h>
 #include <plasma/animations/animation.h>
 
+#include <QGraphicsLinearLayout>
+#include <QGraphicsLayoutItem>
+
 using namespace Plasma;
+
+Q_DECLARE_METATYPE(QGraphicsWidget*)
+Q_DECLARE_METATYPE(QGraphicsLayoutItem*)
 
 K_EXPORT_PLASMA_APPLET(plasma-applet-pltest, PlasmaAnimationExample)
 
@@ -25,18 +31,38 @@ PlasmaAnimationExample::PlasmaAnimationExample(QObject *parent, const QVariantLi
 
 void PlasmaAnimationExample::init()
 {
+    QGraphicsLinearLayout *mLayout = new QGraphicsLinearLayout(this);
+    QGraphicsWidget *frontWidget = new QGraphicsWidget(this);
+    QGraphicsLinearLayout *frontLayout = new QGraphicsLinearLayout(Qt::Vertical, frontWidget);
 
-    PushButton* button1 = new PushButton(this);
-    button1->setText("button1!");
-    button1->setGeometry(QRectF(100, 100, 100, 25));
+    PushButton* button1 = new PushButton(frontWidget);
+    button1->setText("Press me!");
 
-    PushButton* button2 = new PushButton(this);
-    button2->setText("button2!");
-    button2->setGeometry(QRectF(100, 200, 100, 25));
+    PushButton *button2 = new PushButton(frontWidget);
+    button2->setText("Pulse Animation!");
 
-    PushButton* button3 = new PushButton(this);
-    button3->setText("button3!");
-    button3->setGeometry(QRectF(100, 300, 100, 25));
+    PushButton* button3 = new PushButton(frontWidget);
+    button3->setText("Grow Animation!");
+
+    PushButton *button4 = new PushButton(frontWidget);
+    button4->setText("Back Widget!");
+
+    frontLayout->addItem(button1);
+    frontLayout->addItem(button2);
+    frontLayout->addItem(button3);
+
+    qRegisterMetaType<QGraphicsLayoutItem *>("QGraphicsLayoutItem *");
+
+    AbstractAnimation* rotStackedAnim =
+        Plasma::Animator::create(Plasma::Animator::RotationStackedAnimation);
+    rotStackedAnim->setWidgetToAnimate(frontWidget);
+    QVariant var;
+    var.setValue(static_cast<QGraphicsWidget*>(button4));
+    rotStackedAnim->setProperty("backWidget", var);
+    rotStackedAnim->setProperty("reference", AbstractAnimation::Center);
+    rotStackedAnim->setProperty("direction", Plasma::MoveRight);
+    QVariant varLayout = rotStackedAnim->property("layout");
+    mLayout->addItem(varLayout.value<QGraphicsLayoutItem*>());
 
     //animation
     AbstractAnimation *rotAnim =
@@ -79,8 +105,10 @@ void PlasmaAnimationExample::init()
     //TODO: fix slide
     //outer_g->add(slideAnim);
     outer_g->add(fadeAnim);
+    outer_g->add(rotStackedAnim);
 
     QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
+    QObject::connect(button4, SIGNAL(clicked()), this ,SLOT(startAll()));
 }
 
 void PlasmaAnimationExample::startAll()
