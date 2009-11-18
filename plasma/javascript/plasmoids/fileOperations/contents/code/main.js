@@ -2,14 +2,20 @@ function showOpenFileDialog()
 {
     print("opening a file?")
     var dialog = new OpenFileDialog
+    dialog.accepted.connect(openFileDialogAccepted)
     dialog.finished.connect(openFileDialogFinished)
     dialog.show()
 }
 
-function openFileDialogFinished(dialog)
+function openFileDialogAccepted(dialog)
 {
     var url = dialog.url
     print("open this file! " + url.protocol + ' ' + url.host + ' ' + url.path)
+}
+
+function openFileDialogFinished(dialog)
+{
+    dialog.accepted.disconnect(openFileDialogAccepted)
     dialog.finished.disconnect(openFileDialogFinished)
     plasmoid.gc()
 }
@@ -17,16 +23,21 @@ function openFileDialogFinished(dialog)
 function showSaveFileDialog()
 {
     print("saving a file?")
-    dialog = new OpenFileDialog
     var dialog = new SaveFileDialog
-    dialog.show()
+    dialog.accepted.connect(saveFileDialogAccepted)
     dialog.finished.connect(saveFileDialogFinished)
+    dialog.show()
+}
+
+function saveFileDialogAccepted(dialog)
+{
+    print("save to this file! " + dialog.files)
 }
 
 function saveFileDialogFinished(dialog)
 {
-    print("save to this file! " + dialog.files)
-    dialog.finished.disconnect(openFileDialogFinished)
+    dialog.accepted.disconnect(saveFileDialogAccepted)
+    dialog.finished.disconnect(saveFileDialogFinished)
     plasmoid.gc()
 }
 
