@@ -1,29 +1,33 @@
 function showOpenFileDialog()
 {
     print("opening a file?")
-    dialog = new OpenFileDialog
+    var dialog = new OpenFileDialog
     dialog.finished.connect(openFileDialogFinished)
     dialog.show()
 }
 
-function openFileDialogFinished(a)
+function openFileDialogFinished(dialog)
 {
-    url = a.url
+    var url = dialog.url
     print("open this file! " + url.protocol + ' ' + url.host + ' ' + url.path)
-    delete a
-}
-
-function saveFileDialogFinished(a)
-{
-    print("save to this file! " + a.files)
-    delete a
+    dialog.finished.disconnect(openFileDialogFinished)
+    plasmoid.gc()
 }
 
 function showSaveFileDialog()
 {
-    dialog = new SaveFileDialog
+    print("saving a file?")
+    dialog = new OpenFileDialog
+    var dialog = new SaveFileDialog
     dialog.show()
     dialog.finished.connect(saveFileDialogFinished)
+}
+
+function saveFileDialogFinished(dialog)
+{
+    print("save to this file! " + dialog.files)
+    dialog.finished.disconnect(openFileDialogFinished)
+    plasmoid.gc()
 }
 
 open = new PushButton
