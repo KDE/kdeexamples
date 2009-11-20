@@ -22,7 +22,8 @@
 #include "simplepersonrequest.h"
 
 #include <KDebug>
-#include <QtGui/QVBoxLayout>
+#include <QtGui/QBoxLayout>
+#include <QtGui/QSpacerItem>
 
 #include <attica/person.h>
 #include <attica/itemjob.h>
@@ -33,24 +34,21 @@ SimplePersonRequest::SimplePersonRequest(Attica::Provider provider, QWidget* par
 {
     QVBoxLayout* layout = new QVBoxLayout(this);
     
-    mLineEdit = new KLineEdit();
-    layout->addWidget(mLineEdit);
-    mNick = "fregl";
-    mLineEdit->setText(mNick);
-    connect(mLineEdit, SIGNAL(returnPressed(QString)), SLOT(nickChanged(QString)));
-    
-    QHBoxLayout* hLayout = new QHBoxLayout;
-    layout->addLayout(hLayout);
-    
-    mPictureLabel = new QLabel(this);
-    mPictureLabel->setText("Picture");
-    hLayout->addWidget(mPictureLabel);
-    
+    mNickNameLineEdit = new KLineEdit();
+    layout->addWidget(mNickNameLineEdit);
+
     mNameLabel = new QLabel(this);
     mNameLabel->setText("Name");
-    hLayout->addWidget(mNameLabel);
-    
-    nickChanged("fregl");
+    layout->addWidget(mNameLabel);
+
+    mLocationLabel = new QLabel(this);
+    mLocationLabel->setText("Picture");
+    layout->addWidget(mLocationLabel);
+
+    mNick = "fregl";
+    mNickNameLineEdit->setText(mNick);
+    connect(mNickNameLineEdit, SIGNAL(returnPressed(QString)), SLOT(nickChanged(QString)));
+    nickChanged(mNick);
 }
 
 void SimplePersonRequest::nickChanged(const QString& nick)
@@ -65,17 +63,13 @@ void SimplePersonRequest::onPersonJobFinished( Attica::BaseJob *job )
 {
     kDebug() << "onJobFinished";
     Attica::ItemJob<Attica::Person> *personJob = static_cast< Attica::ItemJob<Attica::Person> * >( job );
-    if( personJob->metadata().statusCode() == 0 )
-    {
+    if( personJob->metadata().error() == Attica::Metadata::NoError ) {
         Attica::Person p(personJob->result());
-        mNameLabel->setText(p.firstName() + ' ' + p.lastName() + '\n' +
-        p.city() + "; " + p.country());
-        //mPictureLabel->setPixmap(p.avatar());
+        mNameLabel->setText(p.firstName() + ' ' + p.lastName());
+        mLocationLabel->setText(p.city());
     } else {
         mNameLabel->setText("Could not fetch information.");
     }
 }
-
-
 
 #include "simplepersonrequest.moc"

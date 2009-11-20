@@ -32,29 +32,30 @@
 
 MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 {
-    connect(&m_pm, SIGNAL(providersChanged()), SLOT(providersChanged()));
-    m_pm.loadDefaultProviders();
+    connect(&m_manager, SIGNAL(providersChanged()), SLOT(providersChanged()));
+    m_manager.loadDefaultProviders();
 }
 
 void MainWindow::providersChanged()
 {
-    if (!m_pm.providers().isEmpty()) {
-        m_provider = m_pm.providers().first();
-        kDebug() << "Using provider: " << m_provider.baseUrl().toString();
+    if (!m_manager.providers().isEmpty()) {
+        m_provider = m_manager.providerByUrl(QUrl("https://api.opendesktop.org/v1/"));
+        if (!m_provider.isValid()) {
+            kDebug() << "Could not find opendesktop.org provider.";
+            return;
+        }
 
         QTabWidget* mainWidget = new QTabWidget(this);
         setCentralWidget(mainWidget);
 
-        ContentCreation* contentCreationWidget = new ContentCreation(m_provider, this);
-        mainWidget->addTab(contentCreationWidget, tr("Add Content"));
+        SimplePersonRequest* personWidget = new SimplePersonRequest(m_provider, this);
+        mainWidget->addTab(personWidget, tr("Person Search"));
 
         ContentDownload* contentWidget = new ContentDownload(m_provider, this);
         mainWidget->addTab(contentWidget, tr("Content"));
 
-        SimplePersonRequest* personWidget = new SimplePersonRequest(m_provider, this);
-        mainWidget->addTab(personWidget, tr("Person Search"));
+        ContentCreation* contentCreationWidget = new ContentCreation(m_provider, this);
+        mainWidget->addTab(contentCreationWidget, tr("Add Content"));
     }
 }
-
-
 #include "mainwindow.moc"

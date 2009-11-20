@@ -30,9 +30,6 @@
 #include <attica/providermanager.h>
 #include <attica/provider.h>
 
-namespace Attica {
-    class BaseJob;
-}
 
 class MainWindow : public KMainWindow
 {
@@ -46,8 +43,8 @@ public Q_SLOTS:
 
 private:
     Attica::Provider m_provider;
-    Attica::ProviderManager m_pm;
+    Attica::ProviderManager m_manager;
 };
- 
+
 #endif
 

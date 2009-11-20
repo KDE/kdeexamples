@@ -28,7 +28,6 @@
 
 // There is really nothing new in this file, you should look at more basic tutorial if you don't understand this.
 
-
 int main (int argc, char *argv[])
 {
     KAboutData aboutData( "opencollaborationexample", 0,

@@ -22,9 +22,9 @@
 #ifndef SIMPLEPERSONREQUEST_H
 #define SIMPLEPERSONREQUEST_H
 
-#include <attica/provider.h>
-#include <KLineEdit>
 #include <QtGui/QLabel>
+#include <KLineEdit>
+#include <attica/provider.h>
 
 class SimplePersonRequest :public QWidget
 {
@@ -38,9 +38,9 @@ public Q_SLOTS:
     void onPersonJobFinished( Attica::BaseJob *job );
     
 private:
-    KLineEdit* mLineEdit;
+    KLineEdit* mNickNameLineEdit;
     QLabel* mNameLabel;
-    QLabel* mPictureLabel;
+    QLabel* mLocationLabel;
     QString mNick;
     Attica::Provider m_provider;
 };
