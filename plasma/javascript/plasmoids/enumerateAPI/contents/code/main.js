@@ -147,18 +147,23 @@ display.readOnly = true
 display.text = imageApi
 tabbar.addTab(i18n("Images"), display)
 
-var p = new QPainter
-var paintingApi = enumerateObject('QPainter', p, false)
-p = new QColor
+var paintingApi = ''
+var p = new QColor
 paintingApi += enumerateObject('QColor', p, false)
 p = new QFont
 paintingApi += enumerateObject('QFont', p, false)
+p = new QPoint
+paintingApi = enumerateObject('QPainter', p, false)
+p = new QPainter
+paintingApi += enumerateObject('QPainter', p, false)
+p = new QPen
+paintingApi += enumerateObject('QPen', p, false)
 p = new QPoint
 paintingApi += enumerateObject('QPoint', p, false)
 p = new QRectF
 paintingApi += enumerateObject('QRectF', p, false)
 p = new QSizeF(2,2)
-paintingApi += enumerateObject('QSizeF ' + p.width, p, false)
+paintingApi += enumerateObject('QSizeF', p, false)
 
 display = new TextEdit
 display.readOnly = true
@@ -166,6 +171,20 @@ display.text = paintingApi
 tabbar.addTab(i18n("Painting"), display)
 
 
+var dataApi = ''
+var d = dataEngine("time")
+dataApi += enumerateObject("DataEngine", d, false)
+var d = dataEngine("time").serviceForSource("Local")
+var d = service("time", "Local")
+dataApi += enumerateObject("Service", d, false)
+
+display = new TextEdit
+display.readOnly = true
+display.text = dataApi
+tabbar.addTab(i18n("DataEngine"), display)
+
+
+tabbar.adjustSize()
 layout.addItem(tabbar)
 
 
