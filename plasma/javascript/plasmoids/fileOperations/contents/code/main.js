@@ -11,6 +11,16 @@ function openFileDialogAccepted(dialog)
 {
     var url = dialog.url
     print("open this file! " + url.protocol + ' ' + url.host + ' ' + url.path)
+    /*
+    var urls = new Array
+    urls.push(url)
+    plasmoid.runApplication("kate", urls)
+    */
+    if (plasmoid['openUrl']) {
+        plasmoid.openUrl(url);
+    } else {
+        print("no openUrl method available to us!")
+    }
 }
 
 function openFileDialogFinished(dialog)
@@ -50,7 +60,7 @@ save.text = i18n("Save File")
 save.clicked.connect(showSaveFileDialog)
 
 layout = new LinearLayout
-layout.setOrientation(QtVertical)
+layout.orientation = QtVertical
 layout.addItem(open)
 layout.addItem(save)
 
