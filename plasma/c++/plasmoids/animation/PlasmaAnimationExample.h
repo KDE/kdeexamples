@@ -20,6 +20,7 @@ public:
 private slots:
 
     void startAll();
+    void revertDirection();
 
 private:
     Plasma::AnimationGroup *inner_g;
