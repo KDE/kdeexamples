@@ -1,8 +1,11 @@
 #include "PlasmaAnimationExample.h"
 
-#include <QPainter>
-#include <QPushButton>
 #include <QFontMetrics>
+#include <QGraphicsLinearLayout>
+#include <QGraphicsLayoutItem>
+#include <QPainter>
+#include <QPauseAnimation>
+#include <QPushButton>
 #include <QSizeF>
 
 #include <plasma/svg.h>
@@ -11,9 +14,6 @@
 
 #include <plasma/animations/animationgroup.h>
 #include <plasma/animations/animation.h>
-
-#include <QGraphicsLinearLayout>
-#include <QGraphicsLayoutItem>
 
 using namespace Plasma;
 
@@ -54,7 +54,7 @@ void PlasmaAnimationExample::init()
     qRegisterMetaType<QGraphicsLayoutItem *>("QGraphicsLayoutItem *");
 
     Animation* rotStackedAnim =
-        Plasma::Animator::create(Plasma::Animator::RotationStackedAnimation);
+        Plasma::Animator::create(Plasma::Animator::RotationStackedAnimation, this);
     rotStackedAnim->setWidgetToAnimate(frontWidget);
     QVariant var;
     var.setValue(static_cast<QGraphicsWidget*>(button4));
@@ -66,36 +66,34 @@ void PlasmaAnimationExample::init()
 
     //animation
     Animation *rotAnim =
-      Plasma::Animator::create(Plasma::Animator::RotationAnimation);
+      Plasma::Animator::create(Plasma::Animator::RotationAnimation, this);
     rotAnim->setProperty("axis", Qt::ZAxis);
     rotAnim->setProperty("reference", Animation::Center);
     rotAnim->setProperty("angle", 180);
     rotAnim->setWidgetToAnimate(button1);
 
     Animation *fadeAnim =
-      Plasma::Animator::create(Plasma::Animator::FadeAnimation);
+      Plasma::Animator::create(Plasma::Animator::FadeAnimation, this);
     fadeAnim->setProperty("startOpacity", 0.8);
     fadeAnim->setProperty("targetOpacity", 0.2);
     fadeAnim->setWidgetToAnimate(button1);
 
     Animation *pulseAnim =
-      Plasma::Animator::create(Plasma::Animator::PulseAnimation);
+      Plasma::Animator::create(Plasma::Animator::PulseAnimation, this);
     pulseAnim->setWidgetToAnimate(button2);
 
     Animation *growAnim =
-      Plasma::Animator::create(Plasma::Animator::GrowAnimation);
+      Plasma::Animator::create(Plasma::Animator::GrowAnimation, this);
     growAnim->setProperty("factor", 2.0);
     growAnim->setWidgetToAnimate(button3);
 
     Animation *slideAnim =
-      Plasma::Animator::create(Plasma::Animator::SlideAnimation);
+      Plasma::Animator::create(Plasma::Animator::SlideAnimation, this);
     slideAnim->setProperty("movementDirection", Plasma::MoveDown);
     slideAnim->setProperty("distance", 30);
     slideAnim->setWidgetToAnimate(button3);
 
-    Animation *pauseAnim =
-        Plasma::Animator::create(Plasma::Animator::PauseAnimation);
-    pauseAnim->setWidgetToAnimate(button3);
+    QAbstractAnimation *pauseAnim = new QPauseAnimation(this);
     pauseAnim->setProperty("duration", 700);
 
     //group 'em up!
@@ -113,21 +111,23 @@ void PlasmaAnimationExample::init()
     outer_g->add(pauseAnim);
     outer_g->add(rotStackedAnim);
 
-    QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
-    QObject::connect(button4, SIGNAL(clicked()), this, SLOT(revertDirection()));
+    connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
+    connect(button4, SIGNAL(clicked()), this, SLOT(revertDirection()));
 }
 
 void PlasmaAnimationExample::revertDirection()
 {
-    if (outer_g->property("direction") == QAbstractAnimation::Forward)
-        outer_g->setProperty("direction", QAbstractAnimation::Backward);
+    if (outer_g->direction() == QAbstractAnimation::Forward) {
+        outer_g->setDirection(QAbstractAnimation::Backward);
+    } else {
+        outer_g->setDirection(QAbstractAnimation::Forward);
+    }
     outer_g->start();
-
 }
+
 void PlasmaAnimationExample::startAll()
 {
-    if (outer_g->property("direction") == QAbstractAnimation::Backward)
-        outer_g->setProperty("direction", QAbstractAnimation::Forward);
+    outer_g->setDirection(QAbstractAnimation::Forward);
     outer_g->start();
 }
 
