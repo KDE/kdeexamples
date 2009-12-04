@@ -23,8 +23,7 @@ private slots:
     void revertDirection();
 
 private:
-    Plasma::AnimationGroup *inner_g;
-    Plasma::AnimationGroup *outer_g;
+    QSequentialAnimationGroup *m_seqGroup;
 };
 
 #endif
