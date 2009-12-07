@@ -57,11 +57,15 @@ void PlasmaAnimationExample::init()
     PushButton *button7 = new PushButton(frontWidget);
     button7->setText("Rotation!");
 
+    PushButton *button8 = new PushButton(frontWidget);
+    button8->setText("Zoom");
+
 
     frontLayout->addItem(button1);
     frontLayout->addItem(button2);
     frontLayout->addItem(button3);
     frontLayout->addItem(button4);
+    frontLayout->addItem(button8);
     frontLayout->addItem(button5);
     frontLayout->addItem(button6);
     frontLayout->addItem(button7);
@@ -110,10 +114,15 @@ void PlasmaAnimationExample::init()
     slideAnim->setProperty("distance", 30);
     slideAnim->setWidgetToAnimate(button5);
 
+    Animation *zoomAnim =
+      Plasma::Animator::create(Plasma::Animator::ZoomAnimation);
+    zoomAnim->setProperty("zoom", 2.0);
+    zoomAnim->setWidgetToAnimate(button8);
 
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
     m_seqGroup->addAnimation(rotAnim);
+    m_seqGroup->addAnimation(zoomAnim);
     m_seqGroup->addAnimation(fadeAnim);
     m_seqGroup->addAnimation(pulseAnim);
     m_seqGroup->addAnimation(growAnim);
