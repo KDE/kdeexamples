@@ -13,7 +13,7 @@
 // since we don't define the parent item
 // it will become the layout for our Plasmoid
 layout = new LinearLayout();
-layout.setOrientation(QtVertical);
+layout.orientation = QtVertical;
 
 
 //*************************************************************/
@@ -64,10 +64,9 @@ rotateAnimation.widgetToAnimate = button
 // Now we will add them to a group to run in parallel with each other
 // this coordinates the animations for us and we will just use the animation
 // group to start al of the animations
-rotateAndFadeAnimationGroup = new AnimationGroup
-rotateAndFadeAnimationGroup.parallel = true
-rotateAndFadeAnimationGroup.add(fadeAnimation)
-rotateAndFadeAnimationGroup.add(rotateAnimation)
+rotateAndFadeAnimationGroup = new ParallelAnimationGroup
+rotateAndFadeAnimationGroup.addAnimation(fadeAnimation)
+rotateAndFadeAnimationGroup.addAnimation(rotateAnimation)
 
 // this function will be triggered by the 'Rotate and Fade' button being clicked
 startRotateAndFadeAnimation = function()
@@ -118,19 +117,19 @@ rotateLabelsAnimationGroup = new AnimationGroup
 rotateAnimation = animation('rotate')
 rotateAnimation.widgetToAnimate = label1
 rotateAnimation.angle = 360
-rotateLabelsAnimationGroup.add(rotateAnimation)
+rotateLabelsAnimationGroup.addAnimation(rotateAnimation)
 
 // Let's create a pause to put between the two animations
 pause = animation('pause')
 pause.duration = 100
-rotateLabelsAnimationGroup.add(pause)
+rotateLabelsAnimationGroup.addAnimation(pause)
 
 // Create a Rotation animation and set it to operate on the second label,
 // then add it to the group
 rotateAnimation = animation('rotate')
 rotateAnimation.widgetToAnimate = label2
 rotateAnimation.angle = 360
-rotateLabelsAnimationGroup.add(rotateAnimation)
+rotateLabelsAnimationGroup.addAnimation(rotateAnimation)
 
 // finally, connect the button's clicked event to the start method in the
 // animation group
