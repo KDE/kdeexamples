@@ -119,7 +119,7 @@ function enumerateObject(name, obj, excludeCommon)
     return rv
 }
 
-
+// WIDGET API
 var widgetApi = ''
 for (index in classNames) {
     var widgetName = classNames[index]
@@ -135,6 +135,21 @@ display.readOnly = true
 display.text = widgetApi
 tabbar.addTab(i18n("Widgets"), display)
 
+// LAYOUTS API
+var layoutApi = ''
+layoutApi += enumerateObject("LinearLayout", layout, true)
+var p = new PushButton
+var l = new AnchorLayout(p)
+layoutApi += enumerateObject("AnchorLayout", l, true)
+p.deleteLater()
+l = 0
+
+display = new TextEdit
+display.readOnly = true
+display.text = layoutApi
+tabbar.addTab(i18n("Layouts"), display)
+
+// IMAGE API
 fsvg = new FrameSvg('panel-background')
 var imageApi = enumerateObject('FrameSvg', fsvg, false)
 svg = new Svg('panel-background')
@@ -147,6 +162,7 @@ display.readOnly = true
 display.text = imageApi
 tabbar.addTab(i18n("Images"), display)
 
+// PAINTING API
 var paintingApi = ''
 var p = new QColor
 paintingApi += enumerateObject('QColor', p, false)
@@ -164,27 +180,28 @@ p = new QRectF
 paintingApi += enumerateObject('QRectF', p, false)
 p = new QSizeF(2,2)
 paintingApi += enumerateObject('QSizeF', p, false)
+p = 0
 
 display = new TextEdit
 display.readOnly = true
 display.text = paintingApi
 tabbar.addTab(i18n("Painting"), display)
 
-
+// DATAENGINE API
 var dataApi = ''
 var d = dataEngine("time")
 dataApi += enumerateObject("DataEngine", d, false)
 var d = dataEngine("time").serviceForSource("Local")
 var d = service("time", "Local")
 dataApi += enumerateObject("Service", d, false)
+d = 0
 
 display = new TextEdit
 display.readOnly = true
 display.text = dataApi
 tabbar.addTab(i18n("DataEngine"), display)
 
-
 tabbar.adjustSize()
 layout.addItem(tabbar)
 
-
+plasmoid.gc()
