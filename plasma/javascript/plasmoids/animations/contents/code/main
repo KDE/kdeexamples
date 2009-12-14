@@ -59,6 +59,7 @@ fadeAnimation.widgetToAnimate = button
 
 // Create a Rotation animation and set it to operate on the button
 rotateAnimation = animation('rotate')
+rotateAnimation.angle = 180
 rotateAnimation.widgetToAnimate = button
 
 // Now we will add them to a group to run in parallel with each other
@@ -79,7 +80,6 @@ startRotateAndFadeAnimation = function()
 }
 // connect the clicked signal to our function above
 button.clicked.connect(startRotateAndFadeAnimation);
-
 
 //**********************************************************************************/
 //** Combining animations sequentialy: Rotating two label when a butto is clicked **/
