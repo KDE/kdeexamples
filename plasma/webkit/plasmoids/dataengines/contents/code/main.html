@@ -3,15 +3,23 @@
 <script>
 function dataUpdated(source, data)
 {
-    document.getElementById('time').innerHTML = "Time is now " + data.value("Time");
+    // we could check for "Time" with if (data.contains("Time")), but we know it's there so don't bother :)
+    document.getElementById('time').innerHTML = "Time is now " + data.value("Time")
 }
 
 function getTime()
 {
-    var engine = window.plasma.dataEngine("time");
-    var data = engine.query("Local");
-    document.getElementById('time').innerHTML = "Time is " + data.value("Time");
-    engine.connectSource("Local", 500);
+    var engine = window.plasma.dataEngine("time")
+    var data = engine.query("Local")
+    var keys = '<ul>'
+    for (var i = 0; i < data.length; ++i) {
+        keys += '<li>' + data.key(i) + '</li>'
+    }
+    keys += '</ul>'
+    document.getElementById('timeEngineInfo').innerHTML = 'Time engine returns the following ' + data.length + " keys in it's data: " + keys
+
+    // and now, let's get the time ticking!
+    engine.connectSource("Local", 500)
 }
 
 function listDataEngines()
@@ -49,7 +57,10 @@ function listDataEngines()
 </head>
 
 <body onload="listDataEngines(); getTime()">
-  <div id="time" class="smallText">!Hello, World!</div>
+  <div id="time" class="smallText">Hello, World!</div>
+  <hr>
+  <div id="timeEngineInfo" class="helloText">Hello, World!</div>
+  <hr>
   <div id="engineList" class="helloText">Hello, World!</div>
 </body>
 
