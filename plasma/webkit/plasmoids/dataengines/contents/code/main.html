@@ -1,6 +1,7 @@
 <html>
 <head>
-<script>
+    <script>
+var count = 0;
 function dataUpdated(source, data)
 {
     // we could check for "Time" with if (data.contains("Time")), but we know it's there so don't bother :)
@@ -9,9 +10,9 @@ function dataUpdated(source, data)
 
 function getTime()
 {
-    var engine = window.plasma.dataEngine("time")
+    var engine = window.plasmoid.dataEngine("time")
     // pull the timezone to check from the configuration
-    var timezone = window.plasma.config().readEntry("timezone", "Local")
+    var timezone = window.plasmoid.config().readEntry("timezone", "Local")
     var data = engine.query(timezone)
     var keys = '<ul>'
     for (var i = 0; i < data.length; ++i) {
@@ -26,8 +27,8 @@ function getTime()
 
 function listDataEngines()
 {
-    var appletName = window.applet.name
-    var engines = window.plasma.knownEngines()
+    var appletName = window.plasmoid.name
+    var engines = window.plasmoid.listAllDataEngines()
     var engineList = '<ul>'
     for (var i = 0; i < engines.length; ++i) {
         engineList += '<li>' + engines[i] + '</li>'
