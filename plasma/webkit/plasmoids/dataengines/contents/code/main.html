@@ -10,7 +10,9 @@ function dataUpdated(source, data)
 function getTime()
 {
     var engine = window.plasma.dataEngine("time")
-    var data = engine.query("Local")
+    // pull the timezone to check from the configuration
+    var timezone = window.plasma.config().readEntry("timezone", "Local")
+    var data = engine.query(timezone)
     var keys = '<ul>'
     for (var i = 0; i < data.length; ++i) {
         keys += '<li>' + data.key(i) + '</li>'
@@ -19,7 +21,7 @@ function getTime()
     document.getElementById('timeEngineInfo').innerHTML = 'Time engine returns the following ' + data.length + " keys in it's data: " + keys
 
     // and now, let's get the time ticking!
-    engine.connectSource("Local", 500)
+    engine.connectSource(timezone, 500)
 }
 
 function listDataEngines()
