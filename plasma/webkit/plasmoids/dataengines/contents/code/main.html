@@ -1,0 +1,56 @@
+<html>
+<head>
+<script>
+function dataUpdated(source, data)
+{
+    document.getElementById('time').innerHTML = "Time is now " + data.value("Time");
+}
+
+function getTime()
+{
+    var engine = window.plasma.dataEngine("time");
+    var data = engine.query("Local");
+    document.getElementById('time').innerHTML = "Time is " + data.value("Time");
+    engine.connectSource("Local", 500);
+}
+
+function listDataEngines()
+{
+    var appletName = window.applet.name
+    var engines = window.plasma.knownEngines()
+    var engineList = '<ul>'
+    for (var i = 0; i < engines.length; ++i) {
+        engineList += '<li>' + engines[i] + '</li>'
+    }
+    engineList += '</ul>'
+    document.getElementById('engineList').innerHTML = 'The '+ appletName + ' Plasmoid knows about these ' + engines.length + ' DataEngines: ' + engineList
+}
+</script>
+
+<style>
+	body {
+		margin: 0;
+	        background: white;
+	}
+
+	.helloText {
+		font: 12px "Lucida Grande";
+		font-weight: bold;
+		color: blue;
+		top: 41px;
+	}
+	.smallText {
+		font: 8px "Lucida Grande";
+		color: red;
+		text-align: center;
+	}
+</style>
+
+</head>
+
+<body onload="listDataEngines(); getTime()">
+  <div id="time" class="smallText">!Hello, World!</div>
+  <div id="engineList" class="helloText">Hello, World!</div>
+</body>
+
+</html>
