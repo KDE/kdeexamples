@@ -3,7 +3,7 @@ p = new QPixmap('kde.png')
 plasmoid.setAction('myAction', i18n('Toggle KDE Logo'), 'plasma')
 drawLogo = true;
 
-print('size of pixmap is: ' + p.rect().width() + 'x' + p.rect().height())
+print('size of pixmap is: ' + p.rect.width + 'x' + p.rect.height)
 
 plasmoid.action_myAction = function()
 {
@@ -18,13 +18,14 @@ plasmoid.action_myAction = function()
 
 plasmoid.paintInterface = function(painter)
 {
-    rect = plasmoid.rect()
-    svg.resize(rect.width(), rect.height())
-    svg.paint(painter, rect.x(), rect.y())
+    rect = plasmoid.rect
+    svg.resize(rect.width, rect.height)
+    svg.paint(painter, rect.x, rect.y)
 
     if (drawLogo) {
         // draw the KDE logo centered
-        painter.drawPixmap(rect.x() + (rect.width() / 2 - p.rect().width() / 2),
-                           rect.y() + (rect.height() / 2 - p.rect().height() / 2), p)
+        painter.drawPixmap(rect.x + (rect.width / 2 - p.rect.width / 2),
+                           rect.y + (rect.height / 2 - p.rect.height / 2), p)
+
     }
 }
