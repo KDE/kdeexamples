@@ -5,8 +5,6 @@
 
 #include <Plasma/Applet>
 #include <Plasma/Svg>
-#include <Plasma/AnimationGroup>
-
 
 class PlasmaAnimationExample : public Plasma::Applet
 {

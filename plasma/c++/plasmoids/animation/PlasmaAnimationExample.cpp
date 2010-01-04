@@ -9,7 +9,6 @@
 #include <plasma/theme.h>
 #include <plasma/widgets/pushbutton.h>
 
-#include <plasma/animations/animationgroup.h>
 #include <plasma/animations/animation.h>
 
 #include <QGraphicsLinearLayout>
@@ -75,7 +74,7 @@ void PlasmaAnimationExample::init()
 
     Animation* rotStackedAnim =
         Plasma::Animator::create(Plasma::Animator::RotationStackedAnimation);
-    rotStackedAnim->setWidgetToAnimate(frontWidget);
+    rotStackedAnim->setTargetWidget(frontWidget);
     QVariant var;
     var.setValue(static_cast<QGraphicsWidget*>(button6));
     rotStackedAnim->setProperty("backWidget", var);
@@ -91,33 +90,33 @@ void PlasmaAnimationExample::init()
     rotAnim->setProperty("axis", Qt::ZAxis);
     rotAnim->setProperty("reference", Animation::Center);
     rotAnim->setProperty("angle", 180);
-    rotAnim->setWidgetToAnimate(button7);
+    rotAnim->setTargetWidget(button7);
 
     Animation *fadeAnim =
       Plasma::Animator::create(Plasma::Animator::FadeAnimation);
     fadeAnim->setProperty("startOpacity", 0.8);
     fadeAnim->setProperty("targetOpacity", 0.2);
-    fadeAnim->setWidgetToAnimate(button4);
+    fadeAnim->setTargetWidget(button4);
 
     Animation *pulseAnim =
       Plasma::Animator::create(Plasma::Animator::PulseAnimation);
-    pulseAnim->setWidgetToAnimate(button2);
+    pulseAnim->setTargetWidget(button2);
 
     Animation *growAnim =
       Plasma::Animator::create(Plasma::Animator::GrowAnimation);
     growAnim->setProperty("factor", 2.0);
-    growAnim->setWidgetToAnimate(button3);
+    growAnim->setTargetWidget(button3);
 
     Animation *slideAnim =
       Plasma::Animator::create(Plasma::Animator::SlideAnimation);
     slideAnim->setProperty("movementDirection", Plasma::MoveDown);
     slideAnim->setProperty("distance", 30);
-    slideAnim->setWidgetToAnimate(button5);
+    slideAnim->setTargetWidget(button5);
 
     Animation *zoomAnim =
       Plasma::Animator::create(Plasma::Animator::ZoomAnimation);
     zoomAnim->setProperty("zoom", 2.0);
-    zoomAnim->setWidgetToAnimate(button8);
+    zoomAnim->setTargetWidget(button8);
 
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
