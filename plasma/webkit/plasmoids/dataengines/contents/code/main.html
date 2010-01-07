@@ -1,7 +1,11 @@
 <html>
 <head>
-    <script>
-var count = 0;
+<script>
+function constraintsEvent()
+{
+    document.getElementById('timeEngineInfo').innerHTML = 'poof'
+}
+
 function dataUpdated(source, data)
 {
     // we could check for "Time" with if (data.contains("Time")), but we know it's there so don't bother :)
