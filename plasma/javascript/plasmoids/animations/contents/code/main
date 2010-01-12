@@ -61,7 +61,6 @@ fadeAnimation.targetWidget = button
 rotateAnimation = animation('rotate')
 rotateAnimation.angle = 180
 rotateAnimation.targetWidget = button
-rotateAnimation.easingCurveType = InOutQuadEasingCurve
 
 // Now we will add them to a group to run in parallel with each other
 // this coordinates the animations for us and we will just use the animation
@@ -69,15 +68,16 @@ rotateAnimation.easingCurveType = InOutQuadEasingCurve
 rotateAndFadeAnimationGroup = new ParallelAnimationGroup
 rotateAndFadeAnimationGroup.addAnimation(fadeAnimation)
 rotateAndFadeAnimationGroup.addAnimation(rotateAnimation)
+rotateAndFadeAnimationGroup.direction = AnimationBackward;
 
 // this function will be triggered by the 'Rotate and Fade' button being clicked
 startRotateAndFadeAnimation = function()
 {
-    // start the animation
-    rotateAndFadeAnimationGroup.start()
-
     // now reverse the direction for the next click!
     rotateAndFadeAnimationGroup.direction = rotateAndFadeAnimationGroup.direction == AnimationForward ? AnimationBackward : AnimationForward;
+
+    // start the animation
+    rotateAndFadeAnimationGroup.start()
 }
 // connect the clicked signal to our function above
 button.clicked.connect(startRotateAndFadeAnimation);
