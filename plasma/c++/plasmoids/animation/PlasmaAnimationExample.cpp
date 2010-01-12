@@ -107,7 +107,7 @@ void PlasmaAnimationExample::init()
     var.setValue(static_cast<QGraphicsWidget*>(button6));
     rotStackedAnim->setProperty("backWidget", var);
     rotStackedAnim->setProperty("reference", Animation::Center);
-    rotStackedAnim->setProperty("movementDirection", Plasma::MoveRight);
+    rotStackedAnim->setProperty("movementDirection", Animation::MoveRight);
     //rotStackedAnim->setProperty("duration", 1000);
     QVariant varLayout = rotStackedAnim->property("layout");
     mLayout->addItem(varLayout.value<QGraphicsLayoutItem*>());
@@ -137,7 +137,7 @@ void PlasmaAnimationExample::init()
 
     Animation *slideAnim =
       Plasma::Animator::create(Plasma::Animator::SlideAnimation);
-    slideAnim->setProperty("movementDirection", Plasma::MoveDown);
+    slideAnim->setProperty("movementDirection", Animation::MoveDown);
     slideAnim->setProperty("distance", 30);
     slideAnim->setTargetWidget(button5);
 
