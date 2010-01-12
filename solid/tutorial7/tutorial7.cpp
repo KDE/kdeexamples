@@ -62,7 +62,7 @@ int main(int args, char **argv)
     QList<Solid::Device> devicelist = Solid::Device::listFromQuery(defaultPredicate);
     if (!devicelist.empty()) {
         kDebug() << "Devices that match your query.";
-        foreach (Solid::Device device, devicelist) {
+        foreach (const Solid::Device device, devicelist) {
             kDebug() << device.udi();
         }
     } else {

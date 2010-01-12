@@ -17,18 +17,23 @@
 
 */
 
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QTreeWidgetItem>
+#include <QVBoxLayout>
+
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <kmainwindow.h>
 #include <kmenubar.h>
 #include <kicon.h>
+#include <kcombobox.h>
+#include <ktextbrowser.h>
 
 #include <solid/devicenotifier.h>
 #include <solid/device.h>
 #include <solid/genericinterface.h>
-
-#include <QtGui>
 
 class SolidItem : public QTreeWidgetItem
 {
@@ -61,9 +66,9 @@ public:
         connect(view, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
                 SLOT(currentItemChanged(QTreeWidgetItem*)));
 
-        details = new QTextBrowser;
+        details = new KTextBrowser;
 
-        filterCombo = new QComboBox;
+        filterCombo = new KComboBox;
         QStringList filters = QStringList()
             << "No filter"
             << "Unknown"
