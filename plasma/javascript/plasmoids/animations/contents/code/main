@@ -31,7 +31,7 @@ layout.addItem(button)
 // There are several stock animations provided in Plasma, and you
 // can access them by name (case insenseitive)
 pulseAnimation = animation('pulse')
-pulseAnimation.widgetToAnimate = button
+pulseAnimation.targetWidget = button
 
 // Set the duration to be 1/5th of a second, or 200ms
 pulseAnimation.duration = 200
@@ -55,12 +55,13 @@ layout.addItem(button)
 fadeAnimation = animation('fade')
 fadeAnimation.startOpacity = 1
 fadeAnimation.targetOpacity = 0.5
-fadeAnimation.widgetToAnimate = button
+fadeAnimation.targetWidget = button
 
 // Create a Rotation animation and set it to operate on the button
 rotateAnimation = animation('rotate')
 rotateAnimation.angle = 180
-rotateAnimation.widgetToAnimate = button
+rotateAnimation.targetWidget = button
+rotateAnimation.easingCurveType = InOutQuadEasingCurve
 
 // Now we will add them to a group to run in parallel with each other
 // this coordinates the animations for us and we will just use the animation
@@ -76,7 +77,7 @@ startRotateAndFadeAnimation = function()
     rotateAndFadeAnimationGroup.start()
 
     // now reverse the direction for the next click!
-    rotateAndFadeAnimationGroup.forwards = !rotateAndFadeAnimationGroup.forwards
+    rotateAndFadeAnimationGroup.direction = rotateAndFadeAnimationGroup.direction == AnimationForward ? AnimationBackward : AnimationForward;
 }
 // connect the clicked signal to our function above
 button.clicked.connect(startRotateAndFadeAnimation);
@@ -115,7 +116,7 @@ rotateLabelsAnimationGroup = new AnimationGroup
 // Create a Rotation animation and set it to operate on the first label,
 // then add it to the group
 rotateAnimation = animation('rotate')
-rotateAnimation.widgetToAnimate = label1
+rotateAnimation.targetWidget = label1
 rotateAnimation.angle = 360
 rotateLabelsAnimationGroup.addAnimation(rotateAnimation)
 
@@ -127,7 +128,7 @@ rotateLabelsAnimationGroup.addAnimation(pause)
 // Create a Rotation animation and set it to operate on the second label,
 // then add it to the group
 rotateAnimation = animation('rotate')
-rotateAnimation.widgetToAnimate = label2
+rotateAnimation.targetWidget = label2
 rotateAnimation.angle = 360
 rotateLabelsAnimationGroup.addAnimation(rotateAnimation)
 
