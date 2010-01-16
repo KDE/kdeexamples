@@ -36,6 +36,8 @@ using namespace std;
 
 int main(int args, char **argv)
 {
+    Q_UNUSED(args);
+    Q_UNUSED(argv);
     KComponentData data("tutorial4");
     
     //test to see if networking is enabled on the system

@@ -38,6 +38,8 @@ using namespace std;
 
 int main(int args, char **argv)
 {
+    Q_UNUSED(args);
+    Q_UNUSED(argv);
     KComponentData componentData("tutorial3");
 
     //get a Processor

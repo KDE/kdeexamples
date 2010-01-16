@@ -36,6 +36,8 @@ using namespace std;
 
 int main(int args, char **argv)
 {
+    Q_UNUSED(args);
+    Q_UNUSED(argv);
     KComponentData componentData("tutorial1");
     
     foreach (const Solid::Device &device, Solid::Device::allDevices())

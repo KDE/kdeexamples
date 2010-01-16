@@ -38,6 +38,8 @@ using namespace std;
 
 int main(int args, char **argv)
 {
+    Q_UNUSED(args);
+    Q_UNUSED(argv);
     KComponentData data("tutorial5");
     
     //get a Network Device

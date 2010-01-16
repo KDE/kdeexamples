@@ -37,6 +37,8 @@ using namespace std;
 
 int main(int args, char **argv)
 {
+    Q_UNUSED(args);
+    Q_UNUSED(argv);
     KComponentData componentData("tutorial2");
     
     //get a list of all devices that are AudioInterface

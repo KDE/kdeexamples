@@ -38,6 +38,9 @@ using namespace std;
 
 int main(int args, char **argv)
 {
+    Q_UNUSED(args);
+    Q_UNUSED(argv);
+
     KComponentData componentData("tutorial7");
 
     //make a predicate
@@ -71,5 +74,3 @@ int main(int args, char **argv)
 
     return 0;
 }
-
-#include "tutorial7.moc"
