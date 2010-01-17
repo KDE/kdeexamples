@@ -34,21 +34,17 @@ from PyKDE4 import kdecore, kdeui
 import preferences
 
 
-app_name = "kconfigxtexample"
-program_name = kdecore.ki18n("Example KConfigXT application (PyKDE4)")
-about_data = kdecore.KAboutData(QtCore.QByteArray(app_name), "",
-                                program_name, QtCore.QByteArray("0.1"))
-kdecore.KCmdLineArgs.init(sys.argv, about_data)
-app = kdeui.KApplication()
-
 def main():
 
-    settings = preferences.Preferences()
-    print "Generated prefs"
-    print "URL", settings.url
+    app_name = "kconfigxtexample"
+    program_name = kdecore.ki18n("Example KConfigXT application (PyKDE4)")
+    about_data = kdecore.KAboutData(QtCore.QByteArray(app_name), "",
+                                program_name, QtCore.QByteArray("0.1"))
+    kdecore.KCmdLineArgs.init(sys.argv, about_data)
+    app = kdeui.KApplication()
 
+    settings = preferences.Preferences()
     dialog = preferences.ConfigDialog(None, "settings", settings)
-    print "Creating dialog"
 
     dialog.show()
     app.exec_()
