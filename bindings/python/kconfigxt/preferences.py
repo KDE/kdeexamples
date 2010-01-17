@@ -35,7 +35,7 @@ server name and a port number (inspired by the original tutorial on KDE's
 Techbase).It will also create a proper KConfigDialog.
 """
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from PyKDE4 import kdecore, kdeui
 
 from ui_generalpage import Ui_GeneralPage
@@ -65,7 +65,9 @@ class Preferences(kdeui.KConfigSkeleton):
 
         self.setCurrentGroup("General")
 
-        self._url_data = ""
+        # Using "" here won't work, we need an actual instance of QString or we
+        # may get unexpected behavior (like values not being written)
+        self._url_data = QtCore.QString()
         predefined_url = "http://www.kde.org"
         self._url = self.addItemString("serverName", self._url_data,
                                        predefined_url)
