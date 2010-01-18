@@ -14,5 +14,5 @@ kde4_add_kcfg_files(kconfigxt_example_SRCS exampleprefs_base.kcfgc)
 kde4_add_executable(kconfigxt_example ${kconfigxt_example_SRCS})
 target_link_libraries(kconfigxt_example ${KDE4_KDEUI_LIBS})
 
-install(TARGETS kconfigxt_example DESTINATION bin)
+install(TARGETS kconfigxt_example ${INSTALL_TARGETS_DEFAULT_ARGS})
 

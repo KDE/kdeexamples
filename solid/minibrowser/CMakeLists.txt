@@ -11,4 +11,4 @@ kde4_add_executable(minibrowser main.cpp)
 
 target_link_libraries(minibrowser ${KDE4_KDEUI_LIBS} ${KDE4_SOLID_LIBS})
 
-install(TARGETS minibrowser DESTINATION bin)
+install(TARGETS minibrowser ${INSTALL_TARGETS_DEFAULT_ARGS})
