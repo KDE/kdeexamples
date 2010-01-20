@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=JavaScript Extender
+Comment=Demonstrates usage of Extenders in JavaScript
+Icon=text-x-generic
+
+Type=Service
+X-KDE-ServiceTypes=Plasma/Applet
+
+X-Plasma-API=javascript
+X-Plasma-MainScript=code/main.js
+
+X-KDE-PluginInfo-Author=Aaron Seigo
+X-KDE-PluginInfo-Email=aseigo@kde.org
+X-KDE-PluginInfo-Name=simpified-javascript-extenders
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Category=Examples
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+
