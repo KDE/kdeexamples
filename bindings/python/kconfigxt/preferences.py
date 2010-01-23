@@ -68,7 +68,7 @@ class Preferences(kdeui.KConfigSkeleton):
         # Using "" here won't work, we need an actual instance of QString or we
         # may get unexpected behavior (like values not being written)
         self._url_data = QtCore.QString()
-        predefined_url = "http://www.kde.org"
+        predefined_url = QtCore.QString("http://www.kde.org")
         self._url = self.addItemString("serverName", self._url_data,
                                        predefined_url)
         self._port_number = self.addItemInt("portNumber", 0, 80)
@@ -110,7 +110,6 @@ class ConfigDialog(kdeui.KConfigDialog):
 
         # The following adds a nice icon to the configuration page
         self.general_page_item.setIcon(kdeui.KIcon("network-server"))
-
         # Show the results every time the settings change
         self.settingsChanged.connect(self.show_values)
 
