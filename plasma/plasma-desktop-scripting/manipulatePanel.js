@@ -1,4 +1,4 @@
-panel = panelById(panelIds()[0])
+panel = panelById(panelIds[0])
 panel.length = screenGeometry(panel.screen).width / 2
 panel.alignment = "center"
 sleep(1000)

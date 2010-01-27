@@ -1,4 +1,4 @@
-p = panelById(panelIds()[0])
+p = panelById(panelIds[0])
 if (!p) {
     exit()
 }

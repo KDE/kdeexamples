@@ -19,7 +19,7 @@ function enumerateWidgets(c)
     }
 }
 
-containments = activityIds()
+containments = activityIds
 for (i = 0; i < containments.length; ++i) {
     c = activityById(containments[i])
     if (c) {
@@ -30,7 +30,7 @@ for (i = 0; i < containments.length; ++i) {
     }
 }
 
-containments = panelIds()
+containments = panelIds
 for (i = 0; i < containments.length; ++i) {
     c = panelById(containments[i])
     if (c) {
