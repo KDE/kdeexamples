@@ -72,7 +72,7 @@ ActionReply MyHelper::longaction(QVariantMap args)
         if (HelperSupport::isStopped())
             break;
         HelperSupport::progressStep(i);
-        usleep(250000);
+        usleep(1000000);
     }
 
     return ActionReply::SuccessReply;
