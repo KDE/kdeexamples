@@ -4,7 +4,7 @@ watchingPlayer = engine.sources[0];
 controller = service("nowplaying", watchingPlayer);
 
 // define a few functions
-plasmoid.dataUpdate = function(a, b)
+plasmoid.dataUpdated = function(a, b)
 {
     label.text = "Playing " + b.Title + " by " + b.Artist + ". time: " +
                  Math.floor(b.Position/60) + ":" + (parseInt(b.Position)%60);
