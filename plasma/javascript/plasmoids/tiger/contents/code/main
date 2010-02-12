@@ -1,8 +1,7 @@
 svg = new PlasmaSvg('tiger')
 p = new QPixmap('kde.png')
 plasmoid.setAction('myAction', i18n('Toggle KDE Logo'), 'plasma')
-drawLogo = true;
-
+drawLogo = true
 print('size of pixmap is: ' + p.rect.width + 'x' + p.rect.height)
 
 plasmoid.action_myAction = function()
@@ -18,7 +17,7 @@ plasmoid.action_myAction = function()
 
 plasmoid.paintInterface = function(painter)
 {
-    rect = plasmoid.rect
+    rect = plasmoid.rect()
     svg.resize(rect.width, rect.height)
     svg.paint(painter, rect.x, rect.y)
 
@@ -29,3 +28,4 @@ plasmoid.paintInterface = function(painter)
 
     }
 }
+
