@@ -2,7 +2,7 @@ a = activityForScreen(0)
 
 if (a) {
     a.addWidget("clock")
-    p = panelById(panelIds()[0])
+    p = panelById(panelIds[0])
 
     if (p) {
         for (i = 0; i < p.widgetIds.length; ++i) {
