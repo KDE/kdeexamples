@@ -140,7 +140,8 @@ void MainWindow::on_longAction_triggered()
 
 void MainWindow::stopLongAction()
 {
-    Action("org.kde.auth.example.longaction").stop();
+    Action act("org.kde.auth.example.longaction");
+    act.stop("org.kde.auth.example");
 }
 
 void MainWindow::longActionPerformed(ActionReply reply)
