@@ -2,7 +2,7 @@
 var i = 0
 while (i < screenCount) {
     var geom = screenGeometry(i)
-    print("screen " + i + " is " + geom.width() + "x" + geom.height())
+    print("screen " + i + " is " + geom.width + "x" + geom.height)
     ++i
 }
 
