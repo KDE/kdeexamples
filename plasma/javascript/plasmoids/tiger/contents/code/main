@@ -17,7 +17,7 @@ plasmoid.action_myAction = function()
 
 plasmoid.paintInterface = function(painter)
 {
-    rect = plasmoid.rect()
+    rect = plasmoid.rect
     svg.resize(rect.width, rect.height)
     svg.paint(painter, rect.x, rect.y)
 
