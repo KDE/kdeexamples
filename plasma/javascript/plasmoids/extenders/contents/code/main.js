@@ -6,7 +6,7 @@ plasmoid.initExtenderItem = function(item)
     var button = new PushButton
     button.text = i18n("Hello")
     ext.widget = button
-    print(i18n("Widget in %1 is %2", item.name, ext.name))
+    print(i18n("Widget in Extender '%1' has text '%2'", item.name, button.text))
 }
 
 var e = plasmoid.extender()
