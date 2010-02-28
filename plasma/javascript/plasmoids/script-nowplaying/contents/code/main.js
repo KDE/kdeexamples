@@ -37,7 +37,7 @@ plasmoid.setProgress = function(progress)
 
 // Set up the UI
 layout = new LinearLayout(plasmoid);
-layout.setOrientation(QtVertical);
+layout.orientation = QtVertical;
 label = new Label();
 layout.addItem(label);
 
