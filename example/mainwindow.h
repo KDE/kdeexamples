@@ -39,7 +39,7 @@ public:
     MainWindow(QWidget *parent=0);
 
 public Q_SLOTS:
-    void providersChanged();
+    void providersLoaded();
 
 private:
     Attica::Provider m_provider;

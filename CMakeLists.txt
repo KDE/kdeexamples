@@ -1,13 +1,11 @@
 project(Attica)
 
 find_package(KDE4 REQUIRED)
+find_package(LibAttica REQUIRED)
 
 include(KDE4Defaults)
 include(MacroLibrary)
 include(MacroOptionalAddSubdirectory)
 
-add_subdirectory(ocs)
-add_subdirectory(plasma)
-add_subdirectory(kcm)
 add_subdirectory(example)
 

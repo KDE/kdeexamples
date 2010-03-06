@@ -32,11 +32,11 @@
 
 MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 {
-    connect(&m_manager, SIGNAL(providersChanged()), SLOT(providersChanged()));
+    connect(&m_manager, SIGNAL(defaultProvidersLoaded()), SLOT(providersLoaded()));
     m_manager.loadDefaultProviders();
 }
 
-void MainWindow::providersChanged()
+void MainWindow::providersLoaded()
 {
     if (!m_manager.providers().isEmpty()) {
         m_provider = m_manager.providerByUrl(QUrl("https://api.opendesktop.org/v1/"));
@@ -59,3 +59,4 @@ void MainWindow::providersChanged()
     }
 }
 #include "mainwindow.moc"
+

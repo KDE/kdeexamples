@@ -42,10 +42,10 @@ SimplePersonRequest::SimplePersonRequest(Attica::Provider provider, QWidget* par
     layout->addWidget(mNameLabel);
 
     mLocationLabel = new QLabel(this);
-    mLocationLabel->setText("Picture");
+    mLocationLabel->setText("Location");
     layout->addWidget(mLocationLabel);
 
-    mNick = "fregl";
+    mNick = "frank";
     mNickNameLineEdit->setText(mNick);
     connect(mNickNameLineEdit, SIGNAL(returnPressed(QString)), SLOT(nickChanged(QString)));
     nickChanged(mNick);
