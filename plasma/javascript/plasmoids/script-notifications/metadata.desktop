@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=script-notifications
+Comment=Javascript client for the notifications service
+Icon=dialog-information
+Type=Service
+X-KDE-ServiceTypes=Plasma/Applet
+X-Plasma-MainScript=code/main
+X-KDE-PluginInfo-Author=Marco Martin
+X-KDE-PluginInfo-Email=notmart@gmail.com
+X-KDE-PluginInfo-Name=script-notifications
+X-KDE-PluginInfo-Version=0.0
+X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Category=Utilities
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+X-Plasma-API=javascript
