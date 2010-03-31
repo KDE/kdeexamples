@@ -8,10 +8,10 @@
 #include <QtGui/QDropEvent>
 #include <QtGui/QPainter>
 #include <QtGui/QListWidget>
-#include <QtGui/QPushButton>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QLabel>
 
+#include <kpushbutton.h>
 #include <kdebug.h>
 
 #include <KDE/KLocale>
@@ -21,20 +21,27 @@
 UpdateChecker::UpdateChecker()
     : KMainWindow()
 {
+    setCaption(i18n("Plasma Applet Update Check Example"));
+    
     QWidget* centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
     QVBoxLayout* layout = new QVBoxLayout(centralWidget);
+
     
-    m_label = new QLabel(i18n("Plasma Applet Update Check Example"), this);
+    KPushButton* newestButton = new KPushButton(i18n("Show Newest Plasmoids"), this);
+    connect(newestButton, SIGNAL(clicked()), this, SLOT(showNewest()));
+    layout->addWidget(newestButton);
+    
+    m_label = new QLabel(i18n("Updates for installed applets:"), this);
     layout->addWidget(m_label);
     
     m_list = new QListWidget(this);
     layout->addWidget(m_list);
-
-    QPushButton* updateButton = new QPushButton(i18n("Install"), this);
+    
+    KPushButton* updateButton = new KPushButton(i18n("Install"), this);
     connect(updateButton, SIGNAL(clicked()), this, SLOT(installUpdate()));
     layout->addWidget(updateButton);
-
+    
     m_downloadManager = new KNS3::DownloadManager("plasmoids.knsrc", this);
     connect(m_downloadManager, SIGNAL(searchResult(KNS3::Entry::List)), this, SLOT(updatesFound(KNS3::Entry::List)));
     connect(m_downloadManager, SIGNAL(entryStatusChanged(KNS3::Entry)), this, SLOT(entryStatusChanged(KNS3::Entry)));
@@ -45,7 +52,7 @@ void UpdateChecker::updatesFound(const KNS3::Entry::List& updates)
 {
     m_updates = updates;
     foreach (const KNS3::Entry& entry, updates) {
-        QListWidgetItem* item = new QListWidgetItem(entry.name(), m_list);
+        new QListWidgetItem(entry.name(), m_list);
     }
 }
 
@@ -61,9 +68,16 @@ void UpdateChecker::entryStatusChanged(const KNS3::Entry& entry)
 {
     kDebug() << "Status changed: " << entry.name();
     if (entry.status() == KNS3::Entry::Installed) {
-        m_label->setText(i18n("Updated \"%1\"", entry.name()));
+        m_label->setText(i18n("Updated/Installed: \"%1\"", entry.name()));
     }
 }
 
+void UpdateChecker::showNewest()
+{
+    m_list->clear();
+    m_downloadManager->setSearchOrder(KNS3::DownloadManager::Newest);
+    m_downloadManager->search();
+    m_label->setText(i18n("Newest plasma applets:"));
+}
 
 #include "updatechecker.moc"

@@ -36,8 +36,9 @@ public:
 private slots:
 
     void updatesFound(const KNS3::Entry::List& updates);
-    void installUpdate();
     void entryStatusChanged(const KNS3::Entry& entry);
+    void installUpdate();
+    void showNewest();
     
 private:
     QListWidget* m_list;
