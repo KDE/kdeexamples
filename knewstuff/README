@@ -1,0 +1,5 @@
+There are standalone applications for Get Hot New Stuff in kdebase/runtime/knewstuff.
+These should get you started together with techbase.kde.org where tutorials can be found.
+
+uploadchecker in kdeexamples is an example how to ask KNewStuff for updates of already installed items.
+
