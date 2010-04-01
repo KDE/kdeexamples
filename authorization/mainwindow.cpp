@@ -69,7 +69,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString filename = KFileDialog::getOpenFileName(KUrl("/"), i18n("All (*.*)"), this);
+    QString filename = KFileDialog::getOpenFileName(KUrl("/"), i18n("All Files (*)"), this);
 
     QFile file(filename);
     QTextStream stream(&file);
@@ -100,7 +100,7 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-    QString filename = KFileDialog::getSaveFileName(KUrl("/"), i18n("All (*.*)"), this);
+    QString filename = KFileDialog::getSaveFileName(KUrl("/"), i18n("All Files (*)"), this);
     QFile file(filename);
     QTextStream stream(&file);
 
