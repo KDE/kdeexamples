@@ -119,32 +119,38 @@ void PlasmaAnimationExample::init()
     rotAnim->setProperty("reference", Animation::Center);
     rotAnim->setProperty("angle", 180);
     rotAnim->setTargetWidget(button7);
+    connect(button7, SIGNAL(clicked()), rotAnim, SLOT(start()));
 
     Animation *fadeAnim =
       Plasma::Animator::create(Plasma::Animator::FadeAnimation);
     fadeAnim->setProperty("startOpacity", 0.8);
     fadeAnim->setProperty("targetOpacity", 0.2);
     fadeAnim->setTargetWidget(button4);
+    connect(button4, SIGNAL(clicked()), fadeAnim, SLOT(start()));
 
     Animation *pulseAnim =
       Plasma::Animator::create(Plasma::Animator::PulseAnimation);
     pulseAnim->setTargetWidget(button2);
+    connect(button2, SIGNAL(clicked()), pulseAnim, SLOT(start()));
 
     Animation *growAnim =
       Plasma::Animator::create(Plasma::Animator::GrowAnimation);
     growAnim->setProperty("factor", 2.0);
     growAnim->setTargetWidget(button3);
+    connect(button3, SIGNAL(clicked()), growAnim, SLOT(start()));
 
     Animation *slideAnim =
       Plasma::Animator::create(Plasma::Animator::SlideAnimation);
     slideAnim->setProperty("movementDirection", Animation::MoveDown);
     slideAnim->setProperty("distance", 30);
     slideAnim->setTargetWidget(button5);
+    connect(button5, SIGNAL(clicked()), slideAnim, SLOT(start()));
 
     Animation *zoomAnim =
       Plasma::Animator::create(Plasma::Animator::ZoomAnimation);
     zoomAnim->setProperty("zoom", 2.0);
     zoomAnim->setTargetWidget(button8);
+    connect(button8, SIGNAL(clicked()), zoomAnim, SLOT(start()));
 
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
