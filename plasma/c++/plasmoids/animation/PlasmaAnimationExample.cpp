@@ -54,7 +54,7 @@ PlasmaAnimationExample::PlasmaAnimationExample(QObject *parent, const QVariantLi
     : Plasma::Applet(parent, args)
 {
     // set a default size
-    resize(300, 400);
+    resize(300, 500);
 }
 
 void PlasmaAnimationExample::init()
@@ -74,19 +74,21 @@ void PlasmaAnimationExample::init()
 
     PushButton *button4 = new PushButton(frontWidget);
     button4->setText("Fade Animation!");
-    
+
     PushButton *button5 = new PushButton(frontWidget);
     button5->setText("Slide Animation!");
-    
+
     PushButton *button6 = new PushButton(frontWidget);
     button6->setText("Rotation stacked!");
-    
+
     PushButton *button7 = new PushButton(frontWidget);
     button7->setText("Rotation!");
 
     PushButton *button8 = new PushButton(frontWidget);
     button8->setText("Zoom");
 
+    PushButton *button9 = new PushButton(frontWidget);
+    button9->setText("Water\neffect");
 
     frontLayout->addItem(button1);
     frontLayout->addItem(button2);
@@ -96,7 +98,7 @@ void PlasmaAnimationExample::init()
     frontLayout->addItem(button5);
     frontLayout->addItem(button6);
     frontLayout->addItem(button7);
-
+    frontLayout->addItem(button9);
 
     qRegisterMetaType<QGraphicsLayoutItem *>("QGraphicsLayoutItem *");
 
@@ -152,6 +154,13 @@ void PlasmaAnimationExample::init()
     zoomAnim->setTargetWidget(button8);
     connect(button8, SIGNAL(clicked()), zoomAnim, SLOT(start()));
 
+    Animation *waterAnim =
+      Plasma::Animator::create(Plasma::Animator::WaterAnimation);
+    waterAnim->setTargetWidget(button9);
+    waterAnim->setProperty("duration", 3000);
+    waterAnim->setProperty("easingCurve", QEasingCurve(QEasingCurve::InOutSine));
+    connect(button9, SIGNAL(clicked()), waterAnim, SLOT(start()));
+
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
     m_seqGroup->addAnimation(rotAnim);
@@ -160,6 +169,7 @@ void PlasmaAnimationExample::init()
     m_seqGroup->addAnimation(pulseAnim);
     m_seqGroup->addAnimation(growAnim);
     m_seqGroup->addAnimation(slideAnim);
+    m_seqGroup->addAnimation(waterAnim);
     m_seqGroup->addAnimation(rotStackedAnim);
 
     QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
