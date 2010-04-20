@@ -1,5 +1,5 @@
-#ifndef CONTAINMENTPART_H
-#define CONTAINMENTPART_H
+#ifndef CONTAINMENTSHELL_H
+#define CONTAINMENTSHELL_H
 
 #include "../plasmakpart.h"
 
@@ -33,4 +33,4 @@ private:
     PlasmaKPart *m_part;
 };
 
-#endif // CONTAINMENTPART_H
+#endif // CONTAINMENTSHELL_H
