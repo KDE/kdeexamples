@@ -16,6 +16,8 @@
 
 #include "../kpartcorona.h"
 #include <Plasma/Containment>
+#include <plasma/containmentactionspluginsconfig.h>
+
 
 #include <QApplication>
 
@@ -33,7 +35,8 @@ ContainmentShell::ContainmentShell()
     {
 	// These are the default theme arguments to pass to the KPart; Config Group, 
 	// default theme color, and default system font.
-	QStringList args = QStringList() << "Theme-plasma-desktop" << "air" << "Sans" << "plasma-kpart-shell-appletsrc"; // << "containmentshell-appletsrc";
+	QStringList args = QStringList() << "Theme-plasma-desktop" << "air" << "Sans"; 
+	
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
         m_part = static_cast<PlasmaKPart*>(factory->create(this,"PlasmaKPart", args ));
@@ -42,6 +45,7 @@ ContainmentShell::ContainmentShell()
         {
 	    // connect to some signals
 	    QObject::connect(m_part->corona(), SIGNAL(parentLoadDefaultLayout()), this, SLOT(loadDefaultLayout()) );
+	    m_part->initializeLayout("plasma-kpart-shell-appletsrc");
 	    
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
@@ -74,12 +78,12 @@ ContainmentShell::~ContainmentShell()
 
 void ContainmentShell::loadDefaultLayout()
 {
-    /*KPartCorona* corona = m_part->corona();
-    
+    // find the default layout configuration
     QString defaultConfig = KStandardDirs::locate("appdata", "plasma-default-layoutrc");
+    
     if (!defaultConfig.isEmpty()) {
 	kDebug() << "attempting to load the default layout from:" << defaultConfig;
-	corona->loadLayout(defaultConfig);
+	m_part->initializeLayout(defaultConfig);
 	
 	// used to force a save into the config file
 	KConfigGroup invalidConfig;
@@ -87,17 +91,11 @@ void ContainmentShell::loadDefaultLayout()
 	Plasma::Containment* c = m_part->addContainment("newspaper");
 
 	if (!c) {
+	    kDebug() << "Whoopsie Goldberg, we seem to have failed to create a containment :(";
 	    return;
 	}
 
-	c->init();
-
 	c->setWallpaper("image", "SingleImage");
-	c->setFormFactor(Plasma::Planar);
-	c->updateConstraints(Plasma::StartupCompletedConstraint);
-	c->flushPendingConstraintsEvents();
 	c->save(invalidConfig);
-
-	corona->requestConfigSync();
-    }*/
+    }
 }
