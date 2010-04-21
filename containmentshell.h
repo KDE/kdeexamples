@@ -21,7 +21,7 @@ public:
     virtual ~ContainmentShell();
 
 private:
-    KParts::ReadOnlyPart* m_part;
+    KParts::Part* m_part;
 };
 
 #endif // CONTAINMENTSHELL_H

@@ -39,7 +39,7 @@ ContainmentShell::ContainmentShell()
 
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = service->createInstance<KParts::ReadOnlyPart>(0, args);
+        m_part = service->createInstance<KParts::Part>(0, args);
 
         if (m_part)
         {
@@ -49,6 +49,12 @@ ContainmentShell::ContainmentShell()
             // and integrate the part's GUI with the shell's
             setupGUI();
         }
+        else
+	{
+	    // For whatever reason the part didn't load
+	    KMessageBox::error(this, i18n("Could not instantiate our Part!"));
+	    qApp->quit();
+	}
     }
     else
     {
