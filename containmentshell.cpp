@@ -6,8 +6,7 @@
 #include "containmentshell.h"
 #include "containmentshell.moc"
 
-#include <KPluginLoader>
-#include <KPluginFactory>
+#include <KService>
 #include <KMessageBox>
 #include <KStandardAction>
 #include <KStandardDirs>
@@ -30,23 +29,22 @@ ContainmentShell::ContainmentShell()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-    KPluginFactory *factory = (new KPluginLoader("plasma-kpart.so"))->factory();
-    if (factory)
+    KService::Ptr service = KService::serviceByDesktopPath( "plasma-kpart.desktop" );
+    
+    if (service)
     {
-	// These are the default theme arguments to pass to the KPart; Config Group, 
-	// default theme color, and default system font.
-	QStringList args = QStringList() << "Theme-plasma-desktop" << "air" << "Sans"; 
+	// Pass an config name to the KPart. If this argument is omitted from the factory creation,
+	// the Corona's initializeLayout function will guess the appletsrc name based on the name
+	// of the component that called it. Thus, this argument is really only necessary if you plan
+	// on having more than one dashboard in different parts of your application.
+	QVariantList args = QVariantList() << "plasma-kpart-shell-appletsrc"; 
 	
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<PlasmaKPart*>(factory->create(this,"PlasmaKPart", args ));
+        m_part = service->createInstance<PlasmaKPart>(0,args);
 
         if (m_part)
         {
-	    // connect to some signals
-	    QObject::connect(m_part->corona(), SIGNAL(parentLoadDefaultLayout()), this, SLOT(loadDefaultLayout()) );
-	    m_part->initializeLayout("plasma-kpart-shell-appletsrc");
-	    
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
@@ -73,29 +71,4 @@ ContainmentShell::ContainmentShell()
 
 ContainmentShell::~ContainmentShell()
 {
-}
-
-
-void ContainmentShell::loadDefaultLayout()
-{
-    // find the default layout configuration
-    QString defaultConfig = KStandardDirs::locate("appdata", "plasma-default-layoutrc");
-    
-    if (!defaultConfig.isEmpty()) {
-	kDebug() << "attempting to load the default layout from:" << defaultConfig;
-	m_part->initializeLayout(defaultConfig);
-	
-	// used to force a save into the config file
-	KConfigGroup invalidConfig;
-
-	Plasma::Containment* c = m_part->addContainment("newspaper");
-
-	if (!c) {
-	    kDebug() << "Whoopsie Goldberg, we seem to have failed to create a containment :(";
-	    return;
-	}
-
-	c->setWallpaper("image", "SingleImage");
-	c->save(invalidConfig);
-    }
 }
