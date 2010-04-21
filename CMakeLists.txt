@@ -1,6 +1,4 @@
-#this is fucking broken
-link_directories( /home/rrix/dev/install/usr/lib64/kde4 )
-
+# ne vas pas... :/
 include_directories( ${INCLUDE_INSTALL_DIR}/plasma-kpart )
 
 set(plasma_kpart_shell_SRCS
@@ -10,7 +8,7 @@ set(plasma_kpart_shell_SRCS
 
 kde4_add_executable(plasma-kpart-shell ${plasma_kpart_shell_SRCS})
 
-target_link_libraries(plasma-kpart-shell ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_PLASMA_LIBS} )
+target_link_libraries(plasma-kpart-shell ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} )
 
 ########### install files ###############
 install(TARGETS plasma-kpart-shell ${INSTALL_TARGETS_DEFAULT_ARGS} )

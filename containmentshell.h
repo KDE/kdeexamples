@@ -21,7 +21,7 @@ public:
     virtual ~ContainmentShell();
 
 private:
-    PlasmaKPart *m_part;
+    KParts::ReadOnlyPart* m_part;
 };
 
 #endif // CONTAINMENTSHELL_H
