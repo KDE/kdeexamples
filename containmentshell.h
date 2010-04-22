@@ -15,13 +15,13 @@
  */
 class ContainmentShell : public KParts::MainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    ContainmentShell();
-    virtual ~ContainmentShell();
+	ContainmentShell();
+	virtual ~ContainmentShell();
 
 private:
-    KParts::Part* m_part;
+	KParts::Part* m_part;
 };
 
 #endif // CONTAINMENTSHELL_H

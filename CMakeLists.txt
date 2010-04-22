@@ -1,6 +1,3 @@
-# ne vas pas... :/
-include_directories( ${INCLUDE_INSTALL_DIR}/plasma-kpart )
-
 set(plasma_kpart_shell_SRCS
    main.cpp
    containmentshell.cpp
