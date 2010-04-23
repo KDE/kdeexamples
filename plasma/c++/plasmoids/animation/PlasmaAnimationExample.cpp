@@ -169,7 +169,7 @@ void PlasmaAnimationExample::init()
         Plasma::Animator::create(Plasma::Animator::RotationAnimation);
     shakeAnim->setTargetWidget(button10);
     shakeAnim->setProperty("easingCurve",
-        Plasma::Animator::easingCurve(Plasma::Animator::PendularCurve));
+        Plasma::Animator::create(Plasma::Animator::PendularCurve));
     shakeAnim->setProperty("angle", 5);
     shakeAnim->setProperty("duration", 250);
     shakeAnim->setProperty("loopCount", 2);
