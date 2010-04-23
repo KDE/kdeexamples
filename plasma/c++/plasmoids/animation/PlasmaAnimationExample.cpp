@@ -158,7 +158,7 @@ void PlasmaAnimationExample::init()
       Plasma::Animator::create(Plasma::Animator::WaterAnimation);
     waterAnim->setTargetWidget(button9);
     waterAnim->setProperty("duration", 3000);
-    waterAnim->setProperty("easingCurve", QEasingCurve(QEasingCurve::InOutSine));
+    waterAnim->setProperty("easingCurve", QEasingCurve::InOutSine);
     connect(button9, SIGNAL(clicked()), waterAnim, SLOT(start()));
 
     //group 'em up!
