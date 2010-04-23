@@ -38,6 +38,7 @@
 #include <plasma/widgets/pushbutton.h>
 
 #include <plasma/animations/animation.h>
+#include <plasma/animations/pendulumcurve.h>
 
 #include <QGraphicsLinearLayout>
 #include <QGraphicsLayoutItem>
@@ -90,6 +91,9 @@ void PlasmaAnimationExample::init()
     PushButton *button9 = new PushButton(frontWidget);
     button9->setText("Water\neffect");
 
+    PushButton *button10 = new PushButton(frontWidget);
+    button10->setText("Shake!");
+
     frontLayout->addItem(button1);
     frontLayout->addItem(button2);
     frontLayout->addItem(button3);
@@ -99,6 +103,7 @@ void PlasmaAnimationExample::init()
     frontLayout->addItem(button6);
     frontLayout->addItem(button7);
     frontLayout->addItem(button9);
+    frontLayout->addItem(button10);
 
     qRegisterMetaType<QGraphicsLayoutItem *>("QGraphicsLayoutItem *");
 
@@ -161,6 +166,15 @@ void PlasmaAnimationExample::init()
     waterAnim->setProperty("easingCurve", QEasingCurve::InOutSine);
     connect(button9, SIGNAL(clicked()), waterAnim, SLOT(start()));
 
+    Animation *shakeAnim =
+        Plasma::Animator::create(Plasma::Animator::RotationAnimation);
+    shakeAnim->setTargetWidget(button10);
+    shakeAnim->setProperty("easingCurve", Plasma::PendulumCurve());
+    shakeAnim->setProperty("angle", 5);
+    shakeAnim->setProperty("duration", 250);
+    shakeAnim->setProperty("loopCount", 2);
+    connect(button10, SIGNAL(clicked()), shakeAnim, SLOT(start()));
+
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
     m_seqGroup->addAnimation(rotAnim);
@@ -170,6 +184,7 @@ void PlasmaAnimationExample::init()
     m_seqGroup->addAnimation(growAnim);
     m_seqGroup->addAnimation(slideAnim);
     m_seqGroup->addAnimation(waterAnim);
+    m_seqGroup->addAnimation(shakeAnim);
     m_seqGroup->addAnimation(rotStackedAnim);
 
     QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
