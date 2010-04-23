@@ -38,7 +38,6 @@
 #include <plasma/widgets/pushbutton.h>
 
 #include <plasma/animations/animation.h>
-#include <plasma/animations/pendulumcurve.h>
 
 #include <QGraphicsLinearLayout>
 #include <QGraphicsLayoutItem>
@@ -169,7 +168,8 @@ void PlasmaAnimationExample::init()
     Animation *shakeAnim =
         Plasma::Animator::create(Plasma::Animator::RotationAnimation);
     shakeAnim->setTargetWidget(button10);
-    shakeAnim->setProperty("easingCurve", Plasma::PendulumCurve());
+    shakeAnim->setProperty("easingCurve",
+        Plasma::Animator::easingCurve(Plasma::Animator::PendularCurve));
     shakeAnim->setProperty("angle", 5);
     shakeAnim->setProperty("duration", 250);
     shakeAnim->setProperty("loopCount", 2);
