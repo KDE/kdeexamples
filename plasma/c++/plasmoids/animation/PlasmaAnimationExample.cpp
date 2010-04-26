@@ -47,6 +47,7 @@ using namespace Plasma;
 
 Q_DECLARE_METATYPE(QGraphicsWidget*)
 Q_DECLARE_METATYPE(QGraphicsLayoutItem*)
+Q_DECLARE_METATYPE(QEasingCurve)
 
 K_EXPORT_PLASMA_APPLET(plasma-applet-pltest, PlasmaAnimationExample)
 
@@ -162,14 +163,14 @@ void PlasmaAnimationExample::init()
       Plasma::Animator::create(Plasma::Animator::WaterAnimation);
     waterAnim->setTargetWidget(button9);
     waterAnim->setProperty("duration", 3000);
-    waterAnim->setProperty("easingCurve", QEasingCurve::InOutSine);
+    waterAnim->setProperty("easingCurve", QVariant::fromValue(QEasingCurve(QEasingCurve::InOutSine)));
     connect(button9, SIGNAL(clicked()), waterAnim, SLOT(start()));
 
     Animation *shakeAnim =
         Plasma::Animator::create(Plasma::Animator::RotationAnimation);
     shakeAnim->setTargetWidget(button10);
     shakeAnim->setProperty("easingCurve",
-        Plasma::Animator::create(Plasma::Animator::PendularCurve));
+        QVariant::fromValue(Plasma::Animator::create(Plasma::Animator::PendularCurve)));
     shakeAnim->setProperty("angle", 5);
     shakeAnim->setProperty("duration", 250);
     shakeAnim->setProperty("loopCount", 2);
