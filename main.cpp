@@ -1,8 +1,8 @@
 #include "containmentshell.h"
-#include <kapplication.h>
-#include <kaboutdata.h>
-#include <kcmdlineargs.h>
-#include <klocale.h>
+#include <KApplication>
+#include <KAboutData>
+#include <KCmdLineArgs>
+#include <KLocale>
 
 static const char description[] =
 	I18N_NOOP("A KDE KPart Application");
