@@ -1,5 +1,6 @@
 /*
 *   Copyright 2010 Ryan Rix <ry@n.rix.si>
+*   Copyright 2010 Siddharth Sharma <siddharth.kde@gmail.com>
 *
 *   This program is free software; you can redistribute it and/or modify
 *   it under the terms of the GNU Library General Public License version 2 as
