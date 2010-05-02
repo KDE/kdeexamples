@@ -46,7 +46,6 @@ ContainmentShell::ContainmentShell()
 		// now that the Part is loaded, we cast it to a Part to get
 		// our hands on it
 		m_part = service->createInstance<KParts::Part>(0, args);
-		setXMLFile("plasma-kpart-shellui.rc");
 		
 		if (m_part)
 		{
