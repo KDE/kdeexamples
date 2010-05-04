@@ -1,5 +1,3 @@
-panels()[0].height = 26
-
 function printWidgets(container)
 {
   widgets = container.widgets()
