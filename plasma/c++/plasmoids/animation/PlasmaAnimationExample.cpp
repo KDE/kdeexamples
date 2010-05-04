@@ -94,6 +94,9 @@ void PlasmaAnimationExample::init()
     PushButton *button10 = new PushButton(frontWidget);
     button10->setText("Shake!");
 
+    PushButton *button11 = new PushButton(frontWidget);
+    button11->setText("jsanim!");
+
     frontLayout->addItem(button1);
     frontLayout->addItem(button2);
     frontLayout->addItem(button3);
@@ -104,6 +107,7 @@ void PlasmaAnimationExample::init()
     frontLayout->addItem(button7);
     frontLayout->addItem(button9);
     frontLayout->addItem(button10);
+    frontLayout->addItem(button11);
 
     qRegisterMetaType<QGraphicsLayoutItem *>("QGraphicsLayoutItem *");
 
@@ -176,6 +180,15 @@ void PlasmaAnimationExample::init()
     shakeAnim->setProperty("loopCount", 2);
     connect(button10, SIGNAL(clicked()), shakeAnim, SLOT(start()));
 
+    Animation *jsAnim =
+        Plasma::Animator::create(QString("ZoomAnimation"));
+    if (!jsAnim) {
+        kDebug() << "***********\n\nFailed loading javascript based animation!";
+    } else {
+        kDebug() << "***********\n\nSuccess creating javascript based animation";
+        jsAnim->setTargetWidget(button11);
+        connect(button11, SIGNAL(clicked()), shakeAnim, SLOT(start()));
+    }
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
     m_seqGroup->addAnimation(rotAnim);
@@ -187,6 +200,10 @@ void PlasmaAnimationExample::init()
     m_seqGroup->addAnimation(waterAnim);
     m_seqGroup->addAnimation(shakeAnim);
     m_seqGroup->addAnimation(rotStackedAnim);
+    if (jsAnim) {
+        m_seqGroup->addAnimation(jsAnim);
+    }
+
 
     QObject::connect(button1, SIGNAL(clicked()), this, SLOT(startAll()));
     QObject::connect(button6, SIGNAL(clicked()), this, SLOT(revertDirection()));
