@@ -37,11 +37,7 @@ ContainmentShell::ContainmentShell()
 	
 	if (service)
 	{
-		// Pass an config name to the KPart. If this argument is omitted from the factory creation,
-		// the Corona's initializeLayout function will guess the appletsrc name based on the name
-		// of the component that called it. Thus, this argument is really only necessary if you plan
-		// on having more than one dashboard in different parts of your application.
-		QVariantList args = QVariantList() << "plasma-kpart-shell-appletsrc"; 
+		QVariantList args = QVariantList() << "Online Services"; 
 
 		// now that the Part is loaded, we cast it to a Part to get
 		// our hands on it
