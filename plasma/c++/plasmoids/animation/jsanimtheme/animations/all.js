@@ -11,7 +11,7 @@ function ZoomAnimation(target, duration) {
     }
 }
 
-registerAnimation("all.js", ZoomAnimation)
+registerAnimation("ZoomAnimation", ZoomAnimation)
 
 //*************************************************************************//
 function RotationAnimation(target, duration) {
@@ -29,7 +29,8 @@ function RotationAnimation(target, duration) {
     }
 }
 
-registerAnimation("all.js", RotationAnimation)
+registerAnimation("RotationAnimation", RotationAnimation)
+
 //*************************************************************************//
 function FadeAnimation(target, duration) {
     this.target = target;
@@ -47,7 +48,8 @@ function FadeAnimation(target, duration) {
     }
 }
 
-registerAnimation("all.js", FadeAnimation)
+registerAnimation("FadeAnimation", FadeAnimation)
+
 //*************************************************************************//
 function SlideAnimation(target, duration) {
     this.target = target;
@@ -62,6 +64,6 @@ function SlideAnimation(target, duration) {
     }
 }
 
-registerAnimation("all.js", SlideAnimation)
+registerAnimation("SlideAnimation", SlideAnimation)
 
 
