@@ -42,6 +42,7 @@
 #include <QGraphicsLinearLayout>
 #include <QGraphicsLayoutItem>
 #include <QSequentialAnimationGroup>
+#include <QParallelAnimationGroup>
 
 using namespace Plasma;
 
@@ -180,14 +181,27 @@ void PlasmaAnimationExample::init()
     shakeAnim->setProperty("loopCount", 2);
     connect(button10, SIGNAL(clicked()), shakeAnim, SLOT(start()));
 
+    QParallelAnimationGroup *parallel = new QParallelAnimationGroup(button11);
     Animation *jsAnim =
         Plasma::Animator::create(QString("ZoomAnimation"));
     if (!jsAnim) {
-        qDebug() << "***********\n\nFailed loading javascript based animation!";
+        qDebug() << "***********\n\nFailed loading javascript: ZoomAnimation!";
+
     } else {
         qDebug() << "***********\n\nSuccess creating javascript based animation";
         jsAnim->setTargetWidget(button11);
-        connect(button11, SIGNAL(clicked()), jsAnim, SLOT(start()));
+        parallel->addAnimation(jsAnim);
+
+        jsAnim = Plasma::Animator::create(QString("FadeAnimation"));
+        if (jsAnim) {
+            jsAnim->setProperty("duration", 600);
+
+            jsAnim->setTargetWidget(button11);
+            parallel->addAnimation(jsAnim);
+        } else {
+            qDebug() << "***********\n\nFailed loading javascript: FadeAnimation!";
+        }
+        connect(button11, SIGNAL(clicked()), parallel, SLOT(start()));
     }
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
@@ -201,7 +215,7 @@ void PlasmaAnimationExample::init()
     m_seqGroup->addAnimation(shakeAnim);
     m_seqGroup->addAnimation(rotStackedAnim);
     if (jsAnim) {
-        m_seqGroup->addAnimation(jsAnim);
+        m_seqGroup->addAnimation(parallel);
     }
 
 
