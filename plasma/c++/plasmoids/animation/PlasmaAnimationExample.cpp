@@ -183,11 +183,11 @@ void PlasmaAnimationExample::init()
     Animation *jsAnim =
         Plasma::Animator::create(QString("ZoomAnimation"));
     if (!jsAnim) {
-        kDebug() << "***********\n\nFailed loading javascript based animation!";
+        qDebug() << "***********\n\nFailed loading javascript based animation!";
     } else {
-        kDebug() << "***********\n\nSuccess creating javascript based animation";
+        qDebug() << "***********\n\nSuccess creating javascript based animation";
         jsAnim->setTargetWidget(button11);
-        connect(button11, SIGNAL(clicked()), shakeAnim, SLOT(start()));
+        connect(button11, SIGNAL(clicked()), jsAnim, SLOT(start()));
     }
     //group 'em up!
     m_seqGroup = new QSequentialAnimationGroup(this);
