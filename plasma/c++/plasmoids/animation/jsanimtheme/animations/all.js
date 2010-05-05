@@ -1,3 +1,4 @@
+//*************************************************************************//
 function ZoomAnimation(target, duration) {
     this.target = target;
     this.duration = duration;
@@ -11,3 +12,56 @@ function ZoomAnimation(target, duration) {
 }
 
 registerAnimation("all.js", ZoomAnimation)
+
+//*************************************************************************//
+function RotationAnimation(target, duration) {
+    this.target = target;
+    this.duration = duration;
+    this.angle = 360;
+    //TODO: allow to set angle and axis on the 'constructor'
+    //this.axis = axis;
+
+    this.updateCurrentTime = function(currentTime) {
+
+	var delta = currentTime/this.duration;
+	this.target.rotation = delta * this.angle;
+
+    }
+}
+
+registerAnimation("all.js", RotationAnimation)
+//*************************************************************************//
+function FadeAnimation(target, duration) {
+    this.target = target;
+    this.duration = duration;
+    //TODO: maybe a 'resetAnimation' function could use this
+    //and be called when the animation status change from running
+    //to stopped
+    this.opacityStart = target.opacity
+
+    this.updateCurrentTime = function(currentTime) {
+
+	var delta = currentTime/duration;
+	target.opacity = delta;
+
+    }
+}
+
+registerAnimation("all.js", FadeAnimation)
+//*************************************************************************//
+function SlideAnimation(target, duration) {
+    this.target = target;
+    this.duration = duration;
+    this.x = target.x
+
+    this.updateCurrentTime = function(currentTime) {
+
+	var delta = currentTime/this.duration;
+	this.target.x = delta * this.x;
+
+    }
+}
+
+registerAnimation("all.js", SlideAnimation)
+
+
