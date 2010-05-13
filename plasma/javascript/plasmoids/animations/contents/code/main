@@ -136,5 +136,22 @@ rotateLabelsAnimationGroup.addAnimation(rotateAnimation)
 // animation group
 button.clicked.connect(rotateLabelsAnimationGroup.start)
 
+function test()
+{
+    print("testing the anim");
+    if (anim) {
+        anim.start()
+    }
+}
+
+button = new PushButton()
+button.text = 'Javascript Zoom'
+layout.addItem(button)
+var anim = animation("Foo")
+if (anim) {
+    anim.targetWidget = button
+    button.clicked.connect(anim.start)
+}
+
 // add some space at the bottom of the widget
 layout.addStretch(10)
