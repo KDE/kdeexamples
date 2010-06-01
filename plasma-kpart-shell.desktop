@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=plasma-kpart-shell
+Name[en_GB]=plasma-kpart-shell
 Name[et]=plasma-kpart-shell
 Name[pt]=plasma-kpart-shell
 Name[pt_BR]=plasma-kpart-shell
@@ -11,6 +12,7 @@ Icon=plasma-kpart-shell
 Type=Application
 X-DocPath=plasma-kpart-shell/index.html
 GenericName=A KPart shell for Plasma
+GenericName[en_GB]=A KPart shell for Plasma
 GenericName[et]=Plasma KParti koorik
 GenericName[pt]=Uma consola de KPart para o Plasma
 GenericName[pt_BR]=Um console de KPart para o Plasma
