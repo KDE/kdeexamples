@@ -10,4 +10,5 @@ target_link_libraries(plasma-kpart-shell ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} 
 ########### install files ###############
 install(TARGETS plasma-kpart-shell ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install( FILES plasma-kpart-shell.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
-#install( FILES plasma-kpart-shellui.rc  DESTINATION ${DATA_INSTALL_DIR}/plasma-kpart-shell/ )
+install(FILES plasma-default-layoutrc DESTINATION ${DATA_INSTALL_DIR}/plasma-kpart-shell/)
+install( FILES plasma-kpart-shellui.rc  DESTINATION ${DATA_INSTALL_DIR}/plasma-kpart-shell/ )

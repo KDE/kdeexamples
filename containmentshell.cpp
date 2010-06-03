@@ -22,14 +22,27 @@
 #include <KService>
 #include <KMessageBox>
 #include <KDebug>
+#include <KStandardAction>
+#include <KActionCollection>
+
 
 #include <Plasma/Containment>
 
 #include <QApplication>
 
 ContainmentShell::ContainmentShell()
-	: KParts::MainWindow( )
+	: KParts::MainWindow( ),
+	  m_dialog(0)
 {
+    setXMLFile("plasma-kpart-shellui.rc");
+    
+    KAction* action = KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
+    
+    action = new KAction("&Configure", actionCollection());
+    connect(action, SIGNAL(triggered()), this, SLOT(optionsPreferences()));
+    actionCollection()->addAction("options_configure", action);
+    
+    
 	// this routine will find and load our Part.  it finds the Part by
 	// name which is a bad idea usually.. but it's alright in this
 	// case since our Part is made for this Shell
@@ -50,7 +63,8 @@ ContainmentShell::ContainmentShell()
 
 			// and integrate the part's GUI with the shell's
 			createGUI(m_part);
-		}
+
+        }
 		else
 		{
 			// For whatever reason the part didn't load
@@ -77,6 +91,34 @@ ContainmentShell::ContainmentShell()
 
 ContainmentShell::~ContainmentShell()
 {
+}
+
+void ContainmentShell::optionsPreferences()
+{
+    if( !m_dialog )
+    {
+        QWidget* widget = 0;
+        m_dialog = new KDialog(this);
+        widget = new QWidget(m_dialog);
+        
+        
+        m_dialog->setMainWidget( widget );
+        createConfigurationInterface(widget);
+        
+        m_dialog->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Default );
+        m_dialog->show();
+    }
+    else
+    {
+        m_dialog->show();
+    }
+}
+
+QWidget* ContainmentShell::createConfigurationInterface(QWidget* parent)
+{
+    connect(this,SIGNAL(sigCreateConfigurationInterface(QWidget*)), m_part, SLOT(createConfigurationInterface(QWidget*)));
+    
+    emit sigCreateConfigurationInterface(parent);
 }
 
 #include "containmentshell.moc"

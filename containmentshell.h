@@ -23,6 +23,7 @@
 #include "../plasmakpart.h"
 
 #include <kparts/mainwindow.h>
+#include <KDialog>
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -38,9 +39,17 @@ class ContainmentShell : public KParts::MainWindow
 public:
 	ContainmentShell();
 	virtual ~ContainmentShell();
+    
+public Q_SLOTS:
+    void optionsPreferences();
+    QWidget* createConfigurationInterface(QWidget* parent);
+    
+Q_SIGNALS:
+    QWidget* sigCreateConfigurationInterface(QWidget* parent);
 
 private:
-	KParts::Part* m_part;
+    KParts::Part* m_part;
+    KDialog* m_dialog;
 };
 
 #endif // CONTAINMENTSHELL_H
