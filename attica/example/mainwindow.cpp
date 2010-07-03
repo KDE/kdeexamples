@@ -26,7 +26,7 @@
 
 #include <attica/providermanager.h>
 
-#include "simplepersonrequest.h"
+#include "person.h"
 #include "contentdownload.h"
 #include "contentcreation.h"
 

@@ -26,23 +26,26 @@
 #include <KLineEdit>
 #include <attica/provider.h>
 
+namespace Ui {
+    class PersonWidget;
+}
+
 class SimplePersonRequest :public QWidget
 {
     Q_OBJECT
+
 public:
-    
     SimplePersonRequest(Attica::Provider provider, QWidget* parent = 0);
+    ~SimplePersonRequest();
 
 public Q_SLOTS:
     void nickChanged(const QString& nick);
-    void onPersonJobFinished( Attica::BaseJob *job );
+    void personJobFinished( Attica::BaseJob *job );
     
 private:
-    KLineEdit* mNickNameLineEdit;
-    QLabel* mNameLabel;
-    QLabel* mLocationLabel;
     QString mNick;
     Attica::Provider m_provider;
+    Ui::PersonWidget* m_ui;
 };
 
 #endif // SIMPLEPERSONREQUEST_H

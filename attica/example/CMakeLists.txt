@@ -5,12 +5,13 @@ include_directories(${KDE4_INCLUDES} ${LIBATTICA_INCLUDE_DIRS} ${CMAKE_CURRENT_S
 set(opencollaborationexample_SRCS
     main.cpp
     mainwindow.cpp
-    simplepersonrequest.cpp
+    person.cpp
     contentdownload.cpp
     contentcreation.cpp
 )
 
 kde4_add_ui_files(opencollaborationexample_SRCS
+    person.ui
     contentdownload.ui
     contentcreation.ui
 )

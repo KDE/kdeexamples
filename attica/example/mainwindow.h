@@ -21,11 +21,11 @@
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
- 
+
+#include <QWidget>
+
 #include <KMainWindow>
 #include <KLineEdit>
-#include <QLabel>
-
 
 #include <attica/providermanager.h>
 #include <attica/provider.h>

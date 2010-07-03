@@ -19,7 +19,7 @@
     USA.
 */
 
-#include "simplepersonrequest.h"
+#include "person.h"
 
 #include <KDebug>
 #include <QtGui/QBoxLayout>
@@ -28,48 +28,51 @@
 #include <attica/person.h>
 #include <attica/itemjob.h>
 
+#include "ui_person.h"
+
 SimplePersonRequest::SimplePersonRequest(Attica::Provider provider, QWidget* parent)
     : QWidget(parent)
     , m_provider(provider)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
-    
-    mNickNameLineEdit = new KLineEdit();
-    layout->addWidget(mNickNameLineEdit);
-
-    mNameLabel = new QLabel(this);
-    mNameLabel->setText("Name");
-    layout->addWidget(mNameLabel);
-
-    mLocationLabel = new QLabel(this);
-    mLocationLabel->setText("Location");
-    layout->addWidget(mLocationLabel);
+    m_ui = new Ui::PersonWidget;
+    m_ui->setupUi(this);
 
     mNick = "frank";
-    mNickNameLineEdit->setText(mNick);
-    connect(mNickNameLineEdit, SIGNAL(returnPressed(QString)), SLOT(nickChanged(QString)));
+    m_ui->nick->setText(mNick);
+    connect(m_ui->nick, SIGNAL(returnPressed(QString)), SLOT(nickChanged(QString)));
     nickChanged(mNick);
+}
+
+SimplePersonRequest::~SimplePersonRequest()
+{
+    delete m_ui;
 }
 
 void SimplePersonRequest::nickChanged(const QString& nick)
 {
     mNick = nick;
     Attica::ItemJob<Attica::Person>* job = m_provider.requestPerson(mNick);
-    connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(onPersonJobFinished(Attica::BaseJob*)));
+    connect(job, SIGNAL(finished(Attica::BaseJob*)), SLOT(personJobFinished(Attica::BaseJob*)));
     job->start();
 }
 
-void SimplePersonRequest::onPersonJobFinished( Attica::BaseJob *job )
+void SimplePersonRequest::personJobFinished( Attica::BaseJob *job )
 {
     kDebug() << "onJobFinished";
     Attica::ItemJob<Attica::Person> *personJob = static_cast< Attica::ItemJob<Attica::Person> * >( job );
     if( personJob->metadata().error() == Attica::Metadata::NoError ) {
         Attica::Person p(personJob->result());
-        mNameLabel->setText(p.firstName() + ' ' + p.lastName());
-        mLocationLabel->setText(p.city());
+        m_ui->name->setText(p.firstName() + ' ' + p.lastName());
+        m_ui->city->setText(p.city());
+        m_ui->country->setText(p.country());
+        m_ui->messenger->setText(p.extendedAttribute("messenger1") + " (" + p.extendedAttribute("messengertype1") + ')');
+        m_ui->homepage->setText(p.homepage());
+        m_ui->project->setText(p.extendedAttribute("communityrole"));
+        m_ui->languages->setText(p.extendedAttribute("languages"));
     } else {
-        mNameLabel->setText("Could not fetch information.");
+        m_ui->name->setText(i18n("Could not find person."));
     }
 }
 
-#include "simplepersonrequest.moc"
+#include "person.moc"
+
