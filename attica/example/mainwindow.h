@@ -37,13 +37,14 @@ class MainWindow : public KMainWindow
 
 public:
     MainWindow(QWidget *parent=0);
+    ~MainWindow();
 
 public Q_SLOTS:
     void providersLoaded();
 
 private:
     Attica::Provider m_provider;
-    Attica::ProviderManager m_manager;
+    Attica::ProviderManager* m_manager;
 };
 
 #endif

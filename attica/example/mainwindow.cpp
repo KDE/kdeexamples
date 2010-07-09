@@ -32,14 +32,21 @@
 
 MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 {
-    connect(&m_manager, SIGNAL(defaultProvidersLoaded()), SLOT(providersLoaded()));
-    m_manager.loadDefaultProviders();
+    m_manager = new Attica::ProviderManager;
+
+    connect(m_manager, SIGNAL(defaultProvidersLoaded()), SLOT(providersLoaded()));
+    m_manager->loadDefaultProviders();
+}
+
+MainWindow::~MainWindow()
+{
+    delete m_manager;
 }
 
 void MainWindow::providersLoaded()
 {
-    if (!m_manager.providers().isEmpty()) {
-        m_provider = m_manager.providerByUrl(QUrl("https://api.opendesktop.org/v1/"));
+    if (!m_manager->providers().isEmpty()) {
+        m_provider = m_manager->providerByUrl(QUrl("https://api.opendesktop.org/v1/"));
         if (!m_provider.isValid()) {
             kDebug() << "Could not find opendesktop.org provider.";
             return;
@@ -58,5 +65,6 @@ void MainWindow::providersLoaded()
         mainWidget->addTab(contentCreationWidget, tr("Add Content"));
     }
 }
+
 #include "mainwindow.moc"
 
