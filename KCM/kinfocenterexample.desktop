@@ -8,10 +8,11 @@ Type=Service
 X-KDE-ServiceTypes=KCModule
 
 #This sets the priority of the KCModule, the priority sets where the module shall 
-#appear in KInfoCenter
+#appear in KInfoCenter tree view
 X-KDE-Weight=10
 
 #This adds a category, if the category does not exist a new one shall be created.
+# Needs KDE 4.5
 X-KDE-KInfoCenter-Category=Examples
 X-KDE-Library=kinfocenterexample
 X-KDE-ParentApp=kinfocenter

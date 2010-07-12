@@ -32,7 +32,7 @@ KInfoCenterExample::KInfoCenterExample(QWidget *parent, const QVariantList &args
   KCModule(KInfoCenterExampleFactory::componentData(),parent)
 {
   
-  // We do not use args in this example, to set unused so compiler does not display warning.
+  // We do not use args in this example, so set unused so compiler does not display warning.
   Q_UNUSED(args);
   
   // Set KInfoCenter About Data
@@ -42,7 +42,7 @@ KInfoCenterExample::KInfoCenterExample(QWidget *parent, const QVariantList &args
 
   setAboutData(about);
   
-  // Create Display
+  // Create display
   createDisplay(this);
   
   // Set Buttons
@@ -51,7 +51,7 @@ KInfoCenterExample::KInfoCenterExample(QWidget *parent, const QVariantList &args
   // NoAdditionalButton - No buttons
   // Help - Display Help Button
   // Default - Help and Apply are displayed
-  // Apply - Display Apply button
+  // Apply - Display Apply button, Not used in KInfoCenter
   // Export - Display Export button
   setButtons(Help);
 }
