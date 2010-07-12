@@ -1,0 +1,24 @@
+[Desktop Entry]
+
+Exec=kcmshell4 devinfo
+Icon=device-notifier
+Type=Service
+
+#Set the type of module to a KCModule
+X-KDE-ServiceTypes=KCModule
+
+#This sets the priority of the KCModule, the priority sets where the module shall 
+#appear in KInfoCenter
+X-KDE-Weight=10
+
+#This adds a category, if the category does not exist a new one shall be created.
+X-KDE-KInfoCenter-Category=Examples
+X-KDE-Library=kinfocenterexample
+X-KDE-ParentApp=kinfocenter
+X-DocPath=kinfocenter/kinfocenterexample.html
+
+Name=KInfoCenter Example
+Comment=A KInfoCenter Example
+
+X-KDE-Keywords=example,kdeexamples
+Categories=Qt;KDE;X-KDE-information;
