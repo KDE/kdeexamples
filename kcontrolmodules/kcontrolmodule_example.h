@@ -1,6 +1,6 @@
 
 /*
-*  kinfocenter_example.h
+*  kcontrolmodule_example.h
 *
 *  Copyright (C) 2010 David Hubner <hubnerd@ntlworld.com>
 *
@@ -20,8 +20,8 @@
 *
 */
 
-#ifndef KINFOCENTEREXAMPLE
-#define KINFOCENTEREXAMPLE
+#ifndef KCONTROLMODULEEXAMPLE
+#define KCONTROLMODULEEXAMPLE
 
 // Include to register and export your KCM plugin
 #include <KPluginFactory>
@@ -45,12 +45,12 @@ Check http://api.kde.org/4.x-api/kdelibs/kdeui/classKCModule.html
 for reference. 
 */
 
-class KInfoCenterExample : public KCModule
+class KControlModuleExample : public KCModule
 {
   Q_OBJECT
   
   public:
-    KInfoCenterExample(QWidget *, const QVariantList &);
+    KControlModuleExample(QWidget *, const QVariantList &);
     
   private:
     void createDisplay(QWidget *);
@@ -59,4 +59,4 @@ class KInfoCenterExample : public KCModule
     QLabel *m_exampleLabel;
 };
   
-#endif //KINFOCENTEREXAMPLE
+#endif //KCONTROLMODULEEXAMPLE

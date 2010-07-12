@@ -1,6 +1,6 @@
 
 /*
-*  kinfocenter_example.cpp
+*  kcontrolmodule_example.cpp
 *
 *  Copyright (C) 2010 David Hubner <hubnerd@ntlworld.com>
 *
@@ -20,16 +20,16 @@
 *
 */
 
-#include "kinfocenter_example.h"
+#include "kcontrolmodule_example.h"
 
 /*
 Register and Export the plugin
 */
-K_PLUGIN_FACTORY(KInfoCenterExampleFactory, registerPlugin<KInfoCenterExample>();)
-K_EXPORT_PLUGIN(KInfoCenterExampleFactory("kinfocenterexample"))
+K_PLUGIN_FACTORY(KControlModuleExampleFactory, registerPlugin<KControlModuleExample>();)
+K_EXPORT_PLUGIN(KControlModuleExampleFactory("kcontrolmoduleexample"))
 
-KInfoCenterExample::KInfoCenterExample(QWidget *parent, const QVariantList &args) :
-  KCModule(KInfoCenterExampleFactory::componentData(),parent)
+KControlModuleExample::KControlModuleExample(QWidget *parent, const QVariantList &args) :
+  KCModule(KControlModuleExampleFactory::componentData(),parent)
 {
   
   // We do not use args in this example, so set unused so compiler does not display warning.
@@ -52,14 +52,14 @@ KInfoCenterExample::KInfoCenterExample(QWidget *parent, const QVariantList &args
   // Help - Display Help Button
   // Default - Help and Apply are displayed
   // Apply - Display Apply button, Not used in KInfoCenter
-  // Export - Display Export button
+  // Export - Display Export button, Not used in System Settings
   setButtons(Help);
 }
 
 /*
 Create a label at the top the KCM
 */
-void KInfoCenterExample::createDisplay(QWidget *parent)
+void KControlModuleExample::createDisplay(QWidget *parent)
 {
   QWidget *maindisplay = new QWidget(parent);
   QVBoxLayout *layout = new QVBoxLayout(maindisplay);
@@ -70,11 +70,11 @@ void KInfoCenterExample::createDisplay(QWidget *parent)
 
 /*
 Set the export of information, this sets the information returned
-when the export button is pressed. Needs KDE 4.5
+when the export button is pressed. Only in KInfoCenter, Needs KDE 4.5
 */
-void KInfoCenterExample::exportInformation()
+void KControlModuleExample::exportInformation()
 {
-  setExportText(m_exampleLabel->text());
+  //setExportText(m_exampleLabel->text());
 }
   
   
