@@ -18,6 +18,7 @@
 */
 
 #include "containmentshell.h"
+#include "testshellpluginloader.h"
 
 #include <KService>
 #include <KMessageBox>
@@ -50,7 +51,9 @@ ContainmentShell::ContainmentShell()
 	
 	if (service)
 	{
-		QVariantList args = QVariantList() << "Online Services"; 
+		Plasma::PluginLoader* loader = new TestShellPluginLoader();
+
+		QVariantList args = QVariantList() << qVariantFromValue(loader) << "Online Services"; 
 
 		// now that the Part is loaded, we cast it to a Part to get
 		// our hands on it
