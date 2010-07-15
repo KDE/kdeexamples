@@ -42,10 +42,10 @@ public:
     
 public Q_SLOTS:
     void optionsPreferences();
-    QWidget* createConfigurationInterface(QWidget* parent);
+    QWidget* createConfigurationInterface(KDialog** parent);
     
 Q_SIGNALS:
-    QWidget* sigCreateConfigurationInterface(QWidget* parent);
+    QWidget* sigCreateConfigurationInterface(KDialog** parent);
 
 private:
     KParts::Part* m_part;

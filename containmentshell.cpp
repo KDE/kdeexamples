@@ -100,26 +100,15 @@ void ContainmentShell::optionsPreferences()
 {
     if( !m_dialog )
     {
-        QWidget* widget = 0;
-        m_dialog = new KDialog(this);
-        widget = new QWidget(m_dialog);
-        
-        
-        m_dialog->setMainWidget( widget );
-        createConfigurationInterface(widget);
-        
-        m_dialog->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Default );
-        m_dialog->show();
+        kDebug() << "WARNING MY ARMS ARE FLAILING WILDLY";
+        createConfigurationInterface(&m_dialog);
     }
-    else
-    {
-        m_dialog->show();
-    }
+    m_dialog->show();
 }
 
-QWidget* ContainmentShell::createConfigurationInterface(QWidget* parent)
+QWidget* ContainmentShell::createConfigurationInterface(KDialog** parent)
 {
-    connect(this,SIGNAL(sigCreateConfigurationInterface(QWidget*)), m_part, SLOT(createConfigurationInterface(QWidget*)));
+    connect(this,SIGNAL(sigCreateConfigurationInterface(KDialog**)), m_part, SLOT(createConfigurationInterface(KDialog**)));
     
     emit sigCreateConfigurationInterface(parent);
 }
