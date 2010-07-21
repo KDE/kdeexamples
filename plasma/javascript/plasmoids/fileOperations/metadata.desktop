@@ -11,7 +11,7 @@ X-Plasma-MainScript=code/main.js
 
 X-KDE-PluginInfo-Author=Aaron Seigo
 X-KDE-PluginInfo-Email=aseigo@kde.org
-X-KDE-PluginInfo-Name=simpified-javascript-fileops
+X-KDE-PluginInfo-Name=org.kde.plasma.simplified-javascript-fileops-example
 X-KDE-PluginInfo-Version=0.1
 X-KDE-PluginInfo-Website=
 X-KDE-PluginInfo-Category=Examples
