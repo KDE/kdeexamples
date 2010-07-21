@@ -43,48 +43,50 @@ ScrollWidgetExample::ScrollWidgetExample( QObject* parent, const QVariantList& a
       m_scroller(0),
       m_scrollerLayout(0)
 {
-    init();
+    setPreferredSize(100,400);
 }
 
 void ScrollWidgetExample::init()
 {
-    // Start by setting up the main widget
-    setPreferredSize(100,400);
-    QGraphicsLinearLayout* lay = new QGraphicsLinearLayout( Qt::Vertical);
-    setLayout( lay );
+    // Start by setting up the Applet with a layout
+    QGraphicsLinearLayout* lay = new QGraphicsLinearLayout(Qt::Vertical);
+    setLayout(lay);
 
-    // Put the scroller inside of the QGW
-    m_scrollWidget = new Plasma::ScrollWidget( );
+    // Create the scroll widget and set the desired size policy if different than the default
+    // this ScrollWidget will handle the scrollbars as well actual scrolling, including
+    // kinetic and gesture-based (e.g. flicking) scrolling for us!
+    m_scrollWidget = new Plasma::ScrollWidget(this);
     m_scrollWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    m_scroller = new QGraphicsWidget( );
-    m_scrollerLayout = new QGraphicsLinearLayout( Qt::Vertical, m_scroller );
-    m_scrollWidget->setWidget( m_scroller );
-    lay->addItem( m_scrollWidget );
 
-    // add some items
-    for ( int i = 0; i < 10; i++ ) {
-        addScrollerItem(QString(i));
+    // Create the QGraphicsWidget we will be scrolling across
+    m_scroller = new QGraphicsWidget(m_scroller);
+    m_scrollerLayout = new QGraphicsLinearLayout(Qt::Vertical, m_scroller);
+
+    // Put that widget inside the ScrollWidget
+    m_scrollWidget->setWidget(m_scroller);
+
+    // add the scrollwidget to the top level layout of the Applet
+    lay->addItem(m_scrollWidget);
+
+    // now we add some items to the scrolling widget
+    for (int i = 0; i < 10; i++) {
+        addScrollerItem(QString::number(i));
     }
 }
 
-void ScrollWidgetExample::addScrollerItem( QString text )
+void ScrollWidgetExample::addScrollerItem(const QString &text)
 {
     // Objects in scrollers can be any type of widget you
-    // want, but Plasma::Frames look the best, imo.
-
-    Plasma::Frame* item = new Plasma::Frame();
-    QGraphicsLinearLayout* lay = new QGraphicsLinearLayout( Qt::Horizontal );
-    Plasma::Label* label = new Plasma::Label();
+    // want, but Plasma::Frames look rather good.
+    Plasma::Frame* item = new Plasma::Frame(m_scroller);
+    QGraphicsLinearLayout* lay = new QGraphicsLinearLayout(Qt::Horizontal);
+    Plasma::Label* label = new Plasma::Label(item);
     label->setText(text);
     lay->addItem(label);
     item->setLayout(lay);
 
-    // Add the widget you've created to the scroller and force it to recalculate its sizes
+    // Add the widget we've just created to the scroller
     m_scrollerLayout->addItem(item);
-    setPreferredSize(-1,-1);
-    m_scrollerLayout->invalidate();
-
-    emit sizeHintChanged(Qt::PreferredSize);
 }
 
 #include "scrollwidgetexample.moc"

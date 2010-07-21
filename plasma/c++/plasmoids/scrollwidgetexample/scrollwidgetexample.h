@@ -41,10 +41,10 @@ class ScrollWidgetExample : public Plasma::Applet
 {
 Q_OBJECT
 public:
-    ScrollWidgetExample( QObject* parent, const QVariantList& args );
+    ScrollWidgetExample(QObject *parent, const QVariantList &args);
 
     void init();
-    void addScrollerItem( QString text );
+    void addScrollerItem(const QString &text);
 
 private:
     Plasma::ScrollWidget* m_scrollWidget;
