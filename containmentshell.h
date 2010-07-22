@@ -35,17 +35,17 @@
  */
 class ContainmentShell : public KParts::MainWindow
 {
-	Q_OBJECT
+Q_OBJECT
 public:
-	ContainmentShell();
-	virtual ~ContainmentShell();
-    
+    ContainmentShell();
+    virtual ~ContainmentShell();
+
 public Q_SLOTS:
     void optionsPreferences();
-    QWidget* createConfigurationInterface(KDialog** parent);
-    
+    void createConfigurationInterface(KDialog** parent);
+
 Q_SIGNALS:
-    QWidget* sigCreateConfigurationInterface(KDialog** parent);
+    void sigCreateConfigurationInterface(KDialog** parent);
 
 private:
     KParts::Part* m_part;

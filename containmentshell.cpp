@@ -106,7 +106,7 @@ void ContainmentShell::optionsPreferences()
     m_dialog->show();
 }
 
-QWidget* ContainmentShell::createConfigurationInterface(KDialog** parent)
+void ContainmentShell::createConfigurationInterface(KDialog** parent)
 {
     connect(this,SIGNAL(sigCreateConfigurationInterface(KDialog**)), m_part, SLOT(createConfigurationInterface(KDialog**)));
     
