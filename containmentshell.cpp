@@ -32,64 +32,62 @@
 #include <QApplication>
 
 ContainmentShell::ContainmentShell()
-	: KParts::MainWindow( ),
-	  m_dialog(0)
+    : KParts::MainWindow( ),
+      m_dialog(0)
 {
     setXMLFile("plasma-kpart-shellui.rc");
-    
+
     KAction* action = KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
-    
+
     action = new KAction("&Configure", actionCollection());
     connect(action, SIGNAL(triggered()), this, SLOT(optionsPreferences()));
     actionCollection()->addAction("options_configure", action);
-    
-    
-	// this routine will find and load our Part.  it finds the Part by
-	// name which is a bad idea usually.. but it's alright in this
-	// case since our Part is made for this Shell
-	KService::Ptr service = KService::serviceByDesktopPath( "plasma-kpart.desktop" );
-	
-	if (service)
-	{
-		Plasma::PluginLoader* loader = new TestShellPluginLoader();
 
-		QVariantList args = QVariantList() << qVariantFromValue(loader) << "Online Services"; 
+    // this routine will find and load our Part.  it finds the Part by
+    // name which is a bad idea usually.. but it's alright in this
+    // case since our Part is made for this Shell
+    KService::Ptr service = KService::serviceByDesktopPath( "plasma-kpart.desktop" );
 
-		// now that the Part is loaded, we cast it to a Part to get
-		// our hands on it
-		m_part = service->createInstance<KParts::ReadOnlyPart>(0, args);
-		
-		if (m_part)
-		{
-			// tell the KParts::MainWindow that this is indeed the main widget
-			setCentralWidget(m_part->widget());
+    if (service)
+    {
+        Plasma::PluginLoader* loader = new TestShellPluginLoader();
 
-			// and integrate the part's GUI with the shell's
-			createGUI(m_part);
+        QVariantList args = QVariantList() << qVariantFromValue(loader) << "Online Services"; 
+
+        // now that the Part is loaded, we cast it to a Part to get
+        // our hands on it
+        m_part = service->createInstance<KParts::ReadOnlyPart>(0, args);
+        if (m_part)
+        {
+            // tell the KParts::MainWindow that this is indeed the main widget
+            setCentralWidget(m_part->widget());
+
+            // and integrate the part's GUI with the shell's
+            createGUI(m_part);
 
         }
-		else
-		{
-			// For whatever reason the part didn't load
-			KMessageBox::error(this, i18n("Could not instantiate our Part!"));
-			qApp->quit();
-		}
-	}
-	else
-	{
-		// if we couldn't find our Part, we exit since the Shell by
-		// itself can't do anything useful
-		KMessageBox::error(this, i18n("Could not find our Part!"));
-		qApp->quit();
-		// we return here, cause qApp->quit() only means "exit the
-		// next time we enter the event loop...
-		return;
-	}
+        else
+        {
+            // For whatever reason the part didn't load
+            KMessageBox::error(this, i18n("Could not instantiate our Part!"));
+            qApp->quit();
+        }
+    }
+    else
+    {
+        // if we couldn't find our Part, we exit since the Shell by
+        // itself can't do anything useful
+        KMessageBox::error(this, i18n("Could not find our Part!"));
+        qApp->quit();
+        // we return here, cause qApp->quit() only means "exit the
+        // next time we enter the event loop...
+        return;
+    }
 
-	// apply the saved mainwindow settings, if any, and ask the mainwindow
-	// to automatically save settings if changed: window size, toolbar
-	// position, icon size, etc.
-	setAutoSaveSettings();
+    // apply the saved mainwindow settings, if any, and ask the mainwindow
+    // to automatically save settings if changed: window size, toolbar
+    // position, icon size, etc.
+    setAutoSaveSettings();
 }
 
 ContainmentShell::~ContainmentShell()
@@ -109,7 +107,7 @@ void ContainmentShell::optionsPreferences()
 void ContainmentShell::createConfigurationInterface(KDialog** parent)
 {
     connect(this,SIGNAL(sigCreateConfigurationInterface(KDialog**)), m_part, SLOT(createConfigurationInterface(KDialog**)));
-    
+
     emit sigCreateConfigurationInterface(parent);
 }
 
