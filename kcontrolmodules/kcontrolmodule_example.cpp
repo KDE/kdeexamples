@@ -74,7 +74,7 @@ when the export button is pressed. Only in KInfoCenter, Needs KDE 4.5
 */
 void KControlModuleExample::exportInformation()
 {
-  //setExportText(m_exampleLabel->text());
+  setExportText(m_exampleLabel->text());
 }
   
   
