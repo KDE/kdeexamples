@@ -8,12 +8,14 @@ set(opencollaborationexample_SRCS
     person.cpp
     contentdownload.cpp
     contentcreation.cpp
+    privatedata.cpp
 )
 
 kde4_add_ui_files(opencollaborationexample_SRCS
     person.ui
     contentdownload.ui
     contentcreation.ui
+    privatedata.ui
 )
 
 kde4_add_executable(opencollaborationexample ${opencollaborationexample_SRCS})

@@ -29,6 +29,7 @@
 #include "person.h"
 #include "contentdownload.h"
 #include "contentcreation.h"
+#include "privatedata.h"
 
 MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 {
@@ -63,6 +64,9 @@ void MainWindow::providersLoaded()
 
         ContentCreation* contentCreationWidget = new ContentCreation(m_provider, this);
         mainWidget->addTab(contentCreationWidget, tr("Add Content"));
+
+        PrivateDataView* privateDataView = new PrivateDataView(m_manager, this);
+        mainWidget->addTab(privateDataView, tr("View private data"));
     }
 }
 
