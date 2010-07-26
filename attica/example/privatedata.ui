@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PrivateDataWidget</class>
+ <widget class="QWidget" name="PrivateDataWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>456</width>
+    <height>417</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string comment="KDE::DoNotExtract">Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="9" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="nickLabel">
+     <property name="text">
+      <string>Nick:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="KLineEdit" name="nick"/>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QListWidget" name="keyValueView"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="passwordLabel">
+     <property name="text">
+      <string>Password:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="password">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QPushButton" name="fetchButton">
+     <property name="text">
+      <string>Fetch...</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="keyLabel">
+     <property name="text">
+      <string>Key:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="valueLabel">
+     <property name="text">
+      <string>Value:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1" colspan="2">
+    <widget class="QLineEdit" name="value"/>
+   </item>
+   <item row="5" column="1" colspan="2">
+    <widget class="QLineEdit" name="key"/>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="submitButton">
+     <property name="text">
+      <string>Submit</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
