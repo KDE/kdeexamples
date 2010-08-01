@@ -32,9 +32,14 @@
 #include "ui_privatedata.h"
 
 PrivateDataView::PrivateDataView(Attica::ProviderManager *manager, QWidget* parent)
-    : QWidget(parent)
+    : QWidget(parent), m_ui(0)
 {
     m_provider = manager->providerByUrl(QUrl("http://localhost/ocs/v1.php/"));
+    if (!m_provider.isValid()) {
+        setLayout(new QVBoxLayout);
+        layout()->addWidget(new QLabel("Please add an OCS-compliant provider for localhost in System Settings."));
+        return;
+    }
 
     m_ui = new Ui::PrivateDataWidget;
     m_ui->setupUi(this);
