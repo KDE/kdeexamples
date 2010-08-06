@@ -1,23 +1,45 @@
-function createJob(service, operation, args)
+function startEcho()
 {
-    // since we didn't set the destination ourselves, it will automatically be
-    // the source that requested this service
-    print(service.destination + ' ' + operation);
-    if (operation == 'echoText') {
-        for (i in args) { print("arg " + i + ": " + args[i]) }
-        setData(service.destination, 'text', args['text']);
+    // an 'echoText' job has been started (see jobCreated below)
+    // the this object is the job!
+    print('Starting echo, text is: ' + this.parameters['text'] + ', and our custom "foo" property is: ' + this.foo)
+
+    // in our case, we're going to take immediate action by setting some data in the engine
+    setData('echo', 'text', this.parameters['text'])
+
+    // set the result to true, since we're already finished.
+    // if this job were asynchronous, we would set the result at some
+    // future point
+    this.result = true;
+}
+
+function setupJob(job)
+{
+    // a job has been created upon request, based on our service.
+    // we can use the operationName, destination and parameters
+    // of the job to determine if we accept it.
+    // if we do, then we need to set a startFunction
+    print("setupJob " + job)
+    if (job.operationName == 'echoText') {
+        for (i in job.parameters) { print("parameter " + i + ": " + job.parameters[i]) }
+        job.start = startEcho
+
+        // we can even set other properties, functions, etc on the job for later
+        job.foo = 'bar'
     }
 }
 
 // Whenever a Service is requested for a source, this function is called
 // we need to return a Service for it to work properly
-engine.serviceForSource = function(source) {
+engine.serviceForSource = function(source)
+{
     if (source != 'echo') {
+        // we don't recognize this source as being serviceable!
         return;
     }
 
     var service = new Service('echo')
-    service.createJob = createJob
+    service.setupJob = setupJob
     return service;
 }
 
