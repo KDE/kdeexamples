@@ -1,0 +1,25 @@
+function createJob(service, operation, args)
+{
+    // since we didn't set the destination ourselves, it will automatically be
+    // the source that requested this service
+    print(service.destination + ' ' + operation);
+    if (operation == 'echoText') {
+        for (i in args) { print("arg " + i + ": " + args[i]) }
+        setData(service.destination, 'text', args['text']);
+    }
+}
+
+// Whenever a Service is requested for a source, this function is called
+// we need to return a Service for it to work properly
+engine.serviceForSource = function(source) {
+    if (source != 'echo') {
+        return;
+    }
+
+    var service = new Service('echo')
+    service.createJob = createJob
+    return service;
+}
+
+setData('echo', 'text', 'test')
+
