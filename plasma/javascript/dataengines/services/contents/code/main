@@ -41,7 +41,10 @@ function setupJob(job)
 engine.serviceForSource = function(source)
 {
     if (source == 'echo') {
-        // we recognize this source as being serviceable!
+        // we recognize this source as being serviceable, and so create a Service
+        // the 'echo' parameter causes the contents/services/echo.operations file
+        // to be loaded as the service description. Any number of operations files
+        // may be included with a DataEngine, allowing for multiple services.
         var service = new Service('echo')
         service.setupJob = setupJob
         return service;
