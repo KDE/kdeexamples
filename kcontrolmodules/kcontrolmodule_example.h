@@ -60,3 +60,4 @@ class KControlModuleExample : public KCModule
 };
   
 #endif //KCONTROLMODULEEXAMPLE
+
