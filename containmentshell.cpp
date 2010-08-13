@@ -98,7 +98,6 @@ void ContainmentShell::optionsPreferences()
 {
     if( !m_dialog )
     {
-        kDebug() << "WARNING MY ARMS ARE FLAILING WILDLY";
         createConfigurationInterface(&m_dialog);
     }
     m_dialog->show();
@@ -106,9 +105,7 @@ void ContainmentShell::optionsPreferences()
 
 void ContainmentShell::createConfigurationInterface(KDialog** parent)
 {
-    connect(this,SIGNAL(sigCreateConfigurationInterface(KDialog**)), m_part, SLOT(createConfigurationInterface(KDialog**)));
-
-    emit sigCreateConfigurationInterface(parent);
+    QMetaObject::invokeMethod(m_part, "createConfigurationInterface", Qt::DirectConnection, QGenericReturnArgument(), Q_ARG(KDialog**,parent));
 }
 
 #include "containmentshell.moc"
