@@ -42,10 +42,6 @@ public:
 
 public Q_SLOTS:
     void optionsPreferences();
-    void createConfigurationInterface(KDialog** parent);
-
-Q_SIGNALS:
-    void sigCreateConfigurationInterface(KDialog** parent);
 
 private:
     KParts::Part* m_part;

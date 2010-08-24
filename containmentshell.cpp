@@ -19,6 +19,7 @@
 
 #include "containmentshell.h"
 #include "testshellpluginloader.h"
+#include "appletselector.h"
 
 #include <KService>
 #include <KMessageBox>
@@ -98,14 +99,10 @@ void ContainmentShell::optionsPreferences()
 {
     if( !m_dialog )
     {
-        createConfigurationInterface(&m_dialog);
+        m_dialog = new AppletSelector( this );
+        connect( m_dialog, SIGNAL(addApplet(QString)), m_part, SLOT(addApplet(QString)) );
     }
     m_dialog->show();
-}
-
-void ContainmentShell::createConfigurationInterface(KDialog** parent)
-{
-    QMetaObject::invokeMethod(m_part, "createConfigurationInterface", Qt::DirectConnection, QGenericReturnArgument(), Q_ARG(KDialog**,parent));
 }
 
 #include "containmentshell.moc"
