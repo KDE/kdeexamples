@@ -99,7 +99,7 @@ void ContainmentShell::optionsPreferences()
 {
     if( !m_dialog )
     {
-        m_dialog = new AppletSelector( this );
+        m_dialog = new AppletSelector( m_part );
         connect( m_dialog, SIGNAL(addApplet(QString)), m_part, SLOT(addApplet(QString)) );
     }
     m_dialog->show();

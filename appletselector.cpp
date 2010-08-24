@@ -19,11 +19,13 @@
 
 #include "appletselector.h"
 #include "ui_appletselector.h"
+
+#include <plasma/kpartstub.h>
 #include <plasma/applet.h>
 #include <QStandardItemModel>
 
-AppletSelector::AppletSelector(QWidget* parent, const QVariantList& args)
-    : KDialog(parent)
+AppletSelector::AppletSelector(QObject* parent, const QVariantList& args)
+    : KDialog()
 {
     Q_UNUSED(args);
 
@@ -38,7 +40,7 @@ AppletSelector::AppletSelector(QWidget* parent, const QVariantList& args)
     setMainWidget(w);
 
     QStandardItemModel* model = new QStandardItemModel(this);
-    const KPluginInfo::List list=Plasma::Applet::listAppletInfo();
+    const KPluginInfo::List list= Plasma::Applet::listAppletInfo();
     foreach(const KPluginInfo& info, list) {
         QStandardItem* item = new QStandardItem(KIcon(info.icon()), info.name());
         item->setEditable(false);

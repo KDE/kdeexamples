@@ -8,7 +8,7 @@ set(plasma_kpart_shell_SRCS
 kde4_add_executable(plasma-kpart-shell ${plasma_kpart_shell_SRCS})
 kde4_add_ui_files(plasma_kpart_SRCS appletselector.ui)
 
-target_link_libraries(plasma-kpart-shell ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_PLASMA_LIBS} )
+target_link_libraries(plasma-kpart-shell ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_PLASMA_LIBS} kpartstub )
 
 ########### install files ###############
 install(TARGETS plasma-kpart-shell ${INSTALL_TARGETS_DEFAULT_ARGS} )

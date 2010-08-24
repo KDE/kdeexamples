@@ -29,7 +29,7 @@ class AppletSelector : public KDialog
 {
     Q_OBJECT
     public:
-        AppletSelector(QWidget* parent = 0, const QVariantList& args = QVariantList());
+        AppletSelector(QObject* parent = 0, const QVariantList& args = QVariantList());
         ~AppletSelector();
 
     public slots:
