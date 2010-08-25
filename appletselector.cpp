@@ -20,7 +20,6 @@
 #include "appletselector.h"
 #include "ui_appletselector.h"
 
-#include <plasma/kpartstub.h>
 #include <plasma/applet.h>
 #include <QStandardItemModel>
 
