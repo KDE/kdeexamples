@@ -38,6 +38,7 @@ ContainmentShell::ContainmentShell()
 {
     setXMLFile("plasma-kpart-shellui.rc");
 
+
     KAction* action = KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
 
     action = new KAction("&Configure", actionCollection());
