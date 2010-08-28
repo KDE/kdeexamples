@@ -27,19 +27,18 @@ namespace Ui { class AppletSelector; }
 
 class AppletSelector : public KDialog
 {
-    Q_OBJECT
-    public:
-        AppletSelector(QObject* parent = 0, const QVariantList& args = QVariantList());
-        ~AppletSelector();
+Q_OBJECT
+public:
+    explicit AppletSelector(QObject* parent = 0, const QVariantList& args = QVariantList());
+    ~AppletSelector();
+public slots:
+    void selected(const QModelIndex& idx);
 
-    public slots:
-        void selected(const QModelIndex& idx);
-        
-    signals:
-        void addApplet(const QString& name);
-        
-    private:
-        Ui::AppletSelector* m_ui;
+signals:
+    void addApplet(const QString& name);
+
+private:
+    Ui::AppletSelector* m_ui;
 };
 
 #endif // APPLETSELECTOR_H
