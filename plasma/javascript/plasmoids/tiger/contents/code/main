@@ -1,9 +1,21 @@
+// We create the SVG object; this will cause it to load the file in
+// contents/images/tiger.svg
 svg = new PlasmaSvg('tiger')
+
+// And now a PNG; similarly to the SVG file, this will be pulled from
+// contents/images/kde.png
 p = new QPixmap('kde.png')
+
+// Now we create a context menu action
 plasmoid.setAction('myAction', i18n('Toggle KDE Logo'), 'plasma')
+
+// and something to control the painting of the logo
 drawLogo = true
+
+// print some output about the pixmap
 print('size of pixmap is: ' + p.rect.width + 'x' + p.rect.height)
 
+// this function will be called automatically when myAction is triggered
 plasmoid.action_myAction = function()
 {
     drawLogo = !drawLogo
@@ -15,7 +27,8 @@ plasmoid.action_myAction = function()
     }
 }
 
-plasmoid.paintInterface = function(painter)
+// plasmoid.paintInterface is called whenever the plasmoid should be repainted
+plasmoid.paintInterface = function(painter, options, rect)
 {
     rect = plasmoid.rect
     svg.resize(rect.width, rect.height)

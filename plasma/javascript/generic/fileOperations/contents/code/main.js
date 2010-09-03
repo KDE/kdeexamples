@@ -1,3 +1,13 @@
+// because we put the following lines in the metadata.desktop file, we have access
+// to the FileDialog and LaunchApp extensions.
+//
+// X-Plasma-RequiredExtensions=FileDialog
+// X-Plasma-OptionalExtensions=LaunchApp
+//
+// More documentation can be found here:
+//
+// http://techbase.kde.org/Development/Tutorials/Plasma/JavaScript/API#Extensions
+
 function showOpenFileDialog()
 {
     print("opening a file?")

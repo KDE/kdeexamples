@@ -1,3 +1,12 @@
+// because we put the following line in the metadata.desktop file, we have access
+// to the HTTP extension in this Plasmoid.
+//
+// X-Plasma-RequiredExtensions=http
+//
+// More documentation can be found here:
+//
+// http://techbase.kde.org/Development/Tutorials/Plasma/JavaScript/API#Extensions
+
 output = new TextEdit
 output.readOnly = true
 
