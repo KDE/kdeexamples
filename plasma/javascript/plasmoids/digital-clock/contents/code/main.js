@@ -4,7 +4,7 @@ layout.addItem(label);
 
 //print(dataEngine("time").query("UTC").Time.toString());
 
-plasmoid.dataUpdate = function(a, b)
+plasmoid.dataUpdated = function(a, b)
 {
     label.text = "It is " + b.Time.toString() + " in " + a;
 }
