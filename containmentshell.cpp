@@ -71,7 +71,7 @@ ContainmentShell::ContainmentShell()
         else
         {
             // For whatever reason the part didn't load
-            KMessageBox::error(this, i18n("Could not instantiate our Part!"));
+            KMessageBox::error(this, "Could not instantiate our Part!");
             qApp->quit();
         }
     }
@@ -79,7 +79,7 @@ ContainmentShell::ContainmentShell()
     {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
-        KMessageBox::error(this, i18n("Could not find our Part!"));
+        KMessageBox::error(this, "Could not find our Part!");
         qApp->quit();
         // we return here, cause qApp->quit() only means "exit the
         // next time we enter the event loop...
