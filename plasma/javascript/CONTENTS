@@ -11,10 +11,11 @@ as well as examples specific to Plasmoids, DataEngines, Runners and Plasma Works
 
 Generic Examples
 ================
-* addons: shows how to enumerate, load and use Addons written in Javascript in your Javascript
-          addon; addons are essentially plugins-for-your-plugin.
+* exampleAddon: to be used with usingAddons; use `plasmapkg -t Plasma/JavascriptAddon -i exampleADdon` to install it
 * fileOperations: shows to load and use the FileDialog and LaunchApp Javascript API extension
 * http: shows how to load and use the HTTP Javascript API extension
+* usingAddons: shows how to enumerate, load and use Addons written in Javascript in your Javascript
+               addon; addons are essentially plugins-for-your-plugin.
 
 DataEngines
 ===========
