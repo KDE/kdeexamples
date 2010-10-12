@@ -24,7 +24,7 @@ module RubyExtenderTutorial
       extender.emptyExtenderMessage = KDE::i18n("no running jobs...")
  
       # Notify ourself whenever a new job is created.
-      connect(dataEngine("kuiserver"),  SIGNAL('sourceAdded(QString)'),
+      connect(dataEngine("applicationjobs"),  SIGNAL('sourceAdded(QString)'),
               self, SLOT('sourceAdded(QString)'))    
     end 
 
@@ -37,7 +37,7 @@ module RubyExtenderTutorial
         m.value = 0
   
         m.minimumSize = Qt::SizeF.new(250, 45)
-        m.preferredSize = Qt::SizeF(250, 45)
+        m.preferredSize = Qt::SizeF.new(250, 45)
       end
 
       # often, you'll want to connect dataengines or set properties
@@ -76,7 +76,7 @@ module RubyExtenderTutorial
       # restart, datasources would still get connected to the 
       # appropriate sources. Kuiserver jobs are not persistent however, 
       # so we connect them here.
-      dataEngine("kuiserver").connectSource(source, item.widget, 200)
+      dataEngine("applicationjobs").connectSource(source, item.widget, 200)
   
       # Show the popup for 5 seconds if in panel, so the user notices
       # that there's a new job running.
