@@ -101,6 +101,10 @@ class TextArea(QtGui.QWidget, Ui_Form):
 
         It sets the data of the job (text) in the textwidget of the UI."""
 
+        # Bail out in case of errors
+        if job.error():
+            return
+
         print "This slot has been called. The job has finished its operation."
 
         # The job's data, stored as a QByteArray, is kept in the data()
