@@ -28,7 +28,13 @@
 
 storedGet, like the name says, allows KIO to get a single URL into a QByteArray,
 which than can be accessed through the data() function. Unlike KIO.get, the data
-is kept entirely in memory."""
+is kept entirely in memory.
+
+This module shows an example by downloading HTML from www.kde.org and displaying
+it in a text edit widget. The operation is done asynchronously, without blocking
+the GUI.
+
+"""
 
 import sys
 
