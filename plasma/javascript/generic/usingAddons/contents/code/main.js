@@ -4,6 +4,7 @@ function addonCreated(addon)
     // now we'll access a custom function in the addon, proving it worked!
     textArea.append(i18n("Addon says: %1", addon.toString()))
     if (addon.svg) {
+        textArea.append(i18n("    and we got an svg => " + addon.svg.imagePath))
         var svg = new SvgWidget
         svg.svg = addon.svg
         layout.addItem(svg)
@@ -38,11 +39,14 @@ if (addons.length < 1) {
     // uh-oh, something didn't work!
     textArea.append(i18n("You probably need to run `plasmapkg -t Plasma/JavascriptAddon -i exampleAddon && kbuildsycoca4`"))
 } else {
-    textArea.append(i18np("number of addons: 1", "number of addons: %1", addons.length))
+    var message = i18np("number of addons: 1", "number of addons: %1", addons.length)
+    textArea.append(message)
     for (i in addons) {
         // an addon has a user visible name and an id; the id is used to load the addon
         textArea.append(i18n("Addon: ") + addons[i].name)
         plasmoid.loadAddon(addonType, addons[i].id)
     }
 }
+
+plasmoid.include("include.js")
 
