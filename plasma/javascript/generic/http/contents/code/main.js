@@ -24,7 +24,7 @@ if (plasmoid.getUrl) {
         if (job == getJob) {
             print("we have our job")
             if (data.length) {
-                output.append(data.valueOf())
+                output.append(data.toUtf8())
             }
         }
     }
