@@ -15,6 +15,6 @@ target_link_libraries( plasma_applet_scrollwidgetexample ${KDE4_PLASMA_LIBS} ${K
 
 install(TARGETS plasma_applet_scrollwidgetexample
         DESTINATION ${PLUGIN_INSTALL_DIR})
- 
+
 install(FILES plasma-applet-scrollwidgetexample.desktop
         DESTINATION ${SERVICES_INSTALL_DIR})

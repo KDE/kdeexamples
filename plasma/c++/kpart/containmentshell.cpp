@@ -54,7 +54,7 @@ ContainmentShell::ContainmentShell()
     {
         Plasma::PluginLoader* loader = new TestShellPluginLoader();
 
-        QVariantList args = QVariantList() << qVariantFromValue(loader) << "Online Services"; 
+        QVariantList args = QVariantList() << qVariantFromValue(loader) << "Online Services";
 
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
