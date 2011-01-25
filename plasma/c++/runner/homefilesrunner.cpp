@@ -68,7 +68,7 @@ void HomeFilesRunner::reloadConfiguration()
 
     QList<Plasma::RunnerSyntax> syntaxes;
     Plasma::RunnerSyntax syntax(QString("%1:q:").arg(m_triggerWord),
-                                i18n("Finds files matching :q: in the %1 folder"));
+                                i18n("Finds files matching :q: in the %1 folder", m_path));
     syntaxes.append(syntax);
     setSyntaxes(syntaxes);
 }
