@@ -18,6 +18,7 @@
 */
 
 //QT specific includes
+#include <QCoreApplication>
 #include <QList>
 
 //solid specific includes
@@ -36,11 +37,9 @@
 
 using namespace std;
 
-int main(int args, char **argv)
+int main(int argc, char **argv)
 {
-    Q_UNUSED(args);
-    Q_UNUSED(argv);
-
+    QCoreApplication app(argc, argv);
     KComponentData componentData("tutorial7");
 
     //make a predicate

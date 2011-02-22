@@ -18,6 +18,7 @@
 */
 
 //QT specific includes
+#include <QCoreApplication>
 #include <QList>
 
 //solid specific includes
@@ -34,12 +35,11 @@
 
 using namespace std;
 
-int main(int args, char **argv)
+int main(int argc, char **argv)
 {
-    Q_UNUSED(args);
-    Q_UNUSED(argv);
+    QCoreApplication app(argc, argv);
     KComponentData componentData("tutorial1");
-    
+
     foreach (const Solid::Device &device, Solid::Device::allDevices())
     {
         kDebug() << device.udi().toLatin1().constData();

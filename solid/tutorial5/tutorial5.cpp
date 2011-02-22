@@ -18,6 +18,7 @@
 */
 
 //QT specific includes
+#include <QCoreApplication>
 #include <QList>
 
 //solid specific includes
@@ -36,22 +37,21 @@
 
 using namespace std;
 
-int main(int args, char **argv)
+int main(int argc, char **argv)
 {
-    Q_UNUSED(args);
-    Q_UNUSED(argv);
+    QCoreApplication app(argc, argv);
     KComponentData data("tutorial5");
-    
+
     //get a Network Device
     QList<Solid::Device> netlist = Solid::Device::listFromType(Solid::DeviceInterface::NetworkInterface, QString());
-    
+
     //check to see if no network devices were found
     if(netlist.empty())
     {
         kDebug() << "No network devices found!";
         return 0;
     }
-    
+
     Solid::Device device = netlist[0];
     Solid::NetworkInterface *netdev = device.as<Solid::NetworkInterface>();
     //keep the program from crashing in the event that there's a bug in solid
@@ -60,9 +60,9 @@ int main(int args, char **argv)
         kDebug() << "Device could not be converted.  There is a bug.";
         return 0;
     }
-    
+
     kDebug() << "The iface of " << device.udi() << " is " << netdev->ifaceName();
-    
+
     return 0;
 }
 
