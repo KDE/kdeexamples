@@ -1,0 +1,40 @@
+@prefix nao:     <http://www.semanticdesktop.org/ontologies/2007/08/15/nao#> .
+@prefix nfo:     <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+@prefix nie:     <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#> .
+@prefix ncal:    <http://www.semanticdesktop.org/ontologies/2007/04/02/ncal#> .
+@prefix nco:     <http://www.semanticdesktop.org/ontologies/2007/03/22/nco#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pimo:    <http://www.semanticdesktop.org/ontologies/2007/11/01/pimo#> .
+@prefix nmo:     <http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#> .
+@prefix nmm:     <http://www.semanticdesktop.org/ontologies/2009/02/19/nmm#> .
+@prefix nrl:     <http://www.semanticdesktop.org/ontologies/2007/08/15/nrl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix temp:    <http://www.nepomuk.kde.org/ontologies/2010/06/16/template#> .
+
+temp: {
+    temp:randomProperty
+        a rdf:Property ;
+        rdfs:comment "A random property shown for the sake of an example" ;
+        rdfs:label "randomProperty" .        
+}
+
+<http://www.nepomuk.kde.org/ontologies/2010/06/16/template_metadata#> {
+
+    temp: a nrl:Ontology ;
+    nao:creator <http://www.does-it-really-maater-/~vishesh> ;
+    nao:hasDefaultNamespace
+        "http://www.nepomuk.kde.org/ontologies/2010/06/16/template#" ;
+    nao:hasDefaultNamespaceAbbreviation
+        "temp" ;
+    nao:lastModified "2011-02-16T11:45:58Z" ;
+    nao:status "Unstable" ;
+    nao:updatable "0 " ;
+    nao:version "Revision-1" .
+
+    <http://www.nepomuk.kde.org/ontologies/2010/06/16/template_metadata#>
+          a       nrl:GraphMetadata ;
+          nrl:coreGraphMetadataFor
+                  temp: .
+}
