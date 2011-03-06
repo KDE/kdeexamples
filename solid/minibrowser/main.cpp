@@ -208,7 +208,7 @@ void SolidBrowser::populate()
             Solid::DeviceInterface::stringToType(filterCombo->currentText()));
     }
 
-    // create on QTreeWidgetItem per device
+    // create one QTreeWidgetItem per device
     foreach (const Solid::Device &device, allDevices) {
         deviceHash[device.udi()] = new SolidItem(device);
     }
