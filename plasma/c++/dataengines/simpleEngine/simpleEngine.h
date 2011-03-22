@@ -38,4 +38,4 @@ public:
     void init();
 };
 
-#endif // TIMEENGINE_H
+#endif

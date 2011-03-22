@@ -23,8 +23,8 @@
  *   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef SIMPLEENGINE_H
-#define SIMPLEENGINE_H
+#ifndef SOURCESONREQUESTENGINE_H
+#define SOURCESONREQUESTENGINE_H
 
 #include <Plasma/DataEngine>
 
@@ -40,4 +40,4 @@ protected:
     bool updateSourceEvent(const QString &source);
 };
 
-#endif // TIMEENGINE_H
+#endif
