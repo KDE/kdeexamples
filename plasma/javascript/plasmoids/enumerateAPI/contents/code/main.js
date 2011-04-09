@@ -147,6 +147,8 @@ var l = new AnchorLayout(p)
 layoutApi += enumerateObject("AnchorLayout", l, true)
 p.deleteLater()
 l = 0
+var sp = new QSizePolicy
+layoutApi += enumerateObject("QSizePolicy", sp, true)
 
 display = new TextEdit
 display.readOnly = true
