@@ -138,6 +138,12 @@ tabbar.addTab(i18n("Widgets"), display)
 // LAYOUTS API
 var layoutApi = ''
 layoutApi += enumerateObject("LinearLayout", layout, true)
+var q = new PushButton
+print('*****************************************************************************')
+var gl = new GridLayout(q)
+layoutApi += enumerateObject("GridLayout", layout, true)
+q.deleteLater()
+print('*****************************************************************************')
 var p = new PushButton
 var l = new AnchorLayout(p)
 layoutApi += enumerateObject("AnchorLayout", l, true)
