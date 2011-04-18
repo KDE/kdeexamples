@@ -24,13 +24,6 @@ import org.kde.plasma.graphicswidgets 0.1 as PlasmaWidgets
 import org.kde.plasma.core 0.1 as PlasmaCore
 import org.kde.plasma.graphicslayouts 4.7 as GraphicsLayouts
 
-
-
-import Qt 4.7
-import org.kde.plasma.graphicswidgets 0.1 as PlasmaWidgets
-import org.kde.plasma.core 0.1 as PlasmaCore
-import org.kde.plasma.graphicslayouts 4.7 as GraphicsLayouts
-
 Item {
     width: 200
     height: 300
@@ -45,7 +38,6 @@ Item {
           Component.onCompleted: {
               connectedSources = sources
           }
-          
       }
 
     ListView {
