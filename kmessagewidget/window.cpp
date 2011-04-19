@@ -1,0 +1,117 @@
+/* This file is part of the KDE libraries
+ *
+ * Copyright (c) 2011 Aurélien Gâteau <agateau@kde.org>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301  USA
+ */
+#include <window.h>
+
+// KDE
+#include <klocale.h>
+#include <kmessagewidget.h>
+
+// Qt
+#include <QAction>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <qcheckbox.h>
+
+Window::Window(QWidget *parent)
+: KMainWindow(parent)
+{
+    QWidget* widget = new QWidget;
+    setCentralWidget(widget);
+    resize(500, 400);
+
+    m_layout = new QVBoxLayout(widget);
+
+    m_messageWidget = new KMessageWidget(this);
+    m_messageWidget->hide();
+    m_layout->addWidget(m_messageWidget);
+
+    m_layout->addStretch();
+    createButton(i18n("Error"), SLOT(showErrorMessage()));
+    createButton(i18n("Warning"), SLOT(showWarningMessage()));
+    createButton(i18n("Information"), SLOT(showInformationMessage()));
+    createButton(i18n("Positive"), SLOT(showPositiveMessage()));
+    m_layout->addStretch();
+
+    m_dummyAction = new QAction(this);
+    m_dummyAction->setText(i18n("Do Something"));
+
+    QCheckBox* rectangleCheckBox = new QCheckBox(i18n("Rectangle shape"));
+    m_layout->addWidget(rectangleCheckBox);
+    connect(rectangleCheckBox, SIGNAL(toggled(bool)), SLOT(setShape(bool)));
+    
+    QCheckBox* showActionsCheckBox = new QCheckBox(i18n("Show action buttons"));
+    m_layout->addWidget(showActionsCheckBox);
+    connect(showActionsCheckBox, SIGNAL(toggled(bool)), SLOT(showActions(bool)));
+
+    QCheckBox* showCloseButtonCheckBox = new QCheckBox(i18n("Show close button"));
+    showCloseButtonCheckBox->setChecked(true);
+    m_layout->addWidget(showCloseButtonCheckBox);
+    connect(showCloseButtonCheckBox, SIGNAL(toggled(bool)),m_messageWidget, SLOT(setShowCloseButton(bool)));
+}
+
+void Window::createButton(const QString& label, const char* slot)
+{
+    QPushButton* button = new QPushButton(label, this);
+    connect(button, SIGNAL(clicked(bool)), slot);
+    m_layout->addWidget(button);
+}
+
+void Window::showErrorMessage()
+{
+    m_messageWidget->setText(i18n("Sorry, wrong password"));
+    m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
+    m_messageWidget->show();
+}
+
+void Window::showWarningMessage()
+{
+    m_messageWidget->setText(i18n("You have some unsaved changes"));
+    m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
+    m_messageWidget->show();
+}
+
+void Window::showInformationMessage()
+{
+    m_messageWidget->setText(i18n("The weather is great!"));
+    m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
+    m_messageWidget->show();
+}
+
+void Window::showPositiveMessage()
+{
+    m_messageWidget->setText(i18n("All your files have been backed up"));
+    m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
+    m_messageWidget->show();
+}
+
+void Window::showActions(bool show)
+{
+    if (show) {
+        m_messageWidget->addAction(m_dummyAction);
+    } else {
+        m_messageWidget->removeAction(m_dummyAction);
+    }
+}
+
+void Window::setShape(bool isRect)
+{
+    m_messageWidget->setShape(isRect ? KMessageWidget::RectangleShape : KMessageWidget::LineShape);
+}
