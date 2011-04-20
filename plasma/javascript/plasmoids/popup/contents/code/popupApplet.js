@@ -19,15 +19,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-mainLayout = new LinearLayout(plasmoid);
 label = new Label();
 label.text = '<font color=\'red\'>Hey I\'m a Popup Label :)</font>';
-mainLayout.addItem(label);
-
+label.minimumSize = QSizeF(200,200)
+// The famous popupIcon :)
+plasmoid.popupIcon = QIcon("plasma");
 // When the applet is smaller than this minimum size, the popupIcon will be displayed.
 plasmoid.setMinimumSize(100,100);
 // When the popupIcon gets a click event, the associated popupWidget will be shown.
 plasmoid.popupWidget = label;
-// The famous popupIcon :)
-plasmoid.popupIcon = "plasma";
+
 
