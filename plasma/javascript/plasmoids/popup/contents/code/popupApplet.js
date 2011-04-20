@@ -1,6 +1,6 @@
 // -*- coding: iso-8859-1 -*-
 /*
- *   Author: [Po]lentino <polentino911@gmail.com>
+ *   Author: Diego Casella <polentino911@gmail.com>
  *   Date: Sat Apr 16 2011, 17:10:39
  *
  *   This program is free software; you can redistribute it and/or modify
