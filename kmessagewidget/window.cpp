@@ -80,28 +80,28 @@ void Window::showErrorMessage()
 {
     m_messageWidget->setText(i18n("Sorry, wrong password"));
     m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
-    m_messageWidget->show();
+    m_messageWidget->fadeIn();
 }
 
 void Window::showWarningMessage()
 {
     m_messageWidget->setText(i18n("You have some unsaved changes"));
     m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
-    m_messageWidget->show();
+    m_messageWidget->fadeIn();
 }
 
 void Window::showInformationMessage()
 {
     m_messageWidget->setText(i18n("The weather is great!"));
     m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
-    m_messageWidget->show();
+    m_messageWidget->fadeIn();
 }
 
 void Window::showPositiveMessage()
 {
     m_messageWidget->setText(i18n("All your files have been backed up"));
     m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
-    m_messageWidget->show();
+    m_messageWidget->fadeIn();
 }
 
 void Window::showActions(bool show)
