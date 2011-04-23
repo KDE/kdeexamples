@@ -45,7 +45,7 @@ private Q_SLOTS:
 private:
     QVBoxLayout* m_layout;
     KMessageWidget* m_messageWidget;
-    QAction* m_dummyAction;
+    QList<QAction*> m_actions;
 
     void createButton(const QString& label, const char* slot);
 };

@@ -50,8 +50,10 @@ Window::Window(QWidget *parent)
     createButton(i18n("Positive"), SLOT(showPositiveMessage()));
     m_layout->addStretch();
 
-    m_dummyAction = new QAction(this);
-    m_dummyAction->setText(i18n("Do Something"));
+    m_actions
+        << new QAction(i18n("Action 1"), this)
+        << new QAction(i18n("Action 2"), this)
+        ;
 
     QCheckBox* rectangleCheckBox = new QCheckBox(i18n("Rectangle shape"));
     m_layout->addWidget(rectangleCheckBox);
@@ -105,9 +107,13 @@ void Window::showPositiveMessage()
 void Window::showActions(bool show)
 {
     if (show) {
-        m_messageWidget->addAction(m_dummyAction);
+        Q_FOREACH(QAction* action, m_actions) {
+            m_messageWidget->addAction(action);
+        }
     } else {
-        m_messageWidget->removeAction(m_dummyAction);
+        Q_FOREACH(QAction* action, m_actions) {
+            m_messageWidget->removeAction(action);
+        }
     }
 }
 
