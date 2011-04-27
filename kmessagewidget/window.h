@@ -40,7 +40,6 @@ private Q_SLOTS:
     void showInformationMessage();
     void showPositiveMessage();
 
-    void setShape(bool isRect);
     void showActions(bool show);
 
 private:

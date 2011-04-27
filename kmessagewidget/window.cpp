@@ -55,9 +55,9 @@ Window::Window(QWidget *parent)
         << new QAction(i18n("Action 2"), this)
         ;
 
-    QCheckBox* rectangleCheckBox = new QCheckBox(i18n("Rectangle shape"));
-    m_layout->addWidget(rectangleCheckBox);
-    connect(rectangleCheckBox, SIGNAL(toggled(bool)), SLOT(setShape(bool)));
+    QCheckBox* wordwrapCheckBox = new QCheckBox(i18n("Word wrap"));
+    m_layout->addWidget(wordwrapCheckBox);
+    connect(wordwrapCheckBox, SIGNAL(toggled(bool)), m_messageWidget, SLOT(setWordWrap(bool)));
 
     QCheckBox* showActionsCheckBox = new QCheckBox(i18n("Show action buttons"));
     m_layout->addWidget(showActionsCheckBox);
@@ -128,9 +128,4 @@ void Window::showActions(bool show)
             m_messageWidget->removeAction(action);
         }
     }
-}
-
-void Window::setShape(bool isRect)
-{
-    m_messageWidget->setShape(isRect ? KMessageWidget::RectangleShape : KMessageWidget::LineShape);
 }
