@@ -23,6 +23,7 @@
 // KDE
 #include <KMainWindow>
 
+class QCheckBox;
 class QVBoxLayout;
 
 class KMessageWidget;
@@ -47,7 +48,10 @@ private:
     KMessageWidget* m_messageWidget;
     QList<QAction*> m_actions;
 
+    QCheckBox* m_animatedShowCheckBox;
+
     void createButton(const QString& label, const char* slot);
+    void showMessage();
 };
 
 #endif // WINDOW_H

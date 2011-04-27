@@ -58,7 +58,7 @@ Window::Window(QWidget *parent)
     QCheckBox* rectangleCheckBox = new QCheckBox(i18n("Rectangle shape"));
     m_layout->addWidget(rectangleCheckBox);
     connect(rectangleCheckBox, SIGNAL(toggled(bool)), SLOT(setShape(bool)));
-    
+
     QCheckBox* showActionsCheckBox = new QCheckBox(i18n("Show action buttons"));
     m_layout->addWidget(showActionsCheckBox);
     connect(showActionsCheckBox, SIGNAL(toggled(bool)), SLOT(showActions(bool)));
@@ -67,6 +67,10 @@ Window::Window(QWidget *parent)
     showCloseButtonCheckBox->setChecked(true);
     m_layout->addWidget(showCloseButtonCheckBox);
     connect(showCloseButtonCheckBox, SIGNAL(toggled(bool)),m_messageWidget, SLOT(setShowCloseButton(bool)));
+
+    m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
+    m_animatedShowCheckBox->setChecked(true);
+    m_layout->addWidget(m_animatedShowCheckBox);
 }
 
 void Window::createButton(const QString& label, const char* slot)
@@ -80,28 +84,37 @@ void Window::showErrorMessage()
 {
     m_messageWidget->setText(i18n("Sorry, wrong password"));
     m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
-    m_messageWidget->animatedShow();
+    showMessage();
 }
 
 void Window::showWarningMessage()
 {
     m_messageWidget->setText(i18n("You have some unsaved changes"));
     m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
-    m_messageWidget->animatedShow();
+    showMessage();
 }
 
 void Window::showInformationMessage()
 {
     m_messageWidget->setText(i18n("The weather is great!"));
     m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
-    m_messageWidget->animatedShow();
+    showMessage();
 }
 
 void Window::showPositiveMessage()
 {
     m_messageWidget->setText(i18n("All your files have been backed up"));
     m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
-    m_messageWidget->animatedShow();
+    showMessage();
+}
+
+void Window::showMessage()
+{
+    if (m_animatedShowCheckBox->isChecked()) {
+        m_messageWidget->animatedShow();
+    } else {
+        m_messageWidget->show();
+    }
 }
 
 void Window::showActions(bool show)
