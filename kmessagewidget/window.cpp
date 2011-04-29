@@ -66,7 +66,7 @@ Window::Window(QWidget *parent)
     QCheckBox* showCloseButtonCheckBox = new QCheckBox(i18n("Show close button"));
     showCloseButtonCheckBox->setChecked(true);
     m_layout->addWidget(showCloseButtonCheckBox);
-    connect(showCloseButtonCheckBox, SIGNAL(toggled(bool)),m_messageWidget, SLOT(setShowCloseButton(bool)));
+    connect(showCloseButtonCheckBox, SIGNAL(toggled(bool)),m_messageWidget, SLOT(setCloseButtonVisible(bool)));
 
     m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
     m_animatedShowCheckBox->setChecked(true);
