@@ -20,15 +20,17 @@
 #include <window.h>
 
 // KDE
-#include <klocale.h>
-#include <kmessagewidget.h>
+#include <KAction>
+#include <KLocale>
+#include <KMessageWidget>
+#include <KStandardAction>
 
 // Qt
-#include <QAction>
+#include <QCheckBox>
+#include <QCoreApplication>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <qcheckbox.h>
 
 Window::Window(QWidget *parent)
 : KMainWindow(parent)
@@ -71,6 +73,8 @@ Window::Window(QWidget *parent)
     m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
     m_animatedShowCheckBox->setChecked(true);
     m_layout->addWidget(m_animatedShowCheckBox);
+
+    addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 }
 
 void Window::createButton(const QString& label, const char* slot)
