@@ -33,7 +33,8 @@
 #include <QVBoxLayout>
 
 Window::Window(QWidget *parent)
-: KMainWindow(parent)
+    : KMainWindow(parent),
+      m_firstShow(true)
 {
     QWidget* widget = new QWidget;
     setCentralWidget(widget);
@@ -86,38 +87,64 @@ void Window::createButton(const QString& label, const char* slot)
 
 void Window::showErrorMessage()
 {
-    m_messageWidget->setText(i18n("Sorry, wrong password"));
-    m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
-    showMessage();
+    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::ErrorMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("Sorry, wrong password"));
+        m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
+        showMessage();
+    }
 }
 
 void Window::showWarningMessage()
 {
-    m_messageWidget->setText(i18n("You have some unsaved changes"));
-    m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
-    showMessage();
+    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::WarningMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("You have some unsaved changes"));
+        m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
+        showMessage();
+    }
 }
 
 void Window::showInformationMessage()
 {
-    m_messageWidget->setText(i18n("The weather is great!"));
-    m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
-    showMessage();
+    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::InformationMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("The weather is great!"));
+        m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
+        showMessage();
+    }
 }
 
 void Window::showPositiveMessage()
 {
-    m_messageWidget->setText(i18n("All your files have been backed up"));
-    m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
-    showMessage();
+    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::PositiveMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("All your files have been backed up"));
+        m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
+        showMessage();
+    }
 }
 
 void Window::showMessage()
 {
+    m_firstShow = false;
     if (m_animatedShowCheckBox->isChecked()) {
         m_messageWidget->animatedShow();
     } else {
         m_messageWidget->show();
+    }
+}
+
+void Window::hideMessage()
+{
+    if (m_animatedShowCheckBox->isChecked()) {
+        m_messageWidget->animatedHide();
+    } else {
+        m_messageWidget->hide();
     }
 }
 
