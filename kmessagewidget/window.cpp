@@ -33,8 +33,7 @@
 #include <QVBoxLayout>
 
 Window::Window(QWidget *parent)
-    : KMainWindow(parent),
-      m_firstShow(true)
+    : KMainWindow(parent)
 {
     QWidget* widget = new QWidget;
     setCentralWidget(widget);
@@ -87,7 +86,7 @@ void Window::createButton(const QString& label, const char* slot)
 
 void Window::showErrorMessage()
 {
-    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::ErrorMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::ErrorMessageType) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("Sorry, wrong password"));
@@ -98,7 +97,7 @@ void Window::showErrorMessage()
 
 void Window::showWarningMessage()
 {
-    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::WarningMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::WarningMessageType) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("You have some unsaved changes"));
@@ -109,7 +108,7 @@ void Window::showWarningMessage()
 
 void Window::showInformationMessage()
 {
-    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::InformationMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::InformationMessageType) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("The weather is great!"));
@@ -120,7 +119,7 @@ void Window::showInformationMessage()
 
 void Window::showPositiveMessage()
 {
-    if (!m_firstShow && m_messageWidget->messageType() == KMessageWidget::PositiveMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::PositiveMessageType) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("All your files have been backed up"));
@@ -131,7 +130,6 @@ void Window::showPositiveMessage()
 
 void Window::showMessage()
 {
-    m_firstShow = false;
     if (m_animatedShowCheckBox->isChecked()) {
         m_messageWidget->animatedShow();
     } else {
