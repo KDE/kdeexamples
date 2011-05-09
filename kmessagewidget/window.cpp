@@ -20,6 +20,7 @@
 #include <window.h>
 
 // KDE
+#include <kicon.h>
 #include <klocale.h>
 #include <kmessagewidget.h>
 
@@ -51,8 +52,8 @@ Window::Window(QWidget *parent)
     m_layout->addStretch();
 
     m_actions
-        << new QAction(i18n("Action 1"), this)
-        << new QAction(i18n("Action 2"), this)
+        << new QAction(KIcon("document-save"), i18n("Save"), this)
+        << new QAction(i18n("Discard"), this)
         ;
 
     QCheckBox* wordwrapCheckBox = new QCheckBox(i18n("Word wrap"));
@@ -103,7 +104,7 @@ void Window::showInformationMessage()
 
 void Window::showPositiveMessage()
 {
-    m_messageWidget->setText(i18n("All your files have been backed up"));
+    m_messageWidget->setText(i18n("All your files have been backed up. All your files have been backed up. All your files have been backed up. All your files have been backed up."));
     m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
     showMessage();
 }
