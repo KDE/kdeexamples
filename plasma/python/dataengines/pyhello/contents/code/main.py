@@ -52,7 +52,7 @@ class HelloService(Plasma.Service):
     def registerOperationsScheme(self):
         print '####### HelloService registerOperationsScheme'
         engine = self.parent().parent()
-        path = engine.package().filePath('config', 'hello.operations')
+        path = engine.package().filePath('data', 'hello.operations')
         if path.isEmpty():
             print '####### Cannot find operations'
             return
