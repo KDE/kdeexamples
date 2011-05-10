@@ -20,19 +20,20 @@
 #include <window.h>
 
 // KDE
-#include <kicon.h>
-#include <klocale.h>
-#include <kmessagewidget.h>
+#include <KAction>
+#include <KLocale>
+#include <KMessageWidget>
+#include <KStandardAction>
 
 // Qt
-#include <QAction>
+#include <QCheckBox>
+#include <QCoreApplication>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <qcheckbox.h>
 
 Window::Window(QWidget *parent)
-: KMainWindow(parent)
+    : KMainWindow(parent)
 {
     QWidget* widget = new QWidget;
     setCentralWidget(widget);
@@ -72,6 +73,8 @@ Window::Window(QWidget *parent)
     m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
     m_animatedShowCheckBox->setChecked(true);
     m_layout->addWidget(m_animatedShowCheckBox);
+
+    addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 }
 
 void Window::createButton(const QString& label, const char* slot)
@@ -83,30 +86,46 @@ void Window::createButton(const QString& label, const char* slot)
 
 void Window::showErrorMessage()
 {
-    m_messageWidget->setText(i18n("Sorry, wrong password"));
-    m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
-    showMessage();
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::ErrorMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("Sorry, wrong password"));
+        m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
+        showMessage();
+    }
 }
 
 void Window::showWarningMessage()
 {
-    m_messageWidget->setText(i18n("You have some unsaved changes"));
-    m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
-    showMessage();
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::WarningMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("You have some unsaved changes"));
+        m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
+        showMessage();
+    }
 }
 
 void Window::showInformationMessage()
 {
-    m_messageWidget->setText(i18n("The weather is great!"));
-    m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
-    showMessage();
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::InformationMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("The weather is great!"));
+        m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
+        showMessage();
+    }
 }
 
 void Window::showPositiveMessage()
 {
-    m_messageWidget->setText(i18n("All your files have been backed up. All your files have been backed up. All your files have been backed up. All your files have been backed up."));
-    m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
-    showMessage();
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::PositiveMessageType) {
+        hideMessage();
+    } else {
+        m_messageWidget->setText(i18n("All your files have been backed up"));
+        m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
+        showMessage();
+    }
 }
 
 void Window::showMessage()
@@ -115,6 +134,15 @@ void Window::showMessage()
         m_messageWidget->animatedShow();
     } else {
         m_messageWidget->show();
+    }
+}
+
+void Window::hideMessage()
+{
+    if (m_animatedShowCheckBox->isChecked()) {
+        m_messageWidget->animatedHide();
+    } else {
+        m_messageWidget->hide();
     }
 }
 

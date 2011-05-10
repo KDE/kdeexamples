@@ -46,11 +46,11 @@ private:
     QVBoxLayout* m_layout;
     KMessageWidget* m_messageWidget;
     QList<QAction*> m_actions;
-
     QCheckBox* m_animatedShowCheckBox;
 
     void createButton(const QString& label, const char* slot);
     void showMessage();
+    void hideMessage();
 };
 
 #endif // WINDOW_H

@@ -1,7 +1,7 @@
 // -*- coding: iso-8859-1 -*-
 /*
- *   Author: Marco Martin <mart@kde.org>
- *   Date: Sun Nov 7 2010, 18:51:24
+ *   Author: Diego Casella <polentino911@gmail.com>
+ *   Date: Sat Apr 16 2011, 17:10:39
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU Library General Public License as
@@ -19,34 +19,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import Qt 4.7
-import org.kde.plasma.graphicswidgets 0.1 as PlasmaWidgets
-import org.kde.plasma.core 0.1 as PlasmaCore
-import org.kde.plasma.graphicslayouts 4.7 as GraphicsLayouts
+label = new Label();
+label.text = '<font color=\'red\'>Hey I\'m a Popup Label :)</font>';
+label.minimumSize = QSizeF(200,200)
+// The famous popupIcon :)
+plasmoid.popupIcon = QIcon("plasma");
+// When the applet is smaller than this minimum size, the popupIcon will be displayed.
+plasmoid.setMinimumSize(100,100);
+// When the popupIcon gets a click event, the associated popupWidget will be shown.
+plasmoid.popupWidget = label;
 
-Item {
-    width: 200
-    height: 300
 
-    PlasmaCore.DataSource {
-          id: tasksSource
-          engine: "tasks"
-          interval: 0
-          onSourceAdded: {
-             connectSource(source)
-          }
-          Component.onCompleted: {
-              connectedSources = sources
-          }
-      }
-
-    ListView {
-        anchors.fill: parent
-        model: PlasmaCore.DataModel {
-            dataSource: tasksSource
-        }
-        delegate: Text {
-          text: className+" "+onAllDesktops
-        }
-    }
-}
