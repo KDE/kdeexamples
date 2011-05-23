@@ -86,44 +86,44 @@ void Window::createButton(const QString& label, const char* slot)
 
 void Window::showErrorMessage()
 {
-    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::ErrorMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Error) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("Sorry, wrong password"));
-        m_messageWidget->setMessageType(KMessageWidget::ErrorMessageType);
+        m_messageWidget->setMessageType(KMessageWidget::Error);
         showMessage();
     }
 }
 
 void Window::showWarningMessage()
 {
-    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::WarningMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Warning) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("You have some unsaved changes"));
-        m_messageWidget->setMessageType(KMessageWidget::WarningMessageType);
+        m_messageWidget->setMessageType(KMessageWidget::Warning);
         showMessage();
     }
 }
 
 void Window::showInformationMessage()
 {
-    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::InformationMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Information) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("The weather is great!"));
-        m_messageWidget->setMessageType(KMessageWidget::InformationMessageType);
+        m_messageWidget->setMessageType(KMessageWidget::Information);
         showMessage();
     }
 }
 
 void Window::showPositiveMessage()
 {
-    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::PositiveMessageType) {
+    if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Positive) {
         hideMessage();
     } else {
         m_messageWidget->setText(i18n("All your files have been backed up"));
-        m_messageWidget->setMessageType(KMessageWidget::PositiveMessageType);
+        m_messageWidget->setMessageType(KMessageWidget::Positive);
         showMessage();
     }
 }
