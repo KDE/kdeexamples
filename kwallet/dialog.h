@@ -4,28 +4,34 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include <QLabel>
-#include <QLineEdit>
-#include <KWallet/Wallet>
 
-using KWallet::Wallet;
+class QLabel;
+class QLineEdit;
+
+namespace KWallet {
+class Wallet;
+}
 
 class Dialog : public QDialog
 {
 Q_OBJECT
+
 public:
     Dialog(QWidget *parent = 0);
 
 private slots:
     void doSave();
+    void doRetrieve();
+
     void walletOpened(bool ok);
 
 private:
-    Wallet *m_wallet;
-    QLineEdit *m_keyInput;
-    QLineEdit *m_valueInput;
+    KWallet::Wallet *m_wallet;
+
     QLabel *m_statusLabel;
-    QPushButton *m_launchButton;
+    QLineEdit *m_keyInput, *m_keyOutput;
+    QLineEdit *m_valueInput, *m_valueOutput;
+    QPushButton *m_launchButton, *m_retrieveButton;
 };
 
 #endif // DIALOG_H
