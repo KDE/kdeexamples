@@ -48,8 +48,8 @@
 #include <KLocale>
 #include <KLineEdit>
 #include <KPlotWidget>
-#include <kratingwidget.h>
-#include <kshortcutwidget.h>
+#include <KRatingWidget>
+#include <KShortcutWidget>
 #include <KTabWidget>
 #include <KTimeComboBox>
 #include <KTimeZoneWidget>
