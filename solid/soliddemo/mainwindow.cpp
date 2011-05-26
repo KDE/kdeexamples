@@ -22,6 +22,7 @@
 #include <QtGui/QVBoxLayout>
 
 #include <KComboBox>
+#include <KIcon>
 #include <KListWidget>
 #include <KLocale>
 #include <KTextBrowser>
@@ -139,6 +140,6 @@ void MainWindow::populate()
   }
 
   foreach (const Solid::Device &device, devices) {
-    new QListWidgetItem(device.udi(), view);
+    new QListWidgetItem(KIcon(device.icon()), device.udi(), view);
   }
 }
