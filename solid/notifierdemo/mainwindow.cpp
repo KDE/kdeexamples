@@ -29,6 +29,7 @@
 
 #include <KLocale>
 
+#include <Solid/Device>
 #include <Solid/DeviceNotifier>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -37,15 +38,21 @@ MainWindow::MainWindow(QWidget *parent)
   central = new QLabel(this);
   connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceAdded(QString)), this, SLOT(deviceAdded(QString)));
   connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceRemoved(QString)), this, SLOT(deviceRemoved(QString)));
+  central->setText(i18n("Add or remove a device"));
   setCentralWidget(central);
 }
 
 void MainWindow::deviceAdded(const QString &udi)
 {
-  central->setText("<b>" + i18n("Device Added:") + "</b> " + udi);
+  QString text = "<b>" + i18n("Device Added: ") + "</b> " + udi + "<br>";
+
+  Solid::Device device(udi);
+  text += "<b>" + i18n("Description: ") + "</b> "  + device.description();
+
+  central->setText(text);
 }
 
 void MainWindow::deviceRemoved(const QString &udi)
 {
-  central->setText("<b>" + i18n("Device Removed:") + "</b> " + udi);
+  central->setText("<b>" + i18n("Device Removed: ") + "</b> " + udi);
 }
