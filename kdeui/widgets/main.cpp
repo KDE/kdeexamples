@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 {
   KAboutData aboutData("kdeuiwidgets", 0,
                        ki18n("KDE Widgets Demo"), "1.0",
-                       ki18n("Demo with all the widgets abeilable in KDE."),
+                       ki18n("Demo with all the widgets available in KDE."),
                        KAboutData::License_BSD,
                        ki18n("Copyright (c) 2011 Jon Ander Peñalba <jonan88@gmail.com>"));
   KCmdLineArgs::init(argc, argv, &aboutData);
