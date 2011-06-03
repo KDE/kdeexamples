@@ -1,26 +1,53 @@
 // set up the engine, player and controller
-engine = dataEngine("nowplaying");
-watchingPlayer = engine.sources[0];
-controller = service("nowplaying", watchingPlayer);
+var controller
+var watchingPlayer = ""
+var engine = dataEngine("nowplaying")
 
 // define a few functions
 plasmoid.dataUpdated = function(a, b)
 {
-    label.text = "Playing " + b.Title + " by " + b.Artist + ". time: " +
-                 Math.floor(b.Position/60) + ":" + (parseInt(b.Position)%60);
-    progress.value = 100*b.Position/b.Length;
+    print("updated data for " + a)
+    if (a == "players") {
+        if (watchingPlayer != '') {
+            engine.disconnectSource(watchingPlayer)
+        }
+
+        watchingPlayer = b.players[0];
+        engine.connectSource(watchingPlayer, plasmoid)
+
+        controller = service("nowplaying", watchingPlayer)
+        controller.associateWidget(stopButton, "stop")
+        controller.associateWidget(progress, "progress")
+        controller.finished.connect(plasmoid.jobFinished)
+        print("Now watching player " + watchingPlayer);
+    } else {
+        label.text = "Playing " + b.Title + " by " + b.Artist + ". time: " +
+                     Math.floor(b.Position/60) + ":" + (parseInt(b.Position)%60)
+        progress.value = 100*b.Position/b.Length
+    }
+}
+
+plasmoid.jobFinished = function(job)
+{
+    print("The job " + job.operationName + " is finished.")
 }
 
 plasmoid.stop = function()
 {
-    data = controller.operationDescription("stop");
-    print(controller.name());
-    for ( var i in data ) {
-        print(i + ' -> ' + data[i] );
+    if (!controller) {
+        return
     }
 
-    controller.startOperationCall(controller.operationDescription("stop"));
-    print("stopping");
+    data = controller.operationDescription("stop")
+    print(controller.name)
+    for ( var i in data ) {
+        print(i + ' -> ' + data[i] )
+    }
+
+    job = controller.startOperationCall(controller.operationDescription("stop"))
+    print("JOb is..." + job)
+    //job.finished.connect(plasmoid.jobFinished)
+    print("stopping")
 }
 
 plasmoid.setProgress = function(progress)
@@ -35,26 +62,23 @@ plasmoid.setProgress = function(progress)
     print("set progress to " + progress);
 }
 
+engine.connectSource("players", plasmoid)
+
 // Set up the UI
 layout = new LinearLayout(plasmoid);
 layout.orientation = QtVertical;
 label = new Label();
 layout.addItem(label);
 
-stop = new PushButton();
-stop.text = "Stop";
-layout.addItem(stop);
+var stopButton = new PushButton();
+stopButton.text = "Stop";
+layout.addItem(stopButton);
 
-progress = new Slider();
+var progress = new Slider();
 progress.orientation = QtHorizontal;
 layout.addItem(progress);
 
 // Glue things together
-stop.clicked.connect(plasmoid.stop);
+stopButton.clicked.connect(plasmoid.stop);
 progress.sliderMoved.connect(plasmoid.setProgress);
-
-controller.associateWidget(stop, "stop");
-controller.associateWidget(progress, "progress");
-
-engine.connectSource(watchingPlayer, plasmoid, 500);
 
