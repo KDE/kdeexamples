@@ -6,8 +6,11 @@ layout.addItem(label);
 
 plasmoid.dataUpdated = function(a, b)
 {
-    label.text = "It is " + b.Time.toString() + " in " + a;
+    if (b.DateTime) {
+        print("Current date and time is: " + b.DateTime)
+    }
+    label.text = "It is " + b.Time + " in " + a
 }
 
-dataEngine("time").connectSource("UTC", plasmoid, 500);
+dataEngine("time").connectSource("UTC", plasmoid, 500)
 
