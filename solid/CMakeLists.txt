@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6.2 FATAL_ERROR)
 
+add_subdirectory(hardwareinfo)
 add_subdirectory(minibrowser)
 add_subdirectory(notifierdemo)
 add_subdirectory(soliddemo)
