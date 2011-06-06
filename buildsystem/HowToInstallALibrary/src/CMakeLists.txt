@@ -15,8 +15,8 @@ install(FILES bar.h DESTINATION ${INCLUDE_INSTALL_DIR} )
 #    targetsToBeExported.insert(bar);
 # This "export set" is then used in the toplevel CMakeLists.txt
 # The three different destinations are mostly interesting for Windows:
-# the dll must go into bin/ (needed at RUNTIME), while the lib-file should go into lib/
-# The ARCHIVE DESTINATION is only for completeness here, it is only used for static libraries.
+# the dll must go into bin/ (needed at RUNTIME), while the lib-file is considered
+# ARCHIVE and should go into lib/
 install(TARGETS bar EXPORT BarExport LIBRARY DESTINATION ${LIB_INSTALL_DIR}
                                      ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
                                      RUNTIME DESTINATION ${BIN_INSTALL_DIR} )
