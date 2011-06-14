@@ -30,7 +30,7 @@ Item {
 
     PlasmaCore.DataSource {
           id: tasksSource
-          engine: "tasks"
+          dataEngine: "tasks"
           interval: 0
           onSourceAdded: {
              connectSource(source)

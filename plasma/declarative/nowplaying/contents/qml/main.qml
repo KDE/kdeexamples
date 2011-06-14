@@ -34,7 +34,7 @@ QGraphicsWidget {
 
         PlasmaCore.DataSource {
             id: dataSource
-            engine: "nowplaying"
+            dataEngine: "nowplaying"
             connectedSources: activeSource
             interval: 500
 

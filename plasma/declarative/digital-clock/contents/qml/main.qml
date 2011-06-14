@@ -36,7 +36,7 @@ QGraphicsWidget {
     Item {
       PlasmaCore.DataSource {
           id: dataSource
-          engine: "time"
+          dataEngine: "time"
           connectedSources: ["Local"]
           interval: 500
       }
