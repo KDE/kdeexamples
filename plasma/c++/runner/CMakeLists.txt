@@ -1,10 +1,6 @@
 # Project Needs a name, of course
 project(RunnerExample)
 
-set(KDE_MIN_VERSION "4.3.60") # for the < 4.2 macro
-find_package(KDE4 4.3.60 REQUIRED)
-include (KDE4Defaults)
-
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(${KDE4_INCLUDES})
 

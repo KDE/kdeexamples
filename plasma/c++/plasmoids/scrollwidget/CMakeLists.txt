@@ -1,8 +1,5 @@
 project( scrollwidgetexample )
 
-find_package(KDE4 REQUIRED)
-include (KDE4Defaults)
-
 include_directories (${KDE4_INCLUDES}
                      ${KDE4WORKSPACE_INCLUDE_DIR}
                      ${KDEPIMLIBS_INCLUDE_DIR}

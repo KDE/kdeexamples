@@ -1,4 +1,4 @@
-project (opencollaborationexample)
+project(opencollaborationexample)
 
 include_directories(${KDE4_INCLUDES} ${LIBATTICA_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -20,4 +20,3 @@ kde4_add_ui_files(opencollaborationexample_SRCS
 
 kde4_add_executable(opencollaborationexample ${opencollaborationexample_SRCS})
 target_link_libraries(opencollaborationexample ${LIBATTICA_LIBRARIES} ${KDE4_KIO_LIBS}  ${KDE4_KDEUI_LIBS})
-
