@@ -1,12 +1,5 @@
 project(nepomukexampleservice)
 
-find_package(KDE4 REQUIRED)
-find_package(Nepomuk REQUIRED)
-
-add_definitions(-DDISABLE_NEPOMUK_LEGACY=1)
-
-include (KDE4Defaults)
-
 include_directories(
   ${QT_INCLUDES}
   ${KDE4_INCLUDES}
