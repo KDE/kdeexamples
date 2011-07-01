@@ -1,6 +1,8 @@
 
 include(MacroLibrary)
 
+install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/phonon)
+
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(${KDE4_INCLUDES})
 

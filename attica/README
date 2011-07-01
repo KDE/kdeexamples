@@ -1,0 +1,3 @@
+The Open Collaboration Service (OCS) providers such as openDesktop.org can be easily accessed through Attica.
+
+Attica is a Qt library that implements the freedesktop.org specification for the Open Collaboration Services API.

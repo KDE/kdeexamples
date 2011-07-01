@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.6.2 FATAL_ERROR)
 
+install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/solid)
+
 add_subdirectory(hardwareinfo)
 add_subdirectory(minibrowser)
 add_subdirectory(notifierdemo)
