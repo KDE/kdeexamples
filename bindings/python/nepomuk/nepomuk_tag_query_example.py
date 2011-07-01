@@ -1,27 +1,27 @@
 #!/usr/bin/env python
 
-# Copyright 2011 Luca Beltrame <einar@heavensinferno.net>         
-#                                                                  
-# Redistribution and use in source and binary forms, with or without 
+# Copyright 2011 Luca Beltrame <einar@heavensinferno.net>
+#
+# Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
 # are met
-#                                                                   
-# 1. Redistributions of source code must retain the above copyright  
-#    notice, this list of conditions and the following disclaimer.    
-# 2. Redistributions in binary form must reproduce the above copyright 
+#
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
 #    notice, this list of conditions and the following disclaimer in the
 #    documentation and/or other materials provided with the distribution.
-#                                                                       
-# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR    
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 # OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,       
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
 # INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
 # NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY  
-# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT     
-# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
-# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import sys
 
@@ -39,22 +39,55 @@ class NepomukTagQueryExample(QtCore.QObject):
     def __init__(self, parent=None):
 
         super(NepomukTagQueryExample, self).__init__(parent)
+        self.results = list()
+        self.service_client = Nepomuk.Query.QueryServiceClient()
+
+        # Gather results as they are found
+        self.service_client.newEntries.connect(self.query_client_slot)
+
+        # Ensure we disconnect after we're done
+        #self.service_client.finishedListing.connect(
+            #self.service_client.newEntries.disconnect)
+
+        # Once the query is over, we'll display the results
+        self.service_client.finishedListing.connect(self.display_results)
+
+    def display_results(self):
+
+        # get rid of duplicate items
+        results = set(self.results)
+
+        print "Displaying search results"
+        print
+
+        for item in results:
+            print item
+
+        print
+        print "End results"
+
+    def query_client_slot(self, data):
+
+        # Instead of displaying results, we add them to an
+        # internal list, because this slot is called for both
+        # the initial search and when results are added.
+
+        if not data:
+            return
+
+        for item in data:
+            # Get the file name
+            result = item.resource().genericLabel()
+            self.results.append(result)
 
     def query_tag(self, tag):
 
-        """Query for a specific tag."""
-
-        # Generate a Nepomuk-understandable tag from our string representation
         tag = Nepomuk.Tag(tag)
-
-        # We need now to get an URI to a resource which will be fed into
-        # the query. Since we're using tags, we're using 
-        # Soprano.Vocabulary.NAO.hasTag(). 
 
         soprano_term_uri = Soprano.Vocabulary.NAO.hasTag()
 
-        # The API documentation on api.kde.org uses the URI directly, but 
-        # under PyKDE4 generates an error, hence we wrap it in 
+        # The API documentation on api.kde.org uses the URI directly, but
+        # under PyKDE4 generates an error, hence we wrap it in
         # Nepomuk.Types.Property
 
         nepomuk_property = Nepomuk.Types.Property(soprano_term_uri)
@@ -67,35 +100,23 @@ class NepomukTagQueryExample(QtCore.QObject):
                 Nepomuk.Query.ResourceTerm(tag))
 
         # Now we make a query. We use a FileQuery since we're interested in
-        # files, but if we want more generic results we can use 
+        # files, but if we want more generic results we can use
         # Nepomuk.Query.Query.
 
         query = Nepomuk.Query.FileQuery(comparison_term)
 
-        # We want to get results using KIO, so we get the search URL of
-        # the result.
+        # We call now the Nepomuk Query Service to execute our query
+        # asynchronously
+        self.service_client.query(query)
 
-        search_url = query.toSearchUrl()
+    def query_desktop_query(self, tag):
 
-        # Finally we make a job to list those files
-        # We connect entries, which is emitted with each result,
-        # to our slot which will do the actual handling
-        # Once the job is finished, we close the signal
+        # A simple query using Desktop Query instead of building a query
+        # For tags it's very acceptable
 
-        search_job = KIO.listDir(kdecore.KUrl(search_url))
-        search_job.entries.connect(self.search_slot)
-        search_job.result.connect(search_job.entries.disconnect)
+        query = "hasTag:%s" % tag
 
-    def search_slot(self, job, data):
-
-        # We may get invalid entries, so skip those
-        if not data:
-            return
-
-        for item in data:
-            # Print the result (an UDSEntry) as string with proper
-            # formatting
-            print item.stringValue(KIO.UDSEntry.UDS_DISPLAY_NAME)
+        self.service_client.desktopQuery(query)
 
 def main():
 
@@ -107,9 +128,11 @@ def main():
     kdecore.KCmdLineArgs.init(sys.argv, about_data)
     app = kdeui.KApplication()
 
-    test = NepomukTagQueryExample()
-    # Change this to a tag you have on your system
-    test.query_tag("test")
+    first_test = NepomukTagQueryExample()
+    first_test.query_tag("test_query")
+
+    second_test = NepomukTagQueryExample()
+    second_test.query_desktop_query("test_query")
 
     QtCore.QTimer.singleShot(5000, app.quit)
     app.exec_()
