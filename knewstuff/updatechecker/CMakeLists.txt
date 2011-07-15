@@ -1,9 +1,10 @@
 project(updatechecker)
 
-find_package(KDE4 REQUIRED)
-include (KDE4Defaults)
+include_directories(${KDE4_INCLUDES} ${QT_INCLUDES})
 
-include_directories( ${KDE4_INCLUDES} ${QT_INCLUDES} )
+set(updatechecker_SRCS updatechecker.cpp main.cpp)
 
-add_subdirectory( src )
+kde4_add_executable(updatechecker ${updatechecker_SRCS})
+target_link_libraries(updatechecker ${KDE4_KDEUI_LIBS} ${KDE4_KNEWSTUFF3_LIBS})
 
+install(TARGETS updatechecker ${INSTALL_TARGETS_DEFAULT_ARGS})
