@@ -27,3 +27,5 @@ phonon_declare_examples(
     #pcmoutput
     #videoplayback
     )
+
+add_subdirectory(basicaudioplayer)
