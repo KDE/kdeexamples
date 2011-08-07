@@ -20,8 +20,6 @@
 #ifndef CONTAINMENTSHELL_H
 #define CONTAINMENTSHELL_H
 
-#include "../plasmakpart.h"
-
 #include <kparts/mainwindow.h>
 #include <KDialog>
 
