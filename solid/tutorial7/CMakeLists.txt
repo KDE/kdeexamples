@@ -5,8 +5,6 @@ set(tutorial7_SRCS
 )
 
 # search packages used by KDE
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
 include(MacroLibrary)
 find_package(Perl REQUIRED)
 find_package(ZLIB REQUIRED)

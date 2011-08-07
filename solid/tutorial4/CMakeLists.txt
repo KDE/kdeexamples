@@ -1,9 +1,5 @@
 project(tutorial4)
 
-# search KDE4 and use apply default (but optional) settings
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
 add_definitions(${QT_DEFINITIONS} ${QDBUS_DEFINITIONS} ${KDE4_DEFINITIONS} -DHAVE_CONFIG_H=1)
 

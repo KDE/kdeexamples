@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Service
+Comment=KDevPlatform example project view 
+Name=Project View
+GenericName=ExampleProjectView
+ServiceTypes=KDevelop/Plugin
+X-KDE-Library=kdevprojectviewplugin
+X-KDE-PluginInfo-Name=kdevprojectviewplugin
+X-KDE-PluginInfo-Author=Aleix Pol
+X-KDE-PluginInfo-Email=aleixpol@kde.org
+X-KDE-PluginInfo-License=GPL
+X-KDevelop-Version=12
+X-KDevelop-Category=Global
+X-KDevelop-Mode=GUI
+X-KDevelop-LoadMode=AlwaysOn

@@ -1,9 +1,6 @@
 project(kconfigxt_example)
 
-set(KDE_MIN_VERSION "4.3.60") # for the < 4.2 macro
-find_package(KDE4 4.3.60 REQUIRED)
-include (KDE4Defaults)
-include (MacroLibrary)
+include(MacroLibrary)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(${KDE4_INCLUDES})
@@ -15,4 +12,3 @@ kde4_add_executable(kconfigxt_example ${kconfigxt_example_SRCS})
 target_link_libraries(kconfigxt_example ${KDE4_KDEUI_LIBS})
 
 install(TARGETS kconfigxt_example ${INSTALL_TARGETS_DEFAULT_ARGS})
-
