@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<categories name="KDE Examples and Demos">
+  <category dirname="kdeui" name="KDE widgets">
+    <example filename="kdeuiwidgets" name="KDE widgets Demo" />
+    <example filename="kmessagewidgetdemo" name="KMessageWidget" />
+    <example filename="kxmlguibasic" name="KXMLGUI" />
+  </category>
+  <category dirname="nepomuk" name="Nepomuk">
+    <example filename="metadatademo" name="Metadata" />
+    <example filename="nepomukquerydemo" name="Queries" />
+  </category>
+  <category dirname="attica" name="Attica">
+    <example filename="opencollaborationexample" name="Open Collaboration" />
+  </category>
+  <category dirname="solid" name="Solid">
+    <example filename="hardwareinfo" name="Hardware Information" />
+    <example filename="solidnotifierdemo" name="Notifier" />
+    <example filename="soliddemo" name="Browser" />
+  </category>
+  <category dirname="phonon" name="Phonon">
+    <example filename="basicaudioplayer" name="Basic Audio Player" />
+  </category>
+  <category dirname="kross" name="Kross">
+    <example filename="krosshello" name="Load Script" />
+    <example filename="krosssignalslot" name="Signal/Slot" />
+  </category>
+  <category dirname="kauth" name="KAuth">
+    <example filename="kauth_example" name="Authorization" />
+  </category>
+  <category dirname="knewstuff" name="KNewStuff">
+    <example filename="updatechecker" name="Update Checker" />
+  </category>
+  <category dirname="other" name="Other">
+    <example filename="kwalletdemo" name="KWallet" />
+  </category>
+</categories>
