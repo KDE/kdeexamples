@@ -14,6 +14,7 @@ qt4_wrap_ui(kauth_example_uis mainwindow.ui)
 
 kde4_add_executable(kauth_example ${kauth_example_sources} ${kauth_example_uis})
 target_link_libraries(kauth_example ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS})
+install(TARGETS kauth_example ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 # Auth example helper
 kde4_add_executable(kauth_example_helper  helper/helper.cpp)

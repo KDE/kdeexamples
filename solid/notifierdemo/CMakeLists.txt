@@ -7,4 +7,4 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 kde4_add_executable(solidnotifierdemo ${SRCS})
 target_link_libraries(solidnotifierdemo ${KDE4_KDEUI_LIBS} ${KDE4_SOLID_LIBS})
-install(TARGETS solidnotifierdemo DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS solidnotifierdemo ${INSTALL_TARGETS_DEFAULT_ARGS})

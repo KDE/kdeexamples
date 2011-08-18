@@ -20,3 +20,4 @@ kde4_add_ui_files(opencollaborationexample_SRCS
 
 kde4_add_executable(opencollaborationexample ${opencollaborationexample_SRCS})
 target_link_libraries(opencollaborationexample ${LIBATTICA_LIBRARIES} ${KDE4_KIO_LIBS}  ${KDE4_KDEUI_LIBS})
+install(TARGETS opencollaborationexample ${INSTALL_TARGETS_DEFAULT_ARGS})
