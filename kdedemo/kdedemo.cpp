@@ -25,6 +25,8 @@
 
 #include "kdedemo.h"
 
+#include <QtCore/QProcess>
+#include <QtGui/QDesktopServices>
 #include <QtGui/QGraphicsGridLayout>
 #include <QtGui/QGraphicsLinearLayout>
 
@@ -41,6 +43,14 @@ K_EXPORT_PLASMA_APPLET(kdedemo, KdeDemo)
 
 KdeDemo::KdeDemo(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args)
+    , m_back_button(new Plasma::PushButton)
+    , m_quit_launch_button(new Plasma::PushButton)
+    , m_show_source_button(new Plasma::PushButton)
+    , m_text(new Plasma::Label)
+    , m_tittle(new Plasma::Label)
+    , m_layout(new QGraphicsGridLayout)
+    , m_current_category(new Category)
+    , m_current_example(new Example)
 {
     setBackgroundHints(DefaultBackground);
 }
@@ -51,23 +61,19 @@ KdeDemo::~KdeDemo()
 
 void KdeDemo::init()
 {
-    m_layout = new QGraphicsGridLayout;
     m_layout->setColumnFixedWidth(0, 200);
     m_layout->setColumnMinimumWidth(1, 300);
     m_layout->setRowMaximumHeight(1, 30);
     m_layout->setHorizontalSpacing(15);
     m_layout->setVerticalSpacing(30);
 
-    m_tittle = new Plasma::Label;
     m_tittle->setAlignment(Qt::AlignCenter);
 
-    m_text = new Plasma::Label;
     m_text->setAlignment(Qt::AlignJustify);
     loadTextFromFile("KDE Examples and Demos", KStandardDirs::locate("data", "kdeexamples/README"));
     m_layout->addItem(m_text, 0, 1, Qt::AlignCenter);
 
     QGraphicsLinearLayout *layout = new QGraphicsLinearLayout(Qt::Vertical);
-    m_back_button = new Plasma::PushButton;
     m_back_button->setText("Back");
     m_back_button->hide();
     connect(m_back_button, SIGNAL(clicked()), this, SLOT(backToCategories()));
@@ -76,7 +82,10 @@ void KdeDemo::init()
 
     layout = new QGraphicsLinearLayout(Qt::Horizontal);
     layout->addStretch();
-    m_quit_launch_button = new Plasma::PushButton;
+    m_show_source_button->setText("Show Source Code");
+    m_show_source_button->hide();
+    connect(m_show_source_button, SIGNAL(clicked()), this, SLOT(openSourceCode()));
+    layout->addItem(m_show_source_button);
     m_quit_launch_button->setText("Quit");
     connect(m_quit_launch_button, SIGNAL(clicked()), this, SLOT(destroy()));
     layout->addItem(m_quit_launch_button);
@@ -91,7 +100,7 @@ void KdeDemo::init()
     foreach (Category c, m_categories) {
         Plasma::PushButton *button = new Plasma::PushButton;
         button->setText(c.name);
-        connect(button, SIGNAL(clicked()), this, SLOT(loadExamples()));
+        connect(button, SIGNAL(clicked()), this, SLOT(loadExampleList()));
         m_category_buttons.push_back(button);
 
         QList<Plasma::PushButton*> x;
@@ -100,16 +109,15 @@ void KdeDemo::init()
         foreach (Example e, c.examples) {
             Plasma::PushButton *button = new Plasma::PushButton;
             button->setText(e.name);
+            connect(button, SIGNAL(clicked()), this, SLOT(loadExample()));
             m_example_buttons.back().push_back(button);
         }
     }
     loadButtons(m_category_buttons, "Categories");
 }
 
-void KdeDemo::loadExamples()
+void KdeDemo::loadExampleList()
 {
-    /*QProcess *myProcess = new QProcess(this);
-    myProcess->start(KStandardDirs::locate("exe", "basicaudioplayer"));*/
     Plasma::PushButton *button = qobject_cast<Plasma::PushButton*>(sender());
     if (!button)
         return;
@@ -119,9 +127,29 @@ void KdeDemo::loadExamples()
     m_back_button->show();
 
     int index = m_category_buttons.indexOf(button);
-    const Category *cat = &(m_categories.at(index));
-    loadTextFromFile(cat->name, KStandardDirs::locate("data", "kdeexamples/" + cat->dirName + "/README"));
+    *m_current_category = m_categories.at(index);
+    QString file("kdeexamples/" + m_current_category->dirName + "/README");
+    loadTextFromFile(m_current_category->name, KStandardDirs::locate("data", file));
     loadButtons(m_example_buttons.at(index), button->text());
+}
+
+void KdeDemo::loadExample()
+{
+    Plasma::PushButton *button = qobject_cast<Plasma::PushButton*>(sender());
+    if (!button)
+        return;
+
+    m_show_source_button->show();
+    m_quit_launch_button->disconnect();
+    m_quit_launch_button->setText("Launch");
+    connect(m_quit_launch_button, SIGNAL(clicked()), this, SLOT(launchExample()));
+
+    int i = m_categories.indexOf(*m_current_category);
+    int j = m_example_buttons.at(i).indexOf(button);
+
+    *m_current_example = m_current_category->examples.at(j);
+    QString file("kdeexamples/" + m_current_category->dirName + "/" + m_current_example->fileName + "/README");
+    loadTextFromFile(m_current_example->name, KStandardDirs::locate("data", file));
 }
 
 void KdeDemo::backToCategories()
@@ -129,11 +157,35 @@ void KdeDemo::backToCategories()
     foreach (Plasma::PushButton *b, m_current_buttons)
         b->hide();
     m_back_button->hide();
+    m_show_source_button->hide();
     loadButtons(m_category_buttons, "Categories");
     loadTextFromFile("KDE Examples and Demos", KStandardDirs::locate("data", "kdeexamples/README"));
     m_quit_launch_button->disconnect();
     m_quit_launch_button->setText("Quit");
     connect(m_quit_launch_button, SIGNAL(clicked()), this, SLOT(destroy()));
+}
+
+void KdeDemo::openSourceCode()
+{
+    QString dir(KStandardDirs::locate("data", "kdeexamples/" + m_current_category->dirName + "/" + m_current_example->fileName + "/"));
+    if (dir.isEmpty())
+        return;
+
+    QProcess *process = new QProcess(this);
+    process->setWorkingDirectory(dir);
+    process->start("ls");
+    process->waitForFinished(-1);
+    QString files = process->readAll();
+
+    process = new QProcess(this);
+    process->setWorkingDirectory(dir);
+    process->start(KStandardDirs::locate("exe", "kate"), QStringList() << files.split("\n", QString::SkipEmptyParts));
+}
+
+void KdeDemo::launchExample()
+{
+    QProcess *myProcess = new QProcess(this);
+    myProcess->start(KStandardDirs::locate("exe", m_current_example->fileName));
 }
 
 void KdeDemo::loadButtons(QList<Plasma::PushButton*> list, QString text)

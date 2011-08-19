@@ -37,6 +37,9 @@ struct Category
 {
     QString name, dirName;
     QList<Example> examples;
+
+    bool operator == (const Category &c) const
+        {return name == c.name;}
 };
 
 class XmlHandler : public QXmlContentHandler

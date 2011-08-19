@@ -37,6 +37,7 @@ class PushButton;
 }
 
 struct Category;
+struct Example;
 
 class KdeDemo : public Plasma::Applet
 {
@@ -53,8 +54,11 @@ class KdeDemo : public Plasma::Applet
         void showCategories();
 
     private slots:
-        void loadExamples();
+        void loadExampleList();
+        void loadExample();
         void backToCategories();
+        void openSourceCode();
+        void launchExample();
 
     private:
         void loadButtons(QList<Plasma::PushButton*> list, QString m_text);
@@ -64,9 +68,11 @@ class KdeDemo : public Plasma::Applet
         QList<Category> m_categories;
         QList<Plasma::PushButton*> m_category_buttons, m_current_buttons;
         QList< QList<Plasma::PushButton*> > m_example_buttons;
-        Plasma::PushButton *m_back_button, *m_quit_launch_button;
+        Plasma::PushButton *m_back_button, *m_quit_launch_button, *m_show_source_button;
         Plasma::Label *m_text, *m_tittle;
         QGraphicsGridLayout *m_layout;
+        Category *m_current_category;
+        Example *m_current_example;
 };
 
 #endif // KDEDEMO_H
