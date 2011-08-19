@@ -9,14 +9,27 @@ set(opencollaborationexample_SRCS
     contentdownload.cpp
     contentcreation.cpp
     privatedata.cpp
-)
+    )
 
-kde4_add_ui_files(opencollaborationexample_SRCS
+set(opencollaborationexample_HEADERS
+    contentcreation.h
+    contentdownload.h
+    mainwindow.h
+    person.h
+    privatedata.h
+    )
+
+set(opencollaborationexample_UI
     person.ui
     contentdownload.ui
     contentcreation.ui
     privatedata.ui
-)
+    )
+
+install(FILES ${opencollaborationexample_SRCS} ${opencollaborationexample_HEADERS} ${opencollaborationexample_UI}
+        DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/attica/opencollaborationexample)
+
+kde4_add_ui_files(opencollaborationexample_SRCS ${opencollaborationexample_UI})
 
 kde4_add_executable(opencollaborationexample ${opencollaborationexample_SRCS})
 target_link_libraries(opencollaborationexample ${LIBATTICA_LIBRARIES} ${KDE4_KIO_LIBS}  ${KDE4_KDEUI_LIBS})

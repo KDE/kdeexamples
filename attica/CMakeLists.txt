@@ -8,4 +8,4 @@ include(MacroLibrary)
 include(MacroOptionalAddSubdirectory)
 include_directories(${LIBATTICA_INCLUDE_DIR})
 
-add_subdirectory(example)
+add_subdirectory(opencollaborationexample)

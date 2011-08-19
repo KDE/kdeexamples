@@ -26,7 +26,6 @@
 #include "kdedemo.h"
 
 #include <QtCore/QProcess>
-#include <QtGui/QDesktopServices>
 #include <QtGui/QGraphicsGridLayout>
 #include <QtGui/QGraphicsLinearLayout>
 
@@ -179,7 +178,7 @@ void KdeDemo::openSourceCode()
 
     process = new QProcess(this);
     process->setWorkingDirectory(dir);
-    process->start(KStandardDirs::locate("exe", "kate"), QStringList() << files.split("\n", QString::SkipEmptyParts));
+    process->start(KStandardDirs::locate("exe", "kate"), QStringList() << "-n" << files.split("\n", QString::SkipEmptyParts));
 }
 
 void KdeDemo::launchExample()
@@ -234,6 +233,8 @@ void KdeDemo::loadTextFromFile(QString tittle, QString file_name)
                 text_string += line;
         }
         text_string += "</p>";
+    } else {
+        text_string += "<p>No description available</p>";
     }
     m_text->setText(text_string);
 }
