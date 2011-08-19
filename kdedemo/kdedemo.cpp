@@ -175,6 +175,7 @@ void KdeDemo::openSourceCode()
     process->start("ls");
     process->waitForFinished(-1);
     QString files = process->readAll();
+    files.remove("README");
 
     process = new QProcess(this);
     process->setWorkingDirectory(dir);
