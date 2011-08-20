@@ -4,6 +4,7 @@
     <example filename="kdeuiwidgets" name="KDE widgets Demo" />
     <example filename="kmessagewidgetdemo" name="KMessageWidget" />
     <example filename="kxmlguibasic" name="KXMLGUI" />
+    <example filename="kpartbasic" name="KPart" />
   </category>
   <category dirname="nepomuk" name="Nepomuk">
     <example filename="metadatademo" name="Metadata" />

@@ -61,9 +61,10 @@ KdeDemo::~KdeDemo()
 void KdeDemo::init()
 {
     m_layout->setColumnFixedWidth(0, 200);
+    m_layout->setColumnFixedWidth(2, 0);
     m_layout->setColumnMinimumWidth(1, 300);
     m_layout->setRowMaximumHeight(1, 30);
-    m_layout->setHorizontalSpacing(15);
+    m_layout->setHorizontalSpacing(35);
     m_layout->setVerticalSpacing(30);
 
     m_tittle->setAlignment(Qt::AlignCenter);
