@@ -185,8 +185,13 @@ void KdeDemo::openSourceCode()
 
 void KdeDemo::launchExample()
 {
-    QProcess *myProcess = new QProcess(this);
-    myProcess->start(KStandardDirs::locate("exe", m_current_example->fileName));
+    QProcess *process = new QProcess(this);
+    QString f = m_current_example->fileName;
+    if (!m_current_example->plasmoid) {
+        process->start(KStandardDirs::locate("exe", f));
+    } else {
+        process->start(KStandardDirs::locate("exe", "plasmoidviewer"), QStringList() << f);
+    }
 }
 
 void KdeDemo::loadButtons(QList<Plasma::PushButton*> list, QString text)

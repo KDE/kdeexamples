@@ -42,6 +42,7 @@ bool XmlHandler::startElement(const QString &namespaceURI,
         Example x;
         x.name = atts.value("name");
         x.fileName = atts.value("filename");
+        x.plasmoid = (atts.value("plasmoid") == "true");
         m_categories.back().examples.push_back(x);
     }
 

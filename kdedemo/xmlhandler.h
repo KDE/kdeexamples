@@ -31,6 +31,10 @@
 struct Example
 {
     QString name, fileName;
+    bool plasmoid;
+
+    bool operator == (const Example &e) const
+        {return name == e.name;}
 };
 
 struct Category
