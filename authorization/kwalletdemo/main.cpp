@@ -28,4 +28,3 @@ int main(int argc, char *argv[])
     dialog.show();
     return app.exec();
 }
-

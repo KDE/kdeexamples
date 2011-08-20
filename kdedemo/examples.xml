@@ -25,13 +25,11 @@
     <example filename="krosshello" name="Load Script" />
     <example filename="krosssignalslot" name="Signal/Slot" />
   </category>
-  <category dirname="kauth" name="KAuth">
-    <example filename="kauth_example" name="Authorization" />
+  <category dirname="authorization" name="Authorization">
+    <example filename="kwalletdemo" name="KWallet" />
+    <example filename="kauth_example" name="Kauth" />
   </category>
   <category dirname="knewstuff" name="KNewStuff">
     <example filename="updatechecker" name="Update Checker" />
-  </category>
-  <category dirname="other" name="Other">
-    <example filename="kwalletdemo" name="KWallet" />
   </category>
 </categories>
