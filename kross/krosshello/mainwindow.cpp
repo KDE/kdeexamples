@@ -75,11 +75,11 @@ void MainWindow::interpreterActivated(const QString &selected_interpreter)
   // Now let's set the scripts that should be executed
   // depending on the choosen interpreter.
   if(selected_interpreter == "python") {
-      script->setFile(KStandardDirs::locate("data", "krosshello/hello.py"));
+      script->setFile(KStandardDirs::locate("data", "kdeexamples/kross/krosshello/hello.py"));
   } else if(selected_interpreter == "ruby") {
-      script->setFile(KStandardDirs::locate("data", "krosshello/hello.rb"));
+      script->setFile(KStandardDirs::locate("data", "kdeexamples/kross/krosshello/hello.rb"));
   } else if(selected_interpreter == "javascript") {
-    script->setFile(KStandardDirs::locate("data", "krosshello/hello.js"));
+    script->setFile(KStandardDirs::locate("data", "kdeexamples/kross/krosshello/hello.js"));
   } else {
     m_text->setText("No script");
     return;

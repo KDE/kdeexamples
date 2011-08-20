@@ -229,10 +229,12 @@ void KdeDemo::loadTextFromFile(QString tittle, QString file_name)
         text_string += "<p>";
         while (!in.atEnd()) {
             QString line = in.readLine();
-            if (line.isEmpty())
+            if (line.isEmpty()) {
                 text_string += "</p><p>";
-            else
+            } else {
                 text_string += line;
+                text_string += " ";
+            }
         }
         text_string += "</p>";
     } else {

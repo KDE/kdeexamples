@@ -56,11 +56,11 @@ MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
   Kross::Action *script = new Kross::Action(this, "OnClick");
   script->addObject(button1, "Button");
   script->addObject(text, "Label");
-  script->setFile(KStandardDirs::locate("data", "krosssignalslot/onclick.js"));
+  script->setFile(KStandardDirs::locate("data", "kdeexamples/kross/krosssignalslot/onclick.js"));
   script->trigger();
   script = new Kross::Action(this, "EmitSignal");
   script->addObject(button1, "Button1");
   script->addObject(button2, "Button2");
-  script->setFile(KStandardDirs::locate("data", "krosssignalslot/emitsignal.js"));
+  script->setFile(KStandardDirs::locate("data", "kdeexamples/kross/krosssignalslot/emitsignal.js"));
   script->trigger();
 }
