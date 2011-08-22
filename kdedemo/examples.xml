@@ -20,6 +20,7 @@
   </category>
   <category dirname="phonon" name="Phonon">
     <example filename="basicaudioplayer" name="Basic Audio Player" />
+    <example filename="outputselectordemo" name="Output Selector" />
   </category>
   <category dirname="kross" name="Kross">
     <example filename="krosshello" name="Load Script" />

@@ -18,11 +18,10 @@ macro(PHONON_DECLARE_EXAMPLES)
 endmacro(PHONON_DECLARE_EXAMPLES)
 
 phonon_declare_examples(
-    tutorial1
-    tutorial2
-    tutorial3
-    tutorial4
-    outputselector
+    #tutorial1
+    #tutorial2
+    #tutorial3
+    #tutorial4
     #videoplayer
     #crossfade
     #videoplayandforget
@@ -31,3 +30,4 @@ phonon_declare_examples(
     )
 
 add_subdirectory(basicaudioplayer)
+add_subdirectory(outputselectordemo)
