@@ -30,6 +30,7 @@
 #include <QtGui/QGraphicsLinearLayout>
 
 #include <KStandardDirs>
+#include <KMessageBox>
 
 #include <Plasma/Animator>
 #include <Plasma/Label>
@@ -168,8 +169,10 @@ void KdeDemo::backToCategories()
 void KdeDemo::openSourceCode()
 {
     QString dir(KStandardDirs::locate("data", "kdeexamples/" + m_current_category->dirName + "/" + m_current_example->fileName + "/"));
-    if (dir.isEmpty())
+    if (dir.isEmpty()) {
+        KMessageBox::information(0, "Sorry, no source code available for this example.");
         return;
+    }
 
     QProcess *process = new QProcess(this);
     process->setWorkingDirectory(dir);
@@ -177,6 +180,10 @@ void KdeDemo::openSourceCode()
     process->waitForFinished(-1);
     QString files = process->readAll();
     files.remove("README");
+    files.remove("\n");
+
+    if (files.isEmpty())
+        return;
 
     process = new QProcess(this);
     process->setWorkingDirectory(dir);
