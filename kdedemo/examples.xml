@@ -40,5 +40,6 @@
     <example filename="plasma_applet_example_animation" name="Animations (C++)" plasmoid="true" />
     <example filename="org.kde.plasma.scrollwidgetexample" name="Scroll Widget (C++)" plasmoid="true" />
     <example filename="org.kde.exampletooltips" name="Tool Tips (C++)" plasmoid="true" />
+    <example filename="org.kde.addons-example-qml" name="Addons (QML)" plasmoid="true" />
   </category>
 </categories>
