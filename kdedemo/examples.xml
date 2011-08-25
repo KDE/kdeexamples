@@ -41,5 +41,10 @@
     <example filename="org.kde.plasma.scrollwidgetexample" name="Scroll Widget (C++)" plasmoid="true" />
     <example filename="org.kde.exampletooltips" name="Tool Tips (C++)" plasmoid="true" />
     <example filename="org.kde.addons-example-qml" name="Addons (QML)" plasmoid="true" />
+    <example filename="org.kde.digital-clock-qml" name="Digital Clock (QML)" plasmoid="true" />
+    <example filename="fakemail-qml" name="Fake Mail Client (QML)" plasmoid="true" />
+    <example filename="org.kde.nowplaying-qml" name="Now Playing (QML)" plasmoid="true" />
+    <example filename="qmltasks" name="Tasks (QML)" plasmoid="true" />
+    <example filename="org.kde.samegame-qml" name="Same Game (QML)" plasmoid="true" />
   </category>
 </categories>
