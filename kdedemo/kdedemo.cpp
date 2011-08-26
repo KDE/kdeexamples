@@ -180,14 +180,15 @@ void KdeDemo::openSourceCode()
     process->waitForFinished(-1);
     QString files = process->readAll();
     files.remove("README");
-    files.remove("\n");
 
-    if (files.isEmpty())
+    QStringList source_code = files.split("\n", QString::SkipEmptyParts);
+
+    if (source_code.empty())
         return;
 
     process = new QProcess(this);
     process->setWorkingDirectory(dir);
-    process->start(KStandardDirs::locate("exe", "kate"), QStringList() << "-n" << files.split("\n", QString::SkipEmptyParts));
+    process->start(KStandardDirs::locate("exe", "kate"), QStringList() << "-n" << source_code);
 }
 
 void KdeDemo::launchExample()
