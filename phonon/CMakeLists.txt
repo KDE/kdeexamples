@@ -18,10 +18,6 @@ macro(PHONON_DECLARE_EXAMPLES)
 endmacro(PHONON_DECLARE_EXAMPLES)
 
 phonon_declare_examples(
-    #tutorial1
-    #tutorial2
-    #tutorial3
-    #tutorial4
     #videoplayer
     #crossfade
     #videoplayandforget
