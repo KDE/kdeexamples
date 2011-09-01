@@ -29,7 +29,7 @@ layout.addItem(button)
 
 // Create a Pulse animation and set it to operate on the button
 // There are several stock animations provided in Plasma, and you
-// can access them by name (case insenseitive)
+// can access them by name (case insensitive)
 pulseAnimation = animation('pulse')
 pulseAnimation.targetWidget = button
 
@@ -64,7 +64,7 @@ rotateAnimation.targetWidget = button
 
 // Now we will add them to a group to run in parallel with each other
 // this coordinates the animations for us and we will just use the animation
-// group to start al of the animations
+// group to start all of the animations
 rotateAndFadeAnimationGroup = new ParallelAnimationGroup
 rotateAndFadeAnimationGroup.addAnimation(fadeAnimation)
 rotateAndFadeAnimationGroup.addAnimation(rotateAnimation)
@@ -82,14 +82,14 @@ startRotateAndFadeAnimation = function()
 // connect the clicked signal to our function above
 button.clicked.connect(startRotateAndFadeAnimation);
 
-//**********************************************************************************/
-//** Combining animations sequentialy: Rotating two label when a butto is clicked **/
+//***********************************************************************************/
+//** Combining animations sequentialy: Rotating two label when a button is clicked **/
 
-// This button will trigger an animation to rotate the two labels
-// below it
 // add some space to the layout for the next bunch of widgets
 layout.addStretch(5)
 
+// This button will trigger an animation to rotate the two labels
+// below it
 button = new PushButton
 button.text = i18n('Rotate Labels')
 layout.addItem(button)
