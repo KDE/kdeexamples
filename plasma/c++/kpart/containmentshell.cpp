@@ -38,9 +38,7 @@ ContainmentShell::ContainmentShell()
 {
     setXMLFile("plasma-kpart-shellui.rc");
 
-
-    KAction* action = KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
-
+    KAction *action = KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
     action = new KAction("&Configure", actionCollection());
     connect(action, SIGNAL(triggered()), this, SLOT(optionsPreferences()));
     actionCollection()->addAction("options_configure", action);
@@ -50,33 +48,22 @@ ContainmentShell::ContainmentShell()
     // case since our Part is made for this Shell
     KService::Ptr service = KService::serviceByDesktopPath( "plasma-kpart.desktop" );
 
-    if (service)
-    {
-        Plasma::PluginLoader* loader = new TestShellPluginLoader();
+    if (service) {
+        Plasma::PluginLoader *loader = new TestShellPluginLoader();
+        m_part = service->createInstance<KParts::ReadOnlyPart>(0, QVariantList() << qVariantFromValue(loader));
 
-        QVariantList args = QVariantList() << qVariantFromValue(loader) << "Online Services";
-
-        // now that the Part is loaded, we cast it to a Part to get
-        // our hands on it
-        m_part = service->createInstance<KParts::ReadOnlyPart>(0, args);
-        if (m_part)
-        {
+        if (m_part) {
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
-
-        }
-        else
-        {
+        } else {
             // For whatever reason the part didn't load
             KMessageBox::error(this, "Could not instantiate our Part!");
             qApp->quit();
         }
-    }
-    else
-    {
+    } else {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
         KMessageBox::error(this, "Could not find our Part!");
@@ -98,8 +85,7 @@ ContainmentShell::~ContainmentShell()
 
 void ContainmentShell::optionsPreferences()
 {
-    if( !m_dialog )
-    {
+    if (!m_dialog) {
         m_dialog = new AppletSelector( m_part );
         connect( m_dialog, SIGNAL(addApplet(QString)), m_part, SLOT(addApplet(QString)) );
     }
