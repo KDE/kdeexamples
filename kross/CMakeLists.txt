@@ -1,2 +1,4 @@
-add_subdirectory(basic)
-add_subdirectory(signal-slot)
+add_subdirectory(krosshello)
+add_subdirectory(krosssignalslot)
+
+install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/kross)

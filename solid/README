@@ -1,0 +1,3 @@
+Hardware Interaction in KDE is done through Solid.
+
+Solid provides access to hardware information with the necessary abstraction to support multiple platforms.

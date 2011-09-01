@@ -1,6 +1,8 @@
 
 include(MacroLibrary)
 
+install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/phonon)
+
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(${KDE4_INCLUDES})
 
@@ -16,11 +18,6 @@ macro(PHONON_DECLARE_EXAMPLES)
 endmacro(PHONON_DECLARE_EXAMPLES)
 
 phonon_declare_examples(
-    tutorial1
-    tutorial2
-    tutorial3
-    tutorial4
-    outputselector
     #videoplayer
     #crossfade
     #videoplayandforget
@@ -29,3 +26,4 @@ phonon_declare_examples(
     )
 
 add_subdirectory(basicaudioplayer)
+add_subdirectory(outputselectordemo)

@@ -2,5 +2,9 @@ project(kdeui)
 
 include_directories(${KDE4_INCLUDES})
 
-add_subdirectory(kmessagewidget)
-add_subdirectory(widgets)
+install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/kdeui)
+
+add_subdirectory(kmessagewidgetdemo)
+add_subdirectory(kdeuiwidgets)
+add_subdirectory(kpartbasic)
+add_subdirectory(kxmlguibasic)

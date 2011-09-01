@@ -1,0 +1,3 @@
+In this tutorial a simple dialog is created which contains a drop-down list and a label.
+When an interpreter is selected from the list, some scripting code is executed and the
+label text is updated in the script.

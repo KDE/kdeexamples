@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<categories name="KDE Examples and Demos">
+  <category dirname="kdeui" name="KDE widgets">
+    <example filename="kdeuiwidgets" name="KDE widgets Demo" />
+    <example filename="kmessagewidgetdemo" name="KMessageWidget" />
+    <example filename="kxmlguibasic" name="KXMLGUI" />
+    <example filename="kpartbasic" name="KPart" />
+  </category>
+  <category dirname="nepomuk" name="Nepomuk">
+    <example filename="metadatademo" name="Metadata" />
+    <example filename="nepomukquerydemo" name="Queries" />
+  </category>
+  <category dirname="attica" name="Attica">
+    <example filename="opencollaborationexample" name="Open Collaboration" />
+  </category>
+  <category dirname="solid" name="Solid">
+    <example filename="hardwareinfo" name="Hardware Information" />
+    <example filename="solidnotifierdemo" name="Notifier" />
+    <example filename="soliddemo" name="Browser" />
+  </category>
+  <category dirname="phonon" name="Phonon">
+    <example filename="basicaudioplayer" name="Basic Audio Player" />
+    <example filename="outputselectordemo" name="Output Selector" />
+  </category>
+  <category dirname="kross" name="Kross">
+    <example filename="krosshello" name="Load Script" />
+    <example filename="krosssignalslot" name="Signal/Slot" />
+  </category>
+  <category dirname="authorization" name="Authorization">
+    <example filename="kwalletdemo" name="KWallet" />
+    <example filename="kauth_example" name="Kauth" />
+  </category>
+  <category dirname="knewstuff" name="KNewStuff">
+    <example filename="updatechecker" name="Update Checker" />
+  </category>
+  <category dirname="plasma" name="Plasma">
+    <example filename="plasma-example-kpart-shell" name="KPart" />
+  </category>
+  <category dirname="plasma" name="Plasmoids C++">
+    <example filename="plasma_applet_example_animation" name="Animations" plasmoid="true" />
+    <example filename="org.kde.plasma.scrollwidgetexample" name="Scroll Widget" plasmoid="true" />
+    <example filename="org.kde.exampletooltips" name="Tool Tips" plasmoid="true" />
+  </category>
+  <category dirname="plasma" name="Plasmoids QML">
+    <example filename="org.kde.addons-example-qml" name="Addons" plasmoid="true" />
+    <example filename="org.kde.digital-clock-qml" name="Digital Clock" plasmoid="true" />
+    <example filename="fakemail-qml" name="Fake Mail Client" plasmoid="true" />
+    <example filename="org.kde.nowplaying-qml" name="Now Playing" plasmoid="true" />
+    <example filename="qmltasks" name="Tasks" plasmoid="true" />
+    <example filename="org.kde.samegame-qml" name="Same Game" plasmoid="true" />
+  </category>
+  <category dirname="plasma" name="Plasmoids Javascript">
+    <example filename="org.kde.plasma.javascript-animations-example" name="Animations" plasmoid="true" />
+    <example filename="org.kde.plasma.javascript-config-example" name="Configuration Test" plasmoid="true" />
+    <example filename="org.kde.plasma.script-digital-clock-example" name="Digital Clock" plasmoid="true" />
+    <example filename="org.kde.plasma.simpified-javascript-enumerator" name="API Enumerator" plasmoid="true" />
+    <example filename="org.kde.plasma.simpified-javascript-extenders-example" name="Extender" plasmoid="true" />
+    <example filename="org.kde.plasma.javascript-geolocation-example" name="Geolocation" plasmoid="true" />
+    <example filename="org.kde.plasma.script-mediaplayer-example" name="Media Player" plasmoid="true" />
+    <example filename="org.kde.plasma.script-notifications-example" name="Notifications" plasmoid="true" />
+    <example filename="popupApplet" name="PopUp" plasmoid="true" />
+    <example filename="org.kde.plasma.tiger-example" name="Tiger" plasmoid="true" />
+    <example filename="org.kde.plasma.script-nowplaying-example" name="Now Playing" plasmoid="true" />
+  </category>
+</categories>

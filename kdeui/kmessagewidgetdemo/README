@@ -1,0 +1,5 @@
+A widget to provide feedback or propose opportunistic interactions.
+
+KMessageWidget can be used to provide inline positive or negative feedback, or to implement opportunistic interactions.
+
+As a feedback widget, KMessageWidget provides a less intrusive alternative to "OK Only" message boxes.
