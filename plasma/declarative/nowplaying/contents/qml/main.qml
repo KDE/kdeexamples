@@ -27,7 +27,7 @@ QGraphicsWidget {
     id: page;
     preferredSize: "200x200"
     minimumSize: "200x20"
-    property string activeSource: dataSource.sources[0]
+    property string activeSource: ''
 
     Item {
         id:main
@@ -35,10 +35,21 @@ QGraphicsWidget {
         PlasmaCore.DataSource {
             id: dataSource
             dataEngine: "nowplaying"
-            connectedSources: activeSource
+            connectedSources: ['players']
             interval: 500
 
+            onNewData: {
+                if (sourceName == 'players') {
+                    print("going to connect to " +  data['players'][0])
+                    activeSource = data['players'][0]
+                    connectedSources = ['players', activeSource]
+                }
+            }
+
             onDataChanged: {
+                if (!activeSource) {
+                    return;
+                }
 
                 if (data[activeSource].State == "playing") {
                     playPause.setIcon("media-playback-pause")
