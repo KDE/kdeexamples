@@ -45,7 +45,7 @@ plasmoid.stop = function()
     }
 
     job = controller.startOperationCall(controller.operationDescription("stop"))
-    print("JOb is..." + job)
+    print("Job is..." + job)
     //job.finished.connect(plasmoid.jobFinished)
     print("stopping")
 }
