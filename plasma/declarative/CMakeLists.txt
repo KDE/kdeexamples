@@ -1,18 +1,18 @@
 # addons
 install(DIRECTORY addons/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.addons-example-qml)
-install(FILES addons/addons-example.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES addons/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME addons-example.desktop)
 # digital clock
 install(DIRECTORY digital-clock/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.digital-clock-qml)
-install(FILES digital-clock/digital-clock-example.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES digital-clock/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME digital-clock-example.desktop)
 # fakemail
 install(DIRECTORY fakemail/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/fakemail-qml)
-install(FILES fakemail/fakemail-example.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES fakemail/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME akemail-example.desktop)
 # nowplaying
 install(DIRECTORY nowplaying/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.nowplaying-qml)
-install(FILES nowplaying/nowplaying-example.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES nowplaying/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME nowplaying-example.desktop)
 # qmltasks
 install(DIRECTORY qmltasks/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/qmltasks)
-install(FILES qmltasks/qmltasks-example.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES qmltasks/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME qmltasks-example.desktop)
 # samegame
 install(DIRECTORY samegame/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.samegame-qml)
-install(FILES samegame/samegame-example.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES samegame/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME samegame-example.desktop)
