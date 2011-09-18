@@ -2,7 +2,6 @@ project(tutorial-kicon)
  
 find_package(KDE4 REQUIRED)
 include_directories(${KDE4_INCLUDES})
-exec_program("convert world.svg hisc-apps-tutorial-kicon.svgz")
  
 set(tutorial3_SRCS 
   main.cpp
