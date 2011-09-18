@@ -19,7 +19,7 @@ void MainWindow::setupActions()
 {
   KAction* clearAction = new KAction(this);
   clearAction->setText(i18n("&Clear"));
-  clearAction->setIcon(KIcon("document-new"));
+  clearAction->setIcon(KIcon("tutorial-kicon"));
   clearAction->setShortcut(Qt::CTRL + Qt::Key_W);
   actionCollection()->addAction("clear", clearAction);
   connect(clearAction, SIGNAL(triggered(bool)),
