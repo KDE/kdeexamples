@@ -2,13 +2,13 @@ project(tutorial3)
  
 find_package(KDE4 REQUIRED)
 include_directories(${KDE4_INCLUDES})
+exec_program("convert world.svg hisc-apps-tutorial3.svgz")
  
 set(tutorial3_SRCS 
   main.cpp
   mainwindow.cpp
 )
 
-kde4_add_app_icon(tutorial3_SRCS "world.svg")
 kde4_add_executable(tutorial3 ${tutorial3_SRCS})
  
 target_link_libraries(tutorial3 ${KDE4_KDEUI_LIBS})
