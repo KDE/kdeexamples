@@ -6,11 +6,11 @@
  
 int main (int argc, char *argv[])
 {
-  KAboutData aboutData( "tutorial3", "tutorial3",
-      ki18n("Tutorial 3"), "1.0",
-      ki18n("A simple text area using KAction etc."),
+  KAboutData aboutData( "tutorial-kicon", "tutorial-kicon",
+      ki18n("Tutorial KIcon"), "1.0",
+      ki18n("A simple text area using KIcons, KAction etc."),
       KAboutData::License_GPL,
-      ki18n("Copyright (c) 2007 Developer") );
+      ki18n("Copyright (c) 2011 Developer") );
   KCmdLineArgs::init( argc, argv, &aboutData );
   KApplication app;
  

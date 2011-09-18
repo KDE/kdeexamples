@@ -28,7 +28,7 @@ void MainWindow::setupActions()
   KStandardAction::quit(kapp, SLOT(quit()),
                         actionCollection());
  
-  setupGUI(Default, "tutorial3ui.rc");
+  setupGUI(Default, "tutorial-kiconui.rc");
 }
 
 
