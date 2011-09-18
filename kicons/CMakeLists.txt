@@ -3,12 +3,12 @@ project(tutorial-kicon)
 find_package(KDE4 REQUIRED)
 include_directories(${KDE4_INCLUDES})
  
-set(tutorial3_SRCS 
+set(tutorial-source 
   main.cpp
   mainwindow.cpp
 )
 
-kde4_add_executable(tutorial-kicon ${tutorial3_SRCS})
+kde4_add_executable(tutorial-kicon ${tutorial-source})
  
 target_link_libraries(tutorial-kicon ${KDE4_KDEUI_LIBS})
  
