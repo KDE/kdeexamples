@@ -16,3 +16,4 @@ install(TARGETS tutorial-kicon DESTINATION ${BIN_INSTALL_DIR})
 install(FILES tutorial-kiconui.rc 
         DESTINATION  ${DATA_INSTALL_DIR}/tutorial-kicon)
 kde4_install_icons(${ICON_INSTALL_DIR})
+kde4_update_iconcache()
