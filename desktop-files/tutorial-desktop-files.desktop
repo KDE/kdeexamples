@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=tutorial-desktop-files
+GenericName=tutorial-desktop-files
+Comment=A tutorial application categorized as graphics
+Type=Application
+Icon=tutorial-desktop-files
+Terminal=false
+Exec=/usr/local/bin/tutorial-desktop-files
+Categories=Graphics;
