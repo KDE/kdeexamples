@@ -66,4 +66,10 @@
     <example filename="pyhello" name="Hello" plasmoid="true" />
     <example filename="plasma-pyclock" name="Clock" plasmoid="true" />
   </category>
+  <category dirname="plasma" name="Plasmoids Ruby">
+    <example filename="ruby-clock" name="Analog Clock" plasmoid="true" />
+    <example filename="ruby-extender-tutorial" name="Extender" plasmoid="true" />
+    <example filename="ruby-tiger" name="Tiger" plasmoid="true" />
+    <example filename="ruby-webapplet" name="Web Browser" plasmoid="true" />
+  </category>
 </categories>

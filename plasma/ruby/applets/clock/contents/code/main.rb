@@ -22,7 +22,6 @@
  ***************************************************************************/
 =end
 
-require 'plasma_applet'
 require 'analog_clock_config'
 require 'timezones_config'
 require 'calendar'
