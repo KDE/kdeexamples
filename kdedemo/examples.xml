@@ -43,7 +43,6 @@
   </category>
   <category dirname="plasma" name="Plasmoids QML">
     <example filename="org.kde.addons-example-qml" name="Addons" plasmoid="true" />
-    <example filename="org.kde.digital-clock-qml" name="Digital Clock" plasmoid="true" />
     <example filename="fakemail-qml" name="Fake Mail Client" plasmoid="true" />
     <example filename="org.kde.nowplaying-qml" name="Now Playing" plasmoid="true" />
     <example filename="qmltasks" name="Tasks" plasmoid="true" />
