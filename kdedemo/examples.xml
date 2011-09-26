@@ -43,7 +43,6 @@
   </category>
   <category dirname="plasma" name="Plasmoids QML">
     <example filename="org.kde.addons-example-qml" name="Addons" plasmoid="true" />
-    <example filename="org.kde.digital-clock-qml" name="Digital Clock" plasmoid="true" />
     <example filename="fakemail-qml" name="Fake Mail Client" plasmoid="true" />
     <example filename="org.kde.nowplaying-qml" name="Now Playing" plasmoid="true" />
     <example filename="qmltasks" name="Tasks" plasmoid="true" />
@@ -61,5 +60,15 @@
     <example filename="popupApplet" name="PopUp" plasmoid="true" />
     <example filename="org.kde.plasma.tiger-example" name="Tiger" plasmoid="true" />
     <example filename="org.kde.plasma.script-nowplaying-example" name="Now Playing" plasmoid="true" />
+  </category>
+  <category dirname="plasma" name="Plasmoids Python">
+    <example filename="pyhello" name="Hello" plasmoid="true" />
+    <example filename="plasma-pyclock" name="Clock" plasmoid="true" />
+  </category>
+  <category dirname="plasma" name="Plasmoids Ruby">
+    <example filename="ruby-clock" name="Analog Clock" plasmoid="true" />
+    <example filename="ruby-extender-tutorial" name="Extender" plasmoid="true" />
+    <example filename="ruby-tiger" name="Tiger" plasmoid="true" />
+    <example filename="ruby-webapplet" name="Web Browser" plasmoid="true" />
   </category>
 </categories>

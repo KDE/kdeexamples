@@ -46,7 +46,7 @@ Comment[uk]=Приклад контекстного аплету з розшир
 Comment[x-test]=xxAn example of a popup applet with extenderxx
 Comment[zh_TW]=彈出含延長器的小程式的範例
 Type=Service
-ServiceTypes=Plasma/PopupApplet
+ServiceTypes=Plasma/Applet
 
 X-KDE-PluginInfo-Author=The Plasma Team
 X-KDE-PluginInfo-Email=plasma-devel@kde.org
