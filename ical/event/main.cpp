@@ -27,6 +27,9 @@ int main (int argc, char *argv[])
   KCal::Todo* todo1 = new KCal::Todo();
   todo1->setSummary("test todo");
   cal->addTodo(todo1);
+  KCal::Event* event1 = new KCal::Event();
+  event1->setRelatedTo(todo1);
+  cal->addEvent(event1);
   KABC::Lock *lock = cal->lock();
   cal->save();
   lock->unlock();
