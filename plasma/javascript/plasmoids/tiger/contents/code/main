@@ -7,7 +7,13 @@ svg = new PlasmaSvg('tiger')
 p = new QPixmap('kde.png')
 
 // Now we create a context menu action
+plasmoid.setAction('myAction', i18n('Silly name'), 'plasma')
+
+// And change its name
 plasmoid.setAction('myAction', i18n('Toggle KDE Logo'), 'plasma')
+
+// And add a second action -> they will appear in the context menu in the order that they are created
+plasmoid.setAction('mySecondAction', i18n('Also toggles KDE Logo'), 'plasma')
 
 // and something to control the painting of the logo
 drawLogo = true
@@ -25,6 +31,12 @@ plasmoid.action_myAction = function()
     } else {
         print(i18n("Refreshing Plasmoid without the KDE logo."))
     }
+}
+
+// and this one with mySecondAction is triggered
+plasmoid.action_mySecondAction = function()
+{
+    plasmoid.action_myAction()
 }
 
 // plasmoid.paintInterface is called whenever the plasmoid should be repainted
