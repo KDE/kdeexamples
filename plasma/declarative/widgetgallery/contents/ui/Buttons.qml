@@ -42,101 +42,106 @@ PlasmaComponents.Page {
         clip: true
         anchors.fill: parent
 
-        Column {
-            id: column
-            spacing: 20
+        Item {
+            width: Math.max(flickable.width, column.width)
+            height: column.height
+            Column {
+                id: column
+                spacing: 20
+                anchors.horizontalCenter: parent.horizontalCenter
 
-            Text {
-                font.pixelSize: 20
-                text: "Buttons"
-            }
-
-            PlasmaComponents.Button {
-                id: bt1
-
-                text: "Button"
-
-                onClicked: {
-                    console.log("Clicked");
-                    pageStack.push(Qt.createComponent(plasmoid.file("ui", "Scrollers.qml")))
+                Text {
+                    font.pixelSize: 20
+                    text: "Buttons"
                 }
 
-                Keys.onTabPressed: bt2.forceActiveFocus();
-            }
+                PlasmaComponents.Button {
+                    id: bt1
 
-            PlasmaComponents.Button {
-                id: bt2
+                    text: "Button"
 
-                text: "Checkable Button"
-                checkable: true
+                    onClicked: {
+                        console.log("Clicked");
+                        pageStack.push(Qt.createComponent(plasmoid.file("ui", "Scrollers.qml")))
+                    }
 
-                onCheckedChanged: {
-                    if (checked)
-                        console.log("Button Checked");
-                    else
-                        console.log("Button Unchecked");
+                    Keys.onTabPressed: bt2.forceActiveFocus();
                 }
 
-                Keys.onTabPressed: bt3.forceActiveFocus();
-            }
+                PlasmaComponents.Button {
+                    id: bt2
 
-            PlasmaComponents.Button {
-                id: bt3
+                    text: "Checkable Button"
+                    checkable: true
 
-                text: "Different Font"
-                font {
-                    pointSize: 20
-                    family: "Helvetica"
+                    onCheckedChanged: {
+                        if (checked)
+                            console.log("Button Checked");
+                        else
+                            console.log("Button Unchecked");
+                    }
+
+                    Keys.onTabPressed: bt3.forceActiveFocus();
                 }
 
-                Keys.onTabPressed: bt4.forceActiveFocus();
-            }
+                PlasmaComponents.Button {
+                    id: bt3
 
-            PlasmaComponents.Button {
-                id: bt4
+                    text: "Different Font"
+                    font {
+                        pointSize: 20
+                        family: "Helvetica"
+                    }
 
-                text: "Icon Button"
-                iconSource: "konqueror"
+                    Keys.onTabPressed: bt4.forceActiveFocus();
+                }
 
-                Keys.onTabPressed: bt5.forceActiveFocus();
-            }
+                PlasmaComponents.Button {
+                    id: bt4
 
-            PlasmaComponents.Button {
-                id: bt5
+                    text: "Icon Button"
+                    iconSource: "konqueror"
 
-                iconSource: "plasma"
+                    Keys.onTabPressed: bt5.forceActiveFocus();
+                }
 
-                Keys.onTabPressed: bt1.forceActiveFocus();
-            }
+                PlasmaComponents.Button {
+                    id: bt5
 
-            PlasmaComponents.Button {
+                    iconSource: "plasma"
 
-                text: "Disabled Button"
-                enabled: false
-            }
+                    Keys.onTabPressed: bt1.forceActiveFocus();
+                }
 
-            PlasmaComponents.ToolButton {
-                text: "ToolButton"
-            }
+                PlasmaComponents.Button {
 
-            PlasmaComponents.ToolButton {
-                text: "ToolButton not flat"
-                flat: false
-            }
+                    text: "Disabled Button"
+                    enabled: false
+                }
 
-            PlasmaComponents.ToolButton {
+                PlasmaComponents.ToolButton {
+                    text: "ToolButton"
+                }
 
-                text: "Icon ToolButton"
-                iconSource: "konqueror"
-            }
+                PlasmaComponents.ToolButton {
+                    text: "ToolButton not flat"
+                    flat: false
+                }
 
-            PlasmaComponents.ToolButton {
-                iconSource: "plasma"
-            }
+                PlasmaComponents.ToolButton {
 
-            PlasmaComponents.ToolButton {
-                text: "Disabled ToolButton"
-                enabled: false
+                    text: "Icon ToolButton"
+                    iconSource: "konqueror"
+                }
+
+                PlasmaComponents.ToolButton {
+                    iconSource: "plasma"
+                }
+
+                PlasmaComponents.ToolButton {
+                    text: "Disabled ToolButton"
+                    enabled: false
+                }
             }
         }
     }

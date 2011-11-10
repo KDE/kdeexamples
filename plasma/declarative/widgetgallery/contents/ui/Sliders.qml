@@ -48,114 +48,119 @@ PlasmaComponents.Page {
         clip: true
         anchors.fill: parent
 
-        Column {
-            id: column
-            spacing: 20
+        Item {
+            width: Math.max(flickable.width, column.width)
+            height: column.height
+            Column {
+                id: column
+                spacing: 20
+                anchors.horizontalCenter: parent.horizontalCenter
 
-            PlasmaComponents.Label {
-                font.pixelSize: 20
-                text: "Slider"
-            }
+                PlasmaComponents.Label {
+                    font.pixelSize: 20
+                    text: "Slider"
+                }
 
-            PlasmaComponents.Highlight {
-                width: 300
-                height: 400
-                Column {
-                    anchors {
-                        fill: parent
-                    }
-                    spacing: 10
+                PlasmaComponents.Highlight {
+                    width: 300
+                    height: 400
+                    Column {
+                        anchors {
+                            fill: parent
+                        }
+                        spacing: 10
 
-                    PlasmaComponents.Label { text: "Color Selector"; font.pixelSize: 20 }
+                        PlasmaComponents.Label { text: "Color Selector"; font.pixelSize: 20 }
 
-                    PlasmaComponents.Label { text: "Red" }
+                        PlasmaComponents.Label { text: "Red" }
 
-                    PlasmaComponents.Slider {
-                        id: redSlider
-                        height: 20
-                        width: 255
-                        orientation: Qt.Horizontal
-                        minimumValue: 0
-                        maximumValue: 255
-                        stepSize: 10
-                        Keys.onTabPressed: greenSlider.forceActiveFocus()
-                    }
+                        PlasmaComponents.Slider {
+                            id: redSlider
+                            height: 20
+                            width: 255
+                            orientation: Qt.Horizontal
+                            minimumValue: 0
+                            maximumValue: 255
+                            stepSize: 10
+                            Keys.onTabPressed: greenSlider.forceActiveFocus()
+                        }
 
-                    PlasmaComponents.Label { text: "Green" }
+                        PlasmaComponents.Label { text: "Green" }
 
-                    PlasmaComponents.Slider {
-                        id: greenSlider
-                        height: 20
-                        width: 255
-                        orientation: Qt.Horizontal
-                        minimumValue: 0
-                        maximumValue: 255
-                        stepSize: 10
-                        animated: true
-                        Keys.onTabPressed: blueSlider.forceActiveFocus()
-                    }
+                        PlasmaComponents.Slider {
+                            id: greenSlider
+                            height: 20
+                            width: 255
+                            orientation: Qt.Horizontal
+                            minimumValue: 0
+                            maximumValue: 255
+                            stepSize: 10
+                            animated: true
+                            Keys.onTabPressed: blueSlider.forceActiveFocus()
+                        }
 
-                    PlasmaComponents.Label { text: "Blue" }
+                        PlasmaComponents.Label { text: "Blue" }
 
-                    PlasmaComponents.Slider {
-                        id: blueSlider
-                        height: 20
-                        width: 255
-                        orientation: Qt.Horizontal
-                        minimumValue: 0
-                        maximumValue: 255
-                        stepSize: 10
-                        Keys.onTabPressed: redSlider.forceActiveFocus()
-                    }
+                        PlasmaComponents.Slider {
+                            id: blueSlider
+                            height: 20
+                            width: 255
+                            orientation: Qt.Horizontal
+                            minimumValue: 0
+                            maximumValue: 255
+                            stepSize: 10
+                            Keys.onTabPressed: redSlider.forceActiveFocus()
+                        }
 
-                    Rectangle {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        width: parent.width / 2
-                        height: width
-                        color: Qt.rgba(redSlider.value / 255, greenSlider.value / 255, blueSlider.value / 255, 1)
+                        Rectangle {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: parent.width / 2
+                            height: width
+                            color: Qt.rgba(redSlider.value / 255, greenSlider.value / 255, blueSlider.value / 255, 1)
+                        }
                     }
                 }
-            }
 
-            PlasmaComponents.Label { text: "Disabled Horizontal Slider" }
+                PlasmaComponents.Label { text: "Disabled Horizontal Slider" }
 
-            PlasmaComponents.Slider {
-                id: horizontalSlider
-                width: 140
-                height: 20
-                animated: true
-                enabled: false
-            }
-
-            PlasmaComponents.Label { text: "Inverted Horizontal Slider" }
-
-            PlasmaComponents.Slider {
-                id: invHorizontalSlider
-                width: 140
-                height: 20
-                inverted: true
-                animated: true
-                enabled: true
-            }
-
-            PlasmaComponents.Label { text: "Vertical Slider" }
-
-            Row {
-                spacing: 30
                 PlasmaComponents.Slider {
-                    id: verticalSlider
-                    width: 20
-                    height: 140
-                    orientation: Qt.Vertical
-                    minimumValue: 10
-                    maximumValue: 1000
-                    stepSize: 50
+                    id: horizontalSlider
+                    width: 140
+                    height: 20
+                    animated: true
+                    enabled: false
+                }
+
+                PlasmaComponents.Label { text: "Inverted Horizontal Slider" }
+
+                PlasmaComponents.Slider {
+                    id: invHorizontalSlider
+                    width: 140
+                    height: 20
                     inverted: true
                     animated: true
+                    enabled: true
                 }
-                PlasmaComponents.Label { text: verticalSlider.value }
-            }
 
+                PlasmaComponents.Label { text: "Vertical Slider" }
+
+                Row {
+                    spacing: 30
+                    PlasmaComponents.Slider {
+                        id: verticalSlider
+                        width: 20
+                        height: 140
+                        orientation: Qt.Vertical
+                        minimumValue: 10
+                        maximumValue: 1000
+                        stepSize: 50
+                        inverted: true
+                        animated: true
+                    }
+                    PlasmaComponents.Label { text: verticalSlider.value }
+                }
+
+            }
         }
     }
 

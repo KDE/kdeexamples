@@ -39,6 +39,7 @@ Image {
 
 
     Image {
+        id: sidebar
         source: "image://appbackgrounds/contextarea"
         fillMode: Image.Tile
         asynchronous: true
@@ -62,6 +63,7 @@ Image {
         ListView {
             id: pageSelector
             clip: true
+            anchors.fill: parent
 
             model:  ListModel {
                 id: pagesModel
@@ -112,7 +114,7 @@ Image {
         toolBar: toolBar
         anchors {
             top: toolBar.bottom
-            left: pageSelector.right
+            left: sidebar.right
             right: parent.right
             bottom: parent.bottom
         }

@@ -45,91 +45,96 @@ PlasmaComponents.Page {
         clip: true
         anchors.fill: parent
 
-        Column {
-            id: column
-            spacing: 20
-
-            Text {
-                font.pixelSize: 20
-                text: "Check Box"
-            }
-
-            PlasmaComponents.CheckBox {
-                width: 140
-                height: 30
-                text: "Check Box 1"
-
-                onCheckedChanged: {
-                    if (checked)
-                        console.log("CheckBox checked");
-                    else
-                        console.log("CheckBox unchecked");
-                }
-                onClicked: {
-                    console.log("CheckBox clicked");
-                }
-            }
-
-            PlasmaComponents.CheckBox {
-                height: 30
-                text: "Disabled"
-                enabled: false
-            }
-
-            PlasmaComponents.CheckBox {
-                height: 30
-                text: ""
-            }
-
-            PlasmaComponents.CheckBox {
-                height: 30
-                text: "A loooooooooooooong text"
-            }
-
-            Text {
-                font.pixelSize: 20
-                text: "Radio Button"
-            }
-
-            PlasmaComponents.RadioButton {
-                width: 140
-                height: 30
-                text: "RadioButton"
-
-                onCheckedChanged: {
-                    if (checked)
-                        console.log("RadioButton Checked");
-                    else
-                        console.log("RadioButton Unchecked");
-                }
-            }
-
-            PlasmaComponents.Switch { }
-
-            Text {
-                font.pixelSize: 20
-                text: "Button Row"
-            }
-
-            PlasmaComponents.ButtonRow {
+        Item {
+            width: Math.max(flickable.width, column.width)
+            height: column.height
+            Column {
+                id: column
                 spacing: 20
-                PlasmaComponents.RadioButton { text: "A" }
-                PlasmaComponents.RadioButton { text: "B" }
-                PlasmaComponents.RadioButton { text: "C" }
-            }
+                anchors.horizontalCenter: parent.horizontalCenter
 
-            Text {
-                font.pixelSize: 20
-                text: "Button Column"
-            }
+                Text {
+                    font.pixelSize: 20
+                    text: "Check Box"
+                }
 
-            PlasmaComponents.ButtonColumn {
-                spacing: 20
-                PlasmaComponents.RadioButton { text: "Alice" }
-                PlasmaComponents.RadioButton { text: "Bob" }
-                PlasmaComponents.RadioButton { text: "Charles" }
-            }
+                PlasmaComponents.CheckBox {
+                    width: 140
+                    height: 30
+                    text: "Check Box 1"
 
+                    onCheckedChanged: {
+                        if (checked)
+                            console.log("CheckBox checked");
+                        else
+                            console.log("CheckBox unchecked");
+                    }
+                    onClicked: {
+                        console.log("CheckBox clicked");
+                    }
+                }
+
+                PlasmaComponents.CheckBox {
+                    height: 30
+                    text: "Disabled"
+                    enabled: false
+                }
+
+                PlasmaComponents.CheckBox {
+                    height: 30
+                    text: ""
+                }
+
+                PlasmaComponents.CheckBox {
+                    height: 30
+                    text: "A loooooooooooooong text"
+                }
+
+                Text {
+                    font.pixelSize: 20
+                    text: "Radio Button"
+                }
+
+                PlasmaComponents.RadioButton {
+                    width: 140
+                    height: 30
+                    text: "RadioButton"
+
+                    onCheckedChanged: {
+                        if (checked)
+                            console.log("RadioButton Checked");
+                        else
+                            console.log("RadioButton Unchecked");
+                    }
+                }
+
+                PlasmaComponents.Switch { }
+
+                Text {
+                    font.pixelSize: 20
+                    text: "Button Row"
+                }
+
+                PlasmaComponents.ButtonRow {
+                    spacing: 20
+                    PlasmaComponents.RadioButton { text: "A" }
+                    PlasmaComponents.RadioButton { text: "B" }
+                    PlasmaComponents.RadioButton { text: "C" }
+                }
+
+                Text {
+                    font.pixelSize: 20
+                    text: "Button Column"
+                }
+
+                PlasmaComponents.ButtonColumn {
+                    spacing: 20
+                    PlasmaComponents.RadioButton { text: "Alice" }
+                    PlasmaComponents.RadioButton { text: "Bob" }
+                    PlasmaComponents.RadioButton { text: "Charles" }
+                }
+
+            }
         }
     }
 
