@@ -35,54 +35,15 @@ Item {
     }
 
 
-    Flickable {
-        id: page
-        clip: true
-
+    PageStack {
+        id: pageStack
+        toolBar: toolBar
         anchors {
             top: toolBar.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
-        contentWidth: pageStack.currentPage.implicitWidth
-        contentHeight: pageStack.currentPage.implicitHeight
-
-        PageStack {
-            id: pageStack
-            toolBar: toolBar
-            width: page.width
-            height: currentPage.implicitHeight
-            initialPage: Qt.createComponent("Menu.qml")
-        }
-
-    }
-
-    ScrollBar {
-        id: horizontalScrollBar
-
-	    stepSize: 30
-
-        flickableItem: page
-        orientation: Qt.Horizontal
-        anchors {
-            left: parent.left
-            right: verticalScrollBar.left
-            bottom: parent.bottom
-        }
-    }
-
-    ScrollBar {
-        id: verticalScrollBar
-
-	    stepSize: 30
-
-        orientation: Qt.Vertical
-        flickableItem: page
-        anchors {
-            top: toolBar.bottom
-            right: parent.right
-            bottom: horizontalScrollBar.top
-        }
+        initialPage: Qt.createComponent("Menu.qml")
     }
 }

@@ -37,60 +37,94 @@ PlasmaComponents.Page {
             text: "Busy widgets"
         }
     }
-    Column {
-        spacing: 20
 
-        Text {
-            font.pixelSize: 20
-            text: "Busy Indicator"
-        }
+    Flickable {
+        id: flickable
+        contentWidth: column.width
+        contentHeight: column.height
+        clip: true
+        anchors.fill: parent
 
-        PlasmaComponents.BusyIndicator { }
-
-        PlasmaComponents.BusyIndicator { running: true }
-
-        Text {
-            font.pixelSize: 20
-            text: "Progress Bar"
-        }
-
-        Text { text: "Horizontal" }
-
-        PlasmaComponents.ProgressBar {
-            value: 0.3
-        }
-
-        PlasmaComponents.ProgressBar {
-            indeterminate: true
-        }
-
-        PlasmaComponents.ProgressBar {
-            minimumValue: 0
-            maximumValue: 100
-            value: 30
-        }
-
-        Text { text: "Vertical" }
-        Row {
+        Column {
+            id: column
             spacing: 20
+
+            Text {
+                font.pixelSize: 20
+                text: "Busy Indicator"
+            }
+
+            PlasmaComponents.BusyIndicator { }
+
+            PlasmaComponents.BusyIndicator { running: true }
+
+            Text {
+                font.pixelSize: 20
+                text: "Progress Bar"
+            }
+
+            Text { text: "Horizontal" }
+
             PlasmaComponents.ProgressBar {
                 value: 0.3
-                orientation: Qt.Vertical
-                width: 20
-                height: 100
             }
+
             PlasmaComponents.ProgressBar {
-                value: 0.4
-                orientation: Qt.Vertical
-                width: 20
-                height: 120
-            }
-            PlasmaComponents.ProgressBar {
-                orientation: Qt.Vertical
-                width: 20
-                height: 100
                 indeterminate: true
             }
+
+            PlasmaComponents.ProgressBar {
+                minimumValue: 0
+                maximumValue: 100
+                value: 30
+            }
+
+            Text { text: "Vertical" }
+            Row {
+                spacing: 20
+                PlasmaComponents.ProgressBar {
+                    value: 0.3
+                    orientation: Qt.Vertical
+                    width: 20
+                    height: 100
+                }
+                PlasmaComponents.ProgressBar {
+                    value: 0.4
+                    orientation: Qt.Vertical
+                    width: 20
+                    height: 120
+                }
+                PlasmaComponents.ProgressBar {
+                    orientation: Qt.Vertical
+                    width: 20
+                    height: 100
+                    indeterminate: true
+                }
+            }
+        }
+    }
+
+    PlasmaComponents.ScrollBar {
+        id: horizontalScrollBar
+
+        flickableItem: flickable
+        orientation: Qt.Horizontal
+        anchors {
+            left: parent.left
+            right: verticalScrollBar.left
+            bottom: parent.bottom
+        }
+    }
+
+    PlasmaComponents.ScrollBar {
+        id: verticalScrollBar
+
+        orientation: Qt.Vertical
+        flickableItem: flickable
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: horizontalScrollBar.top
         }
     }
 }

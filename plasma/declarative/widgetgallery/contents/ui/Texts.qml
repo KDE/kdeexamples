@@ -40,81 +40,115 @@ PlasmaComponents.Page {
             text: "Text fields page"
         }
     }
-    Column {
-        spacing: 30
-        Text {
-            text: "Text Fields"
-            font.pixelSize: 20
-        }
 
-        PlasmaComponents.Highlight {
-            width: 200
-            height: 100
-            Column {
-                spacing: 10
-                Row {
-                    Text {
-                        text: "Username: "
-                        anchors.verticalCenter: tf1.verticalCenter
-                    }
-                    PlasmaComponents.TextField {
-                        id: tf1
-                        placeholderText: "login"
-                        Keys.onTabPressed: tf2.forceActiveFocus();
-                    }
-                }
+    Flickable {
+        id: flickable
+        contentWidth: column.width
+        contentHeight: column.height
+        clip: true
+        anchors.fill: parent
 
-                Row {
-                    Text {
-                        text: "Password: "
-                        anchors.verticalCenter: tf2.verticalCenter
-                    }
-                    PlasmaComponents.TextField {
-                        id: tf2
-                        width: 120
-                        echoMode: TextInput.Password
-                        Keys.onTabPressed: loginButton.forceActiveFocus();
-                    }
-                }
+        Column {
+            id: column
+            spacing: 30
+            Text {
+                text: "Text Fields"
+                font.pixelSize: 20
+            }
 
-                PlasmaComponents.Button {
-                    id: loginButton
-                    text: "Login"
-                    anchors {
-                        right: parent.right
-                        rightMargin: 0
+            PlasmaComponents.Highlight {
+                width: 200
+                height: 100
+                Column {
+                    spacing: 10
+                    Row {
+                        Text {
+                            text: "Username: "
+                            anchors.verticalCenter: tf1.verticalCenter
+                        }
+                        PlasmaComponents.TextField {
+                            id: tf1
+                            placeholderText: "login"
+                            Keys.onTabPressed: tf2.forceActiveFocus();
+                        }
                     }
-                    width: 100
+
+                    Row {
+                        Text {
+                            text: "Password: "
+                            anchors.verticalCenter: tf2.verticalCenter
+                        }
+                        PlasmaComponents.TextField {
+                            id: tf2
+                            width: 120
+                            echoMode: TextInput.Password
+                            Keys.onTabPressed: loginButton.forceActiveFocus();
+                        }
+                    }
+
+                    PlasmaComponents.Button {
+                        id: loginButton
+                        text: "Login"
+                        anchors {
+                            right: parent.right
+                            rightMargin: 0
+                        }
+                        width: 100
+                    }
                 }
             }
-        }
 
-        PlasmaComponents.TextField {
-            width: 120
-            placeholderText: "Disabled Text Field"
-            Keys.onTabPressed: loginButton.forceActiveFocus();
-            enabled: false
-        }
+            PlasmaComponents.TextField {
+                width: 120
+                placeholderText: "Disabled Text Field"
+                Keys.onTabPressed: loginButton.forceActiveFocus();
+                enabled: false
+            }
 
-        Text {
-            text: "Text Area"
-            font.pixelSize: 20
-        }
+            Text {
+                text: "Text Area"
+                font.pixelSize: 20
+            }
 
-        PlasmaComponents.TextArea {
-            width: 200
-            height: 200
-            placeholderText: "Lorem ipsum et dolor"
-            wrapMode: TextEdit.WordWrap
-            contentMaxWidth: 400
-            contentMaxHeight: 400
-        }
+            PlasmaComponents.TextArea {
+                width: 200
+                height: 200
+                placeholderText: "Lorem ipsum et dolor"
+                wrapMode: TextEdit.WordWrap
+                contentMaxWidth: 400
+                contentMaxHeight: 400
+            }
 
-        PlasmaComponents.TextArea {
-            width: 200
-            height: 100
-            enabled: false
-            text: "Disabled Text Area"
+            PlasmaComponents.TextArea {
+                width: 200
+                height: 100
+                enabled: false
+                text: "Disabled Text Area"
+            }
+        }
+    }
+
+    PlasmaComponents.ScrollBar {
+        id: horizontalScrollBar
+
+        flickableItem: flickable
+        orientation: Qt.Horizontal
+        anchors {
+            left: parent.left
+            right: verticalScrollBar.left
+            bottom: parent.bottom
+        }
+    }
+
+    PlasmaComponents.ScrollBar {
+        id: verticalScrollBar
+
+        orientation: Qt.Vertical
+        flickableItem: flickable
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: horizontalScrollBar.top
         }
     }
 }

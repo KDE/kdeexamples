@@ -34,81 +34,114 @@ PlasmaComponents.Page {
         PlasmaComponents.TextField {}
     }
 
-    Column {
-        spacing: 20
+    Flickable {
+        id: flickable
+        contentWidth: column.width
+        contentHeight: column.height
+        clip: true
+        anchors.fill: parent
 
-        Text {
-            font.pixelSize: 20
-            text: "Buttons"
-        }
+        Column {
+            id: column
+            spacing: 20
 
-        PlasmaComponents.Button {
-            id: bt1
-            width: 140
-            height: 30
-            text: "Button"
-
-            onClicked: {
-                console.log("Clicked");
+            Text {
+                font.pixelSize: 20
+                text: "Buttons"
             }
 
-            Keys.onTabPressed: bt2.forceActiveFocus();
-        }
+            PlasmaComponents.Button {
+                id: bt1
+                width: 140
+                height: 30
+                text: "Button"
 
-        PlasmaComponents.Button {
-            id: bt2
-            width: 140
-            height: 30
-            text: "Checkable Button"
-            checkable: true
+                onClicked: {
+                    console.log("Clicked");
+                }
 
-            onCheckedChanged: {
-                if (checked)
-                    console.log("Button Checked");
-                else
-                    console.log("Button Unchecked");
+                Keys.onTabPressed: bt2.forceActiveFocus();
             }
 
-            Keys.onTabPressed: bt3.forceActiveFocus();
-        }
+            PlasmaComponents.Button {
+                id: bt2
+                width: 140
+                height: 30
+                text: "Checkable Button"
+                checkable: true
 
-        PlasmaComponents.Button {
-            id: bt3
-            width: 140
-            height: 30
-            text: "Different Font"
-            font {
-                pixelSize: 20
-                family: "Helvetica"
+                onCheckedChanged: {
+                    if (checked)
+                        console.log("Button Checked");
+                    else
+                        console.log("Button Unchecked");
+                }
+
+                Keys.onTabPressed: bt3.forceActiveFocus();
             }
 
-            Keys.onTabPressed: bt4.forceActiveFocus();
+            PlasmaComponents.Button {
+                id: bt3
+                width: 140
+                height: 30
+                text: "Different Font"
+                font {
+                    pixelSize: 20
+                    family: "Helvetica"
+                }
+
+                Keys.onTabPressed: bt4.forceActiveFocus();
+            }
+
+            PlasmaComponents.Button {
+                id: bt4
+                width: 140
+                height: 30
+                text: "Icon Button"
+                iconSource: "/home/dakerfp/work/comics-reader/ui/images/random.png"
+
+                Keys.onTabPressed: bt5.forceActiveFocus();
+            }
+
+            PlasmaComponents.Button {
+                id: bt5
+                width: 140
+                height: 30
+                iconSource: "/home/dakerfp/work/comics-reader/ui/images/random.png"
+
+                Keys.onTabPressed: bt1.forceActiveFocus();
+            }
+
+            PlasmaComponents.Button {
+                width: 140
+                height: 30
+                text: "Disabled Button"
+                enabled: false
+            }
         }
+    }
 
-        PlasmaComponents.Button {
-            id: bt4
-            width: 140
-            height: 30
-            text: "Icon Button"
-            iconSource: "/home/dakerfp/work/comics-reader/ui/images/random.png"
+    PlasmaComponents.ScrollBar {
+        id: horizontalScrollBar
 
-            Keys.onTabPressed: bt5.forceActiveFocus();
+        flickableItem: flickable
+        orientation: Qt.Horizontal
+        anchors {
+            left: parent.left
+            right: verticalScrollBar.left
+            bottom: parent.bottom
         }
+    }
 
-        PlasmaComponents.Button {
-            id: bt5
-            width: 140
-            height: 30
-            iconSource: "/home/dakerfp/work/comics-reader/ui/images/random.png"
+    PlasmaComponents.ScrollBar {
+        id: verticalScrollBar
 
-            Keys.onTabPressed: bt1.forceActiveFocus();
-        }
-
-        PlasmaComponents.Button {
-            width: 140
-            height: 30
-            text: "Disabled Button"
-            enabled: false
+        orientation: Qt.Vertical
+        flickableItem: flickable
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: horizontalScrollBar.top
         }
     }
 }

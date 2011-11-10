@@ -22,14 +22,11 @@ import QtQuick 1.1
 import org.kde.plasma.components 0.1
 
 Page {
-    implicitWidth: pageStack.width
-    implicitHeight: 200
-
     ListView {
         id: pageSelector
-
-        clip:true
+        clip: true
         anchors.fill: parent
+
         model:  ListModel {
             id: pagesModel
             ListElement {
@@ -70,5 +67,16 @@ Page {
             }
             onClicked: pageStack.push(Qt.createComponent(plasmoid.file("ui", page)))
         }
-    } 
+    }
+    ScrollBar {
+        id: verticalScrollBar
+
+        orientation: Qt.Vertical
+        flickableItem: pageSelector
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: parent.bottom
+        }
+    }
 }
