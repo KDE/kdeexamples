@@ -21,9 +21,12 @@ import QtQuick 1.0
 import org.kde.plasma.components 0.1
 import org.kde.plasma.mobilecomponents 0.1 as MobileComponents
 
-Item {
+Image {
     property int minimumWidth: 300
     property int minimumHeight: 400
+    source: "image://appbackgrounds/standard"
+    fillMode: Image.Tile
+    asynchronous: true
 
     ToolBar {
         id: toolBar
@@ -35,54 +38,71 @@ Item {
     }
 
 
-    ListView {
-        id: pageSelector
+    Image {
+        source: "image://appbackgrounds/contextarea"
+        fillMode: Image.Tile
+        asynchronous: true
         width: 200
-        clip: true
         z: 10
         anchors {
             top: toolBar.bottom
             bottom: parent.bottom
         }
-        model:  ListModel {
-            id: pagesModel
-            ListElement {
-                page: "Buttons.qml"
-                title: "Buttons"
-            }
-            ListElement {
-                page: "CheckableButtons.qml"
-                title: "Checkable buttons"
-            }
-            ListElement {
-                page: "Busy.qml"
-                title: "Busy indicators"
-            }
-            ListElement {
-                page: "Sliders.qml"
-                title: "Sliders"
-            }
-            ListElement {
-                page: "Scrollers.qml"
-                title: "Scrollers"
-            }
-            ListElement {
-                page: "Texts.qml"
-                title: "Text elements"
-            }
-            ListElement {
-                page: "Misc.qml"
-                title: "Misc stuff"
+        Image {
+            source: "image://appbackgrounds/shadow-right"
+            fillMode: Image.Tile
+            anchors {
+                left: parent.right
+                top: parent.top
+                bottom: parent.bottom
+                leftMargin: -1
             }
         }
-        delegate: ListItem {
-            enabled: true
-            Column {
-                Label {
-                    text: title
+
+        ListView {
+            id: pageSelector
+            clip: true
+
+            model:  ListModel {
+                id: pagesModel
+                ListElement {
+                    page: "Buttons.qml"
+                    title: "Buttons"
+                }
+                ListElement {
+                    page: "CheckableButtons.qml"
+                    title: "Checkable buttons"
+                }
+                ListElement {
+                    page: "Busy.qml"
+                    title: "Busy indicators"
+                }
+                ListElement {
+                    page: "Sliders.qml"
+                    title: "Sliders"
+                }
+                ListElement {
+                    page: "Scrollers.qml"
+                    title: "Scrollers"
+                }
+                ListElement {
+                    page: "Texts.qml"
+                    title: "Text elements"
+                }
+                ListElement {
+                    page: "Misc.qml"
+                    title: "Misc stuff"
                 }
             }
-            onClicked: pageStack.replace(Qt.createComponent(plasmoid.file("ui", page)))
+            delegate: ListItem {
+                enabled: true
+                Column {
+                    Label {
+                        text: title
+                    }
+                }
+                onClicked: pageStack.replace(Qt.createComponent(plasmoid.file("ui", page)))
+            }
         }
     }
 
