@@ -52,12 +52,12 @@ PlasmaComponents.Page {
 
             PlasmaComponents.Button {
                 id: bt1
-                width: 140
-                height: 30
+
                 text: "Button"
 
                 onClicked: {
                     console.log("Clicked");
+                    pageStack.push(Qt.createComponent(plasmoid.file("ui", "Scrollers.qml")))
                 }
 
                 Keys.onTabPressed: bt2.forceActiveFocus();
@@ -65,8 +65,7 @@ PlasmaComponents.Page {
 
             PlasmaComponents.Button {
                 id: bt2
-                width: 140
-                height: 30
+
                 text: "Checkable Button"
                 checkable: true
 
@@ -82,11 +81,10 @@ PlasmaComponents.Page {
 
             PlasmaComponents.Button {
                 id: bt3
-                width: 140
-                height: 30
+
                 text: "Different Font"
                 font {
-                    pixelSize: 20
+                    pointSize: 20
                     family: "Helvetica"
                 }
 
@@ -95,26 +93,23 @@ PlasmaComponents.Page {
 
             PlasmaComponents.Button {
                 id: bt4
-                width: 140
-                height: 30
+
                 text: "Icon Button"
-                iconSource: "/home/dakerfp/work/comics-reader/ui/images/random.png"
+                iconSource: "konqueror"
 
                 Keys.onTabPressed: bt5.forceActiveFocus();
             }
 
             PlasmaComponents.Button {
                 id: bt5
-                width: 140
-                height: 30
-                iconSource: "/home/dakerfp/work/comics-reader/ui/images/random.png"
+
+                iconSource: "plasma"
 
                 Keys.onTabPressed: bt1.forceActiveFocus();
             }
 
             PlasmaComponents.Button {
-                width: 140
-                height: 30
+
                 text: "Disabled Button"
                 enabled: false
             }

@@ -38,6 +38,7 @@ Item {
     PageStack {
         id: pageStack
         toolBar: toolBar
+        clip: true
         anchors {
             top: toolBar.bottom
             left: parent.left
