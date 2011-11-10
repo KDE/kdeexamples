@@ -113,6 +113,30 @@ PlasmaComponents.Page {
                 text: "Disabled Button"
                 enabled: false
             }
+
+            PlasmaComponents.ToolButton {
+                text: "ToolButton"
+            }
+
+            PlasmaComponents.ToolButton {
+                text: "ToolButton not flat"
+                flat: false
+            }
+
+            PlasmaComponents.ToolButton {
+
+                text: "Icon ToolButton"
+                iconSource: "konqueror"
+            }
+
+            PlasmaComponents.ToolButton {
+                iconSource: "plasma"
+            }
+
+            PlasmaComponents.ToolButton {
+                text: "Disabled ToolButton"
+                enabled: false
+            }
         }
     }
 
