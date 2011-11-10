@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
   setCentralWidget(textArea);
  
   setupActions();
+  testint();
 }
  
 void MainWindow::setupActions()
@@ -31,4 +32,8 @@ void MainWindow::setupActions()
   setupGUI();
 }
 
+QString MainWindow::testint()
+{
+  int i=5;
+}
 

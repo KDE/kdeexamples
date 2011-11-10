@@ -15,6 +15,7 @@ This is a test case for KDE's iCalendar functionality.
 int main (int argc, char *argv[])
 {
   const QByteArray& ba=QByteArray("test");
+  delete (void *)0;
   const KLocalizedString name=ki18n("myName");
   KAboutData aboutData( ba, ba, name, ba, name);
   KCmdLineArgs::init( argc, argv, &aboutData );
@@ -29,6 +30,8 @@ int main (int argc, char *argv[])
   cal->addTodo(todo1);
   KCal::Event* event1 = new KCal::Event();
   event1->setRelatedTo(todo1);
+  event1->setDtStart(KDateTime::currentLocalDateTime());
+  event1->setDtEnd(KDateTime::currentLocalDateTime());
   cal->addEvent(event1);
   KABC::Lock *lock = cal->lock();
   cal->save();

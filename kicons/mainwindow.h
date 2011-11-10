@@ -12,6 +12,7 @@ class MainWindow : public KXmlGuiWindow
   private:
     KTextEdit* textArea;
     void setupActions();
+    QString testint();
 };
  
 #endif
