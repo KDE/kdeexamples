@@ -48,6 +48,7 @@ Page {
     tools: Row {
         spacing: 5
         ToolButton {
+            visible: pageStack.depth > 1
             iconSource: "go-previous"
             onClicked: pageStack.pop()
         }

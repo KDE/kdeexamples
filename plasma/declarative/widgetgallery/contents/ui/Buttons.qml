@@ -25,6 +25,7 @@ PlasmaComponents.Page {
     tools: PlasmaComponents.ToolBarLayout {
         spacing: 5
         PlasmaComponents.ToolButton {
+            visible: pageStack.depth > 1
             iconSource: "go-previous"
             onClicked: pageStack.pop()
         }
