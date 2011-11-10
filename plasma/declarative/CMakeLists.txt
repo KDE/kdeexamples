@@ -17,4 +17,3 @@ install(FILES samegame/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENA
 # widgetgallery
 install(DIRECTORY widgetgallery/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.example.widgetgallery)
 install(FILES widgetgallery/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME plasma-applet-org.kde.example.widgetgallery.desktop)
-install(FILES widgetgallery/widgetgallery-tablet DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS})
