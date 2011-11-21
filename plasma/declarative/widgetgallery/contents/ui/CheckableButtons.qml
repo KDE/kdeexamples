@@ -34,6 +34,7 @@ PlasmaComponents.Page {
             text: "Checkbox in the toolbar"
         }
         PlasmaComponents.TextField {
+            clearButtonShown: true
             text: "hello"
         }
     }

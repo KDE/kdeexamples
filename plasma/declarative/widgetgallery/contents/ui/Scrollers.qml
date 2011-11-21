@@ -38,6 +38,7 @@ PlasmaComponents.Page {
             width: 200
         }
         PlasmaComponents.TextField {
+            clearButtonShown: true
             text: "hello"
         }
     }

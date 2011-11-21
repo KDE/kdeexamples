@@ -96,27 +96,11 @@ Page {
 
                 TextField {
                     id: clearable
+                    clearButtonShown: true
                     anchors.horizontalCenter: parent.horizontalCenter
                     placeholderText: "Clearable TextField"
                     text: "Clearable TextField"
                     width: parent.width - parent.spacing
-
-                    Image {
-                        id: clearText
-                        anchors { top: parent.top; right: parent.right; margins: 6 }
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true; visible: parent.text
-                        source: "qrc:close_stop.svg"
-                        height: parent.height - 6
-                        width: parent.height - 6
-
-                        MouseArea {
-                            id: clear
-                            anchors { horizontalCenter: parent.horizontalCenter; verticalCenter: parent.verticalCenter }
-                            height: clearable.height; width: clearable.height
-                            onClicked: clearable.text = ""
-                        }
-                    }
                 }
 
                 TextField {

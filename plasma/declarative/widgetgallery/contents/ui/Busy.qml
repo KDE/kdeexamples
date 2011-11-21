@@ -35,6 +35,7 @@ PlasmaComponents.Page {
             value: 0.3
         }
         PlasmaComponents.TextField {
+            clearButtonShown: true
             text: "Busy widgets"
         }
     }

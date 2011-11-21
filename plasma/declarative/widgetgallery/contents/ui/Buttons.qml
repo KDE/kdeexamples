@@ -32,7 +32,9 @@ PlasmaComponents.Page {
         PlasmaComponents.Button {
             text: "Button"
         }
-        PlasmaComponents.TextField {}
+        PlasmaComponents.TextField {
+            clearButtonShown: true
+        }
     }
 
     Flickable {

@@ -38,6 +38,7 @@ PlasmaComponents.Page {
             placeholderText: "Place holder text"
         }
         PlasmaComponents.TextField {
+            clearButtonShown: true
             text: "Text fields page"
         }
     }
