@@ -61,62 +61,56 @@ PlasmaComponents.Page {
                     text: "Slider"
                 }
 
-                PlasmaComponents.Highlight {
-                    width: 300
-                    height: 400
-                    Column {
-                        anchors {
-                            fill: parent
-                        }
-                        spacing: 10
 
-                        PlasmaComponents.Label { text: "Color Selector"; font.pixelSize: 20 }
+                Column {
+                    spacing: 10
 
-                        PlasmaComponents.Label { text: "Red" }
+                    PlasmaComponents.Label { text: "Color Selector"; font.pixelSize: 20 }
 
-                        PlasmaComponents.Slider {
-                            id: redSlider
-                            height: 20
-                            width: 255
-                            orientation: Qt.Horizontal
-                            minimumValue: 0
-                            maximumValue: 255
-                            stepSize: 10
-                            Keys.onTabPressed: greenSlider.forceActiveFocus()
-                        }
+                    PlasmaComponents.Label { text: "Red" }
 
-                        PlasmaComponents.Label { text: "Green" }
+                    PlasmaComponents.Slider {
+                        id: redSlider
+                        height: 20
+                        width: 255
+                        orientation: Qt.Horizontal
+                        minimumValue: 0
+                        maximumValue: 255
+                        stepSize: 10
+                        Keys.onTabPressed: greenSlider.forceActiveFocus()
+                    }
 
-                        PlasmaComponents.Slider {
-                            id: greenSlider
-                            height: 20
-                            width: 255
-                            orientation: Qt.Horizontal
-                            minimumValue: 0
-                            maximumValue: 255
-                            stepSize: 10
-                            Keys.onTabPressed: blueSlider.forceActiveFocus()
-                        }
+                    PlasmaComponents.Label { text: "Green" }
 
-                        PlasmaComponents.Label { text: "Blue" }
+                    PlasmaComponents.Slider {
+                        id: greenSlider
+                        height: 20
+                        width: 255
+                        orientation: Qt.Horizontal
+                        minimumValue: 0
+                        maximumValue: 255
+                        stepSize: 10
+                        Keys.onTabPressed: blueSlider.forceActiveFocus()
+                    }
 
-                        PlasmaComponents.Slider {
-                            id: blueSlider
-                            height: 20
-                            width: 255
-                            orientation: Qt.Horizontal
-                            minimumValue: 0
-                            maximumValue: 255
-                            stepSize: 10
-                            Keys.onTabPressed: redSlider.forceActiveFocus()
-                        }
+                    PlasmaComponents.Label { text: "Blue" }
 
-                        Rectangle {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            width: parent.width / 2
-                            height: width
-                            color: Qt.rgba(redSlider.value / 255, greenSlider.value / 255, blueSlider.value / 255, 1)
-                        }
+                    PlasmaComponents.Slider {
+                        id: blueSlider
+                        height: 20
+                        width: 255
+                        orientation: Qt.Horizontal
+                        minimumValue: 0
+                        maximumValue: 255
+                        stepSize: 10
+                        Keys.onTabPressed: redSlider.forceActiveFocus()
+                    }
+
+                    Rectangle {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        width: parent.width / 2
+                        height: width
+                        color: Qt.rgba(redSlider.value / 255, greenSlider.value / 255, blueSlider.value / 255, 1)
                     }
                 }
 
