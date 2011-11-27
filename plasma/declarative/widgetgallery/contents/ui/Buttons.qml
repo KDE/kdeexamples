@@ -139,6 +139,10 @@ PlasmaComponents.Page {
                 PlasmaComponents.ToolButton {
                     iconSource: "plasma"
                 }
+                PlasmaComponents.ToolButton {
+                    iconSource: "plasma"
+                    flat: false
+                }
 
                 PlasmaComponents.ToolButton {
                     text: "Disabled ToolButton"

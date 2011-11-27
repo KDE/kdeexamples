@@ -325,6 +325,7 @@ Page {
                 Component {
                     id: contextMenuComponent
                     ContextMenu {
+                        visualParent: contentMenuButton
                         MenuItem {
                             text: "White"
                             onClicked: contentMenuButton.parent.color = "White"
