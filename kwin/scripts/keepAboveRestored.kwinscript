@@ -1,0 +1,52 @@
+/*
+*   Copyright (c) 2010 Rohan Prabhu <rohan@rohanprabhu.com>
+*
+*   This program is free software; you can redistribute it and/or modify
+*   it under the terms of the GNU Lesser General Public License as published by
+*   the Free Software Foundation; either version 2.1 of the License, or
+*   (at your option) any later version.
+*
+*   This program is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*
+*   You should have received a copy of the GNU Lesser General Public License
+*   along with this program; if not, write to the
+*   Free Software Foundation, Inc.,
+*   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .
+*/
+
+var ka_clients = new Array();
+var c = workspace.getAllClients();
+
+workspace.clientSetKeepAbove.connect(function(client, set) {
+    var found = ka_clients.indexOf(client);
+
+    if(set == 1) {
+        if(found == -1) {
+            ka_clients[ka_clients.length] = client;
+            client.maximizeSet.connect(client, manageKeepAbove);
+        }
+    } else if(set == 0) {
+        ka_clients.splice(found, 1);
+        client.maximizeSet.disconnect(manageKeepAbove);
+    }
+});
+
+function manageKeepAbove(type) {
+    if((type.h == 1) && (type.v == 1)) {
+        this.setKeepAbove(0);
+    } else {
+        if(ka_clients.indexOf(this)) {
+            this.setKeepAbove(1);
+        }
+    }
+}
+
+for(var i=0; i<c.length; i++) {
+    if(c[i].keepAbove()) {
+        ka_clients[ka_clients.length] = c[i];
+        c[i].maximizeSet.connect(c[i], manageKeepAbove);
+    }
+}
