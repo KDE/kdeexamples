@@ -33,6 +33,9 @@
   <category dirname="knewstuff" name="KNewStuff">
     <example filename="updatechecker" name="Update Checker" />
   </category>
+  <category dirname="sonnet" name="Sonnet">
+    <example filename="sonnet-dialog" name="Sonnet Dialog" />
+  </category>
   <category dirname="plasma" name="Plasma">
     <example filename="plasma-example-kpart-shell" name="KPart" />
   </category>
