@@ -1,0 +1,61 @@
+/*
+
+An example script for KWin: grouping Kopete windows
+Copyright (C) 2011 Max Vorob'jov
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
+
+var kopeteGroupCount = 0; /* counting windows present in group */
+var windowGroup; /* kopete windows' group */
+
+
+var c = workspace.getAllClients();
+
+for (var i = 0; i < c.length; i++) {
+    var z = c[i].getWindowInfo();
+
+    if (z.windowClassClass == "Kopete") {
+        if (0 == kopeteGroupCount) {
+            windowGroup = new ClientGroup(c[i]);
+        } else {
+            windowGroup.add(c[i]);
+        }
+        kopeteGroupCount++;
+    }
+}
+
+
+/* on client adding */
+workspace.clientAdded.connect (function(client) {
+    var z = client.getWindowInfo();
+    if (z.windowClassClass == "Kopete") {
+        if ( 0 == kopeteGroupCount) {
+            windowGroup = new ClientGroup(client);
+        } else {
+            windowGroup.add(client);
+        }
+        kopeteGroupCount++;
+    }
+})
+
+/* on client removal */
+workspace.clientRemoved.connect (function(client) {
+    var z = client.getWindowInfo();
+    if (z.windowClassClass == "Kopete") {
+        kopeteGroupCount--;
+    }
+})
