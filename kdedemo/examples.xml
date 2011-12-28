@@ -26,6 +26,9 @@
     <example filename="krosshello" name="Load Script" />
     <example filename="krosssignalslot" name="Signal/Slot" />
   </category>
+  <category dirname="kio" name="KIO">
+    <example filename="simple-ftp-browser" name="Simple FTP Browser" />
+  </category>
   <category dirname="authorization" name="Authorization">
     <example filename="kwalletdemo" name="KWallet" />
     <example filename="kauth_example" name="Kauth" />
