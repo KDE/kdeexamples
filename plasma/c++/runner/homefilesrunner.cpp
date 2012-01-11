@@ -160,5 +160,3 @@ void HomeFilesRunner::createRunOptions(QWidget *widget)
 
 K_EXPORT_PLASMA_RUNNER(example-homefiles, HomeFilesRunner)
 
-#include "homefilesrunner.moc"
-
