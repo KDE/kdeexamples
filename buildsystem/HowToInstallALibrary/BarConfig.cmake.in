@@ -1,5 +1,35 @@
-get_filename_component(myDir ${CMAKE_CURRENT_LIST_FILE} PATH) # get the directory where I myself am
-get_filename_component(rootDir ${myDir}/@relInstallDir@ ABSOLUTE) # get the chosen install prefix
+function(SET_ABSOLUTE _var _dir _installPrefix)
+   if(IS_ABSOLUTE)
+      set(${_var} "${_dir}")
+   else()
+      set(${_var} "${_installPrefix}/${_dir}" )
+   endif()
+   if(NOT EXISTS "${${_var}}")
+      message(FATAL_ERROR "File or directory \"${${_var}}\" referenced by variable ${_var} does not exist !")
+   endif()
+   set(${_var} ${${_var}} PARENT_SCOPE)
+endfunction()
+
+
+function(determine_installed_location _var _install_prefix  _cmakeconfig_install_dir)
+  if(NOT IS_ABSOLUTE "${_cmakeconfig_install_dir}")
+    set(_cmakeconfig_install_dir  "${_install_prefix}/${_cmakeconfig_install_dir}")
+  endif()
+
+  file(RELATIVE_PATH _relative_cmakeconfig_install_dir "${_cmakeconfig_install_dir}" "${_install_prefix}" )
+
+  get_filename_component(rootDir1 ${CMAKE_CURRENT_LIST_DIR}/${_relative_cmakeconfig_install_dir} ABSOLUTE)
+  #get_filename_component(rootDir2 ${CMAKE_CURRENT_LIST_DIR}/${_BAR_RELATIVE_CMAKECONFIG_INSTALL_DIR} REALPATH)
+
+
+  if(NOT "${rootDir1}" STREQUAL "${_install_prefix}")
+    message(STATUS "Package has been relocated during installation.")
+  endif()
+  set(${_var} ${rootDir1} PARENT_SCOPE)
+endfunction()
+
+########### actual Config.cmake file starts here: #############################
+
 
 # set the version of myself
 set(BAR_VERSION_MAJOR @BAR_VERSION_MAJOR@)
@@ -7,11 +37,16 @@ set(BAR_VERSION_MINOR @BAR_VERSION_MINOR@)
 set(BAR_VERSION_PATCH @BAR_VERSION_PATCH@)
 set(BAR_VERSION ${BAR_VERSION_MAJOR}.${BAR_VERSION_MINOR}.${BAR_VERSION_PATCH} )
 
+
+determine_installed_location(_BAR_INSTALLED_PREFIX  "@CMAKE_INSTALL_PREFIX@"  "@CMAKECONFIG_INSTALL_DIR@")
+
+set_absolute(BAR_INCLUDE_DIR "@INCLUDE_INSTALL_DIR@" "${_BAR_INSTALLED_PREFIX}")
+
 # what is my include directory
-set(BAR_INCLUDES "${rootDir}/@INCLUDE_INSTALL_DIR@")
+set(BAR_INCLUDES "${BAR_INCLUDE_DIR}")
 
 # import the exported targets
-include(${myDir}/BarTargets.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/BarTargets.cmake)
 
 # set the expected library variable
 set(BAR_LIBRARIES bar )

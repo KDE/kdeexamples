@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6.4)
+cmake_minimum_required(VERSION 2.8.7)
 project(Bar)
 
 # the version number, needed for
@@ -12,7 +12,7 @@ set(BAR_VERSION ${BAR_VERSION_MAJOR}.${BAR_VERSION_MINOR}.${BAR_VERSION_PATCH} )
 # set up install directories. INCLUDE_INSTALL_DIR and LIB_INSTALL_DIR must not be absolute paths
 set(LIB_INSTALL_DIR_SUFFIX "" CACHE STRING "The directories where to install libraries to")
 set(LIB_INSTALL_DIR lib${LIB_INSTALL_DIR_SUFFIX} )
-set(CMAKECONFIG_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/Bar ) 
+set(CMAKECONFIG_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/Bar )
 
 # Use a versioned install directory for the headers so multiple versions can be installed in parallel
 set(INCLUDE_INSTALL_DIR include )
@@ -31,11 +31,6 @@ add_subdirectory(src)
 # in many ways in the same way as a normal library target created via a normal add_library().
 install(EXPORT BarExport DESTINATION ${CMAKECONFIG_INSTALL_DIR} FILE BarTargets.cmake )
 
-# figure out the relative path from the installed Config.cmake file to the install prefix (which may be at
-# runtime different from the chosen CMAKE_INSTALL_PREFIX if under Windows the package was installed anywhere)
-# This relative path will be configured into the BarConfig.cmake
-file(RELATIVE_PATH relInstallDir ${CMAKE_INSTALL_PREFIX}/${CMAKECONFIG_INSTALL_DIR} ${CMAKE_INSTALL_PREFIX} )
-
 # Create a BarConfig.cmake file. <name>Config.cmake files are searched by find_package()
 # automatically. We configure that file so that we can put any information we want in it,
 # e.g. version numbers, include directories, etc.
@@ -44,7 +39,10 @@ configure_file(BarConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/BarConfig.cmake @O
 # Additionally, when cmake has found a BarConfig.cmake, it can check for a BarConfigVersion.cmake
 # in the same directory when figuring out the version of the package when a version
 # has been specified in the find_package() call, e.g. find_package(Bar 1.0)
-configure_file(BarConfigVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/BarConfigVersion.cmake @ONLY )
+include(WriteBasicConfigVersionFile)
+write_basic_config_version_file(${CMAKE_CURRENT_BINARY_DIR}/BarConfigVersion.cmake
+                                VERSION ${BAR_VERSION}
+                                COMPATIBILITY AnyNewerVersion )
 
 # Install these two files into the same directory as the generated exports-file.
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/BarConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/BarConfigVersion.cmake
