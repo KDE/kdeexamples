@@ -1,13 +1,18 @@
-function(SET_ABSOLUTE _var _dir _installPrefix)
-   if(IS_ABSOLUTE)
-      set(${_var} "${_dir}")
+function(SET_ABSOLUTE _var _dir _actualInstalledPrefix _installPrefix)
+   if(IS_ABSOLUTE "${_dir}")
+      # if it is an absolute path, if it was a subdir of the original CMAKE_INSTALL_PREFIX,
+      # replace this original CMAKE_INSTALL_PREFIX with the actual prefix:
+      string(REGEX REPLACE "^${_installPrefix}" "${_actualInstalledPrefix}" absPath "${_dir}")
+      # or is this too clever and we should leave absolute install dirs simply as they are.
+      # They could be interpreted as a sign that the package should not be relocated.
+      #set(absPath "${_dir}")
    else()
-      set(${_var} "${_installPrefix}/${_dir}" )
+      set(absPath "${_actualInstalledPrefix}/${_dir}" )
    endif()
-   if(NOT EXISTS "${${_var}}")
-      message(FATAL_ERROR "File or directory \"${${_var}}\" referenced by variable ${_var} does not exist !")
+   if(NOT EXISTS "${absPath}")
+      message(FATAL_ERROR "File or directory \"${absPath}\" referenced by variable ${_var} does not exist !")
    endif()
-   set(${_var} ${${_var}} PARENT_SCOPE)
+   set(${_var} ${absPath} PARENT_SCOPE)
 endfunction()
 
 
@@ -37,10 +42,13 @@ set(BAR_VERSION_MINOR @BAR_VERSION_MINOR@)
 set(BAR_VERSION_PATCH @BAR_VERSION_PATCH@)
 set(BAR_VERSION ${BAR_VERSION_MAJOR}.${BAR_VERSION_MINOR}.${BAR_VERSION_PATCH} )
 
+set(BAR_CMAKE_INSTALL_PREFIX "@CMAKE_INSTALL_PREFIX@")
 
-determine_installed_location(_BAR_INSTALLED_PREFIX  "@CMAKE_INSTALL_PREFIX@"  "@CMAKECONFIG_INSTALL_DIR@")
+determine_installed_location(_BAR_INSTALLED_PREFIX  "${BAR_CMAKE_INSTALL_PREFIX}"  "@CMAKECONFIG_INSTALL_DIR@")
 
-set_absolute(BAR_INCLUDE_DIR "@INCLUDE_INSTALL_DIR@" "${_BAR_INSTALLED_PREFIX}")
+set_absolute(BAR_INCLUDE_DIR "@INCLUDE_INSTALL_DIR@" "${_BAR_INSTALLED_PREFIX}" "${BAR_CMAKE_INSTALL_PREFIX}")
+
+set_absolute(BAR_DATA_DIR "@DATA_INSTALL_DIR@" "${_BAR_INSTALLED_PREFIX}" "${BAR_CMAKE_INSTALL_PREFIX}")
 
 # what is my include directory
 set(BAR_INCLUDES "${BAR_INCLUDE_DIR}")

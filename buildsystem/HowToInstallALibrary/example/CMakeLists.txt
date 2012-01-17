@@ -11,3 +11,5 @@ add_executable(hello main.c)
 target_link_libraries(hello ${BAR_LIBRARIES} )
 
 message(STATUS "version: ${BAR_VERSION}")
+message(STATUS "inc: -${BAR_INCLUDES}")
+message(STATUS "data: -${BAR_DATA_DIR}"-)

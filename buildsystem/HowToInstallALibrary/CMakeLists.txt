@@ -20,6 +20,8 @@ set(INCLUDE_INSTALL_DIR include )
 # not changable, but we set a variable anyway for consistency
 set(BIN_INSTALL_DIR bin)
 
+set(DATA_INSTALL_DIR share/bar CACHE PATH "Where to install data files")
+
 # actually add the directory where the library is built
 add_subdirectory(src)
 
@@ -48,4 +50,5 @@ write_basic_config_version_file(${CMAKE_CURRENT_BINARY_DIR}/BarConfigVersion.cma
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/BarConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/BarConfigVersion.cmake
         DESTINATION ${CMAKECONFIG_INSTALL_DIR} )
 
+install(FILES README DESTINATION ${DATA_INSTALL_DIR})
 
