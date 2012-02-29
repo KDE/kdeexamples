@@ -38,16 +38,6 @@ Image {
 
 
     Column {
-        anchors.right: parent.right
-        Image {
-            source: "application-exit.png"
-            
-            MouseArea {
-                anchors.fill: parent;
-                onClicked: Qt.quit();
-            } 
-        }
-        
         Image {
             source: "cards-reset.png"
             
