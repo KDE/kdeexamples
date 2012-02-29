@@ -46,7 +46,7 @@ Item {
             dataSource: tasksSource
         }
         delegate: Text {
-          text: className+" "+onAllDesktops
+          text: visibleName+" onAllDesktops: "+onAllDesktops
         }
     }
 }
