@@ -1,7 +1,6 @@
 // -*- coding: iso-8859-1 -*-
 /*
- *   Author: Marco Martin <mart@kde.org>
- *   Date: Sun Nov 7 2010, 18:51:24
+ *   Copyright 2012 Marco Martin <mart@kde.org>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU Library General Public License as
