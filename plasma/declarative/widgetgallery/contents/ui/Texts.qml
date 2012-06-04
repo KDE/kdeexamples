@@ -58,7 +58,7 @@ PlasmaComponents.Page {
                 spacing: 20
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                Text {
+                PlasmaComponents.Label {
                     text: "Text Fields"
                     font.pixelSize: 20
                 }
@@ -69,7 +69,7 @@ PlasmaComponents.Page {
                     Column {
                         spacing: 10
                         Row {
-                            Text {
+                            PlasmaComponents.Label {
                                 text: "Username: "
                                 anchors.verticalCenter: tf1.verticalCenter
                             }
@@ -81,7 +81,7 @@ PlasmaComponents.Page {
                         }
 
                         Row {
-                            Text {
+                            PlasmaComponents.Label {
                                 text: "Password: "
                                 anchors.verticalCenter: tf2.verticalCenter
                             }
@@ -112,7 +112,7 @@ PlasmaComponents.Page {
                     enabled: false
                 }
 
-                Text {
+                PlasmaComponents.Label {
                     text: "Text Area"
                     font.pixelSize: 20
                 }

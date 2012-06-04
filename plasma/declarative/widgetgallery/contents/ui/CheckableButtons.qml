@@ -54,7 +54,7 @@ PlasmaComponents.Page {
                 spacing: 20
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Check Box"
                 }
@@ -91,7 +91,7 @@ PlasmaComponents.Page {
                     text: "A loooooooooooooong text"
                 }
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Radio Button"
                 }
@@ -111,7 +111,7 @@ PlasmaComponents.Page {
 
                 PlasmaComponents.Switch { }
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Button Row"
                 }
@@ -123,7 +123,7 @@ PlasmaComponents.Page {
                     PlasmaComponents.RadioButton { text: "C" }
                 }
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Button Column"
                 }

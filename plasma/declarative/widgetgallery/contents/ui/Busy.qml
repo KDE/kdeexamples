@@ -55,7 +55,7 @@ PlasmaComponents.Page {
                 spacing: 20
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Busy Indicator"
                 }
@@ -64,12 +64,12 @@ PlasmaComponents.Page {
 
                 PlasmaComponents.BusyIndicator { running: true }
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Progress Bar"
                 }
 
-                Text { text: "Horizontal" }
+                PlasmaComponents.Label { text: "Horizontal" }
 
                 PlasmaComponents.ProgressBar {
                     value: 0.3
@@ -85,7 +85,7 @@ PlasmaComponents.Page {
                     value: 30
                 }
 
-                Text { text: "Vertical" }
+                PlasmaComponents.Label { text: "Vertical" }
                 Row {
                     spacing: 20
                     PlasmaComponents.ProgressBar {

@@ -61,7 +61,7 @@ PlasmaComponents.Page {
                     spacing: 20
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    Text {
+                    PlasmaComponents.Label {
                         font.pixelSize: 20
                         text: "Scroll Bar"
                     }
@@ -76,7 +76,7 @@ PlasmaComponents.Page {
                             height: 200
                             clip: true
                             model: 20
-                            delegate: Text {
+                            delegate: PlasmaComponents.Label {
                                 width: 200
                                 height: 30
                                 text: index
@@ -91,7 +91,7 @@ PlasmaComponents.Page {
                         }
                     }
 
-                    Text {
+                    PlasmaComponents.Label {
                         font.pixelSize: 20
                         text: "Scroll Decorator"
                     }
@@ -139,7 +139,7 @@ PlasmaComponents.Page {
                                 right: scrollArea.right
                                 bottom: scrollArea.bottom
                             }
-                            Text {
+                            PlasmaComponents.Label {
                                 y: parent.height / 2
                                 x: 13
                                 rotation: -90

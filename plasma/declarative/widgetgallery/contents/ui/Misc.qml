@@ -210,7 +210,7 @@ Page {
                             titleText: "CommonDialog"
                             buttonTexts: ["Ok", "Cancel"]
 
-                            content: Text {
+                            content: Label {
                                 text: "This is the content"
                                 font { bold: true; pixelSize: 16 }
                                 horizontalAlignment: Text.AlignHCenter
@@ -452,7 +452,7 @@ Page {
                         height: 100
                         width: parent.width - parent.spacing
                         Button { id: tab1content; text: "tab1" }
-                        Text {
+                        Label {
                             id: tab2content
                             text: "tab2"
                             horizontalAlignment: "AlignHCenter"
@@ -588,6 +588,7 @@ Page {
                                                     top: parent.top; topMargin: 4
                                                     left: parent.left; leftMargin: 4
                                                 }
+                                                color: Qt.rgba(0,0,0,0.8)
                                                 text: name + " (index " + index + ")"
                                                 horizontalAlignment: Text.AlignLeft
                                             }
@@ -603,6 +604,7 @@ Page {
                                                     top: parent.top; topMargin: 4
                                                     left: parent.left; leftMargin: 4
                                                 }
+                                                color: Qt.rgba(0,0,0,0.8)
                                                 text: section
                                                 horizontalAlignment: Text.AlignLeft
                                                 font { bold: true; }

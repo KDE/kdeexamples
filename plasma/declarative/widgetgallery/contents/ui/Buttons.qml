@@ -52,7 +52,7 @@ PlasmaComponents.Page {
                 spacing: 20
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                Text {
+                PlasmaComponents.Label {
                     font.pixelSize: 20
                     text: "Buttons"
                 }
