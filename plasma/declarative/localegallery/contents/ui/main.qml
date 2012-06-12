@@ -21,7 +21,7 @@
 
 import QtQuick 1.1
 import org.kde.plasma.components 0.1 as PlasmaComponents
-import org.kde.plasma.locale 0.1
+import org.kde.locale 0.1
 
 Item {
     id: root
