@@ -22,7 +22,7 @@
 
 #include <Nepomuk2/Service>
 
-namespace Nepomuk22222 {
+namespace Nepomuk2 {
 
     class ExampleService : public Service
     {
