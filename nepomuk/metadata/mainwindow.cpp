@@ -33,10 +33,10 @@
 #include <KPushButton>
 #include <KTextBrowser>
 
-#include <Nepomuk/Resource>
-#include <Nepomuk/ResourceManager>
-#include <Nepomuk/Tag>
-#include <Nepomuk/Variant>
+#include <Nepomuk2/Resource>
+#include <Nepomuk2/ResourceManager>
+#include <Nepomuk2/Tag>
+#include <Nepomuk2/Variant>
 
 MainWindow::MainWindow(QWidget *parent)
     : KMainWindow(parent)
@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   setMinimumSize(500,300);
 
-  if (Nepomuk::ResourceManager::instance()->init())
+  if (Nepomuk2::ResourceManager::instance()->init())
     button->setEnabled(false);
 }
 
@@ -96,13 +96,13 @@ void MainWindow::chooseFile()
 void MainWindow::retrieveMetadata()
 {
   QString data_text;
-  Nepomuk::Resource res(file->text());
-  QHash<QUrl,Nepomuk::Variant> properties = res.properties();
+  Nepomuk2::Resource res(file->text());
+  QHash<QUrl,Nepomuk2::Variant> properties = res.properties();
 
   QUrl key;
   foreach (key, properties.keys())
   {
-    Nepomuk::Types::Class property_type(key);
+    Nepomuk2::Types::Class property_type(key);
     data_text += "<b>" + property_type.label() + ":</b> ";
     data_text += properties[key].toString() + "<br>";
   }
@@ -112,8 +112,8 @@ void MainWindow::retrieveMetadata()
 
 void MainWindow::addTag()
 {
-  Nepomuk::Tag new_tag(tag->text());
-  Nepomuk::Resource res(file->text());
+  Nepomuk2::Tag new_tag(tag->text());
+  Nepomuk2::Resource res(file->text());
   res.addTag(new_tag);
   retrieveMetadata();
 }

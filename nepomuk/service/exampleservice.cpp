@@ -21,17 +21,17 @@
 
 #include <KDebug>
 
-Nepomuk::ExampleService::ExampleService( QObject* parent, const QList< QVariant >& )
+Nepomuk2::ExampleService::ExampleService( QObject* parent, const QList< QVariant >& )
 	: Service(parent)
 {
     kDebug();
 }
 
-Nepomuk::ExampleService::~ExampleService()
+Nepomuk2::ExampleService::~ExampleService()
 {
 }
 
-void Nepomuk::ExampleService::test()
+void Nepomuk2::ExampleService::test()
 {
     kDebug();
 }
@@ -39,6 +39,6 @@ void Nepomuk::ExampleService::test()
 #include <kpluginfactory.h>
 #include <kpluginloader.h>
 
-NEPOMUK_EXPORT_SERVICE( Nepomuk::ExampleService, "nepomukexampleservice" )
+NEPOMUK_EXPORT_SERVICE( Nepomuk2::ExampleService, "nepomukexampleservice" )
 
 #include "exampleservice.moc"

@@ -1,6 +1,4 @@
-find_package(Nepomuk REQUIRED)
-
-add_definitions(-DDISABLE_NEPOMUK_LEGACY=1)
+find_package(NepomukCore REQUIRED)
 
 install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/nepomuk)
 

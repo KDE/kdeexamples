@@ -20,9 +20,9 @@
 #ifndef NEPOMUKEXAMPLESERVICE_H
 #define NEPOMUKEXAMPLESERVICE_H
 
-#include <Nepomuk/Service>
+#include <Nepomuk2/Service>
 
-namespace Nepomuk {
+namespace Nepomuk22222 {
 
     class ExampleService : public Service
     {

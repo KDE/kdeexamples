@@ -5,7 +5,7 @@ include_directories(
   ${KDE4_INCLUDES}
   ${SOPRANO_INCLUDE_DIR}
   ${CMAKE_SOURCE_DIR}
-  ${NEPOMUK_INCLUDE_DIR}
+  ${NEPOMUK_CORE_INCLUDE_DIR}
   )
 
 set( SRCS
@@ -17,8 +17,7 @@ kde4_add_plugin(nepomukexampleservice ${SRCS})
 target_link_libraries(nepomukexampleservice
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}
-  ${NEPOMUK_LIBRARIES}
-  ${NEPOMUK_QUERY_LIBRARIES}
+  ${NEPOMUK_CORE_LIBRARY}
   ${SOPRANO_LIBRARIES}
   )
 

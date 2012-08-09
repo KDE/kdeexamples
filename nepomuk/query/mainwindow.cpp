@@ -34,11 +34,11 @@
 #include <KTextBrowser>
 #include <KTextEdit>
 
-#include <Nepomuk/Query/AndTerm>
-#include <Nepomuk/Query/ComparisonTerm>
-#include <Nepomuk/Query/LiteralTerm>
-#include <Nepomuk/Query/Query>
-#include <Nepomuk/ResourceManager>
+#include <Nepomuk2/Query/AndTerm>
+#include <Nepomuk2/Query/ComparisonTerm>
+#include <Nepomuk2/Query/LiteralTerm>
+#include <Nepomuk2/Query/Query>
+#include <Nepomuk2/ResourceManager>
 
 #include <Soprano/Model>
 #include <Soprano/QueryResultIterator>
@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   setMinimumSize(650,485);
 
-  if (Nepomuk::ResourceManager::instance()->init())
+  if (Nepomuk2::ResourceManager::instance()->init())
     button->setEnabled(false);
 }
 
@@ -89,16 +89,16 @@ void MainWindow::query()
   if (tag->text().isEmpty() && text->toPlainText().isEmpty())
     return;
 
-  static Soprano::Model *model = Nepomuk::ResourceManager::instance()->mainModel();
+  static Soprano::Model *model = Nepomuk2::ResourceManager::instance()->mainModel();
 
-  Nepomuk::Query::ComparisonTerm tag_term;
-  Nepomuk::Query::LiteralTerm text_term;
+  Nepomuk2::Query::ComparisonTerm tag_term;
+  Nepomuk2::Query::LiteralTerm text_term;
   if (!tag->text().isEmpty())
-    tag_term = Nepomuk::Query::ComparisonTerm(Soprano::Vocabulary::NAO::hasTag(), Nepomuk::Query::LiteralTerm(tag->text()));
+    tag_term = Nepomuk2::Query::ComparisonTerm(Soprano::Vocabulary::NAO::hasTag(), Nepomuk2::Query::LiteralTerm(tag->text()));
   if (!text->toPlainText().isEmpty())
-    text_term = Nepomuk::Query::LiteralTerm(text->toPlainText());
+    text_term = Nepomuk2::Query::LiteralTerm(text->toPlainText());
 
-  Nepomuk::Query::Query query(Nepomuk::Query::AndTerm(tag_term, text_term));
+  Nepomuk2::Query::Query query(Nepomuk2::Query::AndTerm(tag_term, text_term));
   url->setText(query.toSearchUrl().url());
 
   Soprano::QueryResultIterator it = model->executeQuery(query.toSparqlQuery(), Soprano::Query::QueryLanguageSparql);
