@@ -11,6 +11,6 @@ macro(INSTALL_ONTOLOGY _name _group)
 endmacro(INSTALL_ONTOLOGY)
 
 
-#Backup sync stff
+# Install the "template" Ontology in the "nepomuk" group
 install_ontology(template nepomuk)
 
