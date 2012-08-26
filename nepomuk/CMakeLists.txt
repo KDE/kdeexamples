@@ -1,4 +1,5 @@
 find_package(NepomukCore REQUIRED)
+find_package(Soprano REQUIRED)
 
 install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples/nepomuk)
 

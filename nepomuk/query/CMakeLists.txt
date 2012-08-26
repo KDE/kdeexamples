@@ -2,7 +2,7 @@ project(nepomukquerydemo)
 
 set(SRCS main.cpp mainwindow.cpp)
 
-include_directories(${KDE4_INCLUDES} ${QT_INCLUDES} ${NEPOMUK_CORE_INCLUDE_DIR})
+include_directories(${KDE4_INCLUDES} ${QT_INCLUDES} ${SOPRANO_INCLUDE_DIR} ${NEPOMUK_CORE_INCLUDE_DIR})
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 kde4_add_executable(nepomukquerydemo ${SRCS})
