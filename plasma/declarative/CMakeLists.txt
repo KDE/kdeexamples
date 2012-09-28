@@ -1,3 +1,5 @@
+add_subdirectory(wallpapers)
+
 # addons
 install(DIRECTORY addons/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.addons-example-qml)
 install(FILES addons/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME addons-example.desktop)
