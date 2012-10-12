@@ -635,6 +635,24 @@ Page {
                         ToolButton { text: "tb1" }
                         ToolButton { text: "tb2" }
                     }
+                    ButtonRow {
+                        id: buttonRow3
+                        exclusive: true
+
+                        ToolButton { flat:false; text: "tb1" }
+                        ToolButton { flat:false; text: "tb2" }
+                        ToolButton { flat:false; text: "tb3" }
+                        ToolButton { flat:false; text: "tb4" }
+                    }
+                    ButtonColumn {
+                        id: buttonRow4
+                        exclusive: true
+
+                        ToolButton { flat:false; text: "tb1" }
+                        ToolButton { flat:false; text: "tb2" }
+                        ToolButton { flat:false; text: "tb3" }
+                        ToolButton { flat:false; text: "tb4" }
+                    }
 
                     ButtonColumn {
                         id: buttonColumn
