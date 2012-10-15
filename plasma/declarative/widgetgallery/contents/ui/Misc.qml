@@ -639,10 +639,10 @@ Page {
                         id: buttonRow3
                         exclusive: true
 
-                        ToolButton { flat:false; text: "tb1" }
+                        ToolButton { flat:false; iconSource: "go-previous" }
                         ToolButton { flat:false; text: "tb2" }
                         ToolButton { flat:false; text: "tb3" }
-                        ToolButton { flat:false; text: "tb4" }
+                        ToolButton { flat:false; iconSource: "go-next" }
                     }
                     ButtonColumn {
                         id: buttonRow4
