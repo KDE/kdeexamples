@@ -13,7 +13,7 @@ if (a) {
     // entries as they appear in the -appletsrc configuration file.
     // we begin by setting the config group, which is in a subgroup of
     //[Wallpapers] that is named after the plugin
-    a.currentConfigGroup = Array('Wallpapers', 'image')
+    a.currentConfigGroup = Array('Wallpaper', 'image')
 
     // wallpaper image paths can be full paths or the name of a wallpaper
     // package that is installed to one of the standard wallpaper
