@@ -76,29 +76,18 @@ PlasmaComponents.Page {
                 PlasmaExtras.Paragraph {
                     text: "For clarity, I'm no typography expert so nothing I've written is meant to be sacred. I'm just a hardcore UI design hobbyist that has spent a great deal of time immersed in lots of UI and graphic design literature and wanted to provide some constructive feedback based on what I've learned over the years."
                 }
+
                 Item {
                     height: 40
                     width: parent.width
                 }
-                PlasmaExtras.Heading {
-                    level: 1
-                    text: "Heading at level " + level
-                }
-                PlasmaExtras.Heading {
-                    level: 2
-                    text: "Heading at level " + level
-                }
-                PlasmaExtras.Heading {
-                    level: 3
-                    text: "Heading at level " + level
-                }
-                PlasmaExtras.Heading {
-                    level: 4
-                    text: "Heading at level " + level
-                }
-                PlasmaExtras.Heading {
-                    level: 5
-                    text: "Heading at level " + level
+
+                Repeater {
+                    model: 5
+                    PlasmaExtras.Heading {
+                        level: index + 1
+                        text: "Header level " + (index + 1)
+                    }
                 }
             }
         }
