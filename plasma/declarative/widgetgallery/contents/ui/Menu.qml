@@ -54,6 +54,10 @@ Page {
                 title: "Text elements"
             }
             ListElement {
+                page: "Typography.qml"
+                title: "Typography"
+            }
+            ListElement {
                 page: "Misc.qml"
                 title: "Misc stuff"
             }
