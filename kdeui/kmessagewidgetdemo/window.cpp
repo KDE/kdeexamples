@@ -28,6 +28,7 @@
 // Qt
 #include <QCheckBox>
 #include <QCoreApplication>
+#include <QGroupBox>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -45,12 +46,16 @@ Window::Window(QWidget *parent)
     m_messageWidget->hide();
     m_layout->addWidget(m_messageWidget);
 
-    m_layout->addStretch();
+    m_groupBox = new QGroupBox();
+    m_layout->addWidget(m_groupBox);
+
+    QVBoxLayout* groupLayout = new QVBoxLayout(m_groupBox);
     createButton(i18n("Error"), SLOT(showErrorMessage()));
     createButton(i18n("Warning"), SLOT(showWarningMessage()));
     createButton(i18n("Information"), SLOT(showInformationMessage()));
     createButton(i18n("Positive"), SLOT(showPositiveMessage()));
-    m_layout->addStretch();
+
+    groupLayout->addStretch();
 
     m_actions
         << new QAction(KIcon("document-save"), i18n("Save"), this)
@@ -79,9 +84,9 @@ Window::Window(QWidget *parent)
 
 void Window::createButton(const QString& label, const char* slot)
 {
-    QPushButton* button = new QPushButton(label, this);
+    QPushButton* button = new QPushButton(label);
     connect(button, SIGNAL(clicked(bool)), slot);
-    m_layout->addWidget(button);
+    m_groupBox->layout()->addWidget(button);
 }
 
 void Window::showErrorMessage()

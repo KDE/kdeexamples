@@ -24,6 +24,7 @@
 #include <KMainWindow>
 
 class QCheckBox;
+class QGroupBox;
 class QVBoxLayout;
 
 class KMessageWidget;
@@ -47,6 +48,7 @@ private:
     KMessageWidget* m_messageWidget;
     QList<QAction*> m_actions;
     QCheckBox* m_animatedShowCheckBox;
+    QGroupBox* m_groupBox;
 
     void createButton(const QString& label, const char* slot);
     void showMessage();
