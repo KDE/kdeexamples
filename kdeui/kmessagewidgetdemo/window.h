@@ -44,13 +44,11 @@ private Q_SLOTS:
     void showActions(bool show);
 
 private:
-    QVBoxLayout* m_layout;
     KMessageWidget* m_messageWidget;
     QList<QAction*> m_actions;
     QCheckBox* m_animatedShowCheckBox;
-    QGroupBox* m_groupBox;
 
-    void createButton(const QString& label, const char* slot);
+    void createMessageButton(QLayout* layout, const QString& label, const char* slot);
     void showMessage();
     void hideMessage();
 };

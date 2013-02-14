@@ -40,53 +40,64 @@ Window::Window(QWidget *parent)
     setCentralWidget(widget);
     resize(500, 400);
 
-    m_layout = new QVBoxLayout(widget);
-
-    m_messageWidget = new KMessageWidget(this);
-    m_messageWidget->hide();
-    m_layout->addWidget(m_messageWidget);
-
-    m_groupBox = new QGroupBox();
-    m_layout->addWidget(m_groupBox);
-
-    QVBoxLayout* groupLayout = new QVBoxLayout(m_groupBox);
-    createButton(i18n("Error"), SLOT(showErrorMessage()));
-    createButton(i18n("Warning"), SLOT(showWarningMessage()));
-    createButton(i18n("Information"), SLOT(showInformationMessage()));
-    createButton(i18n("Positive"), SLOT(showPositiveMessage()));
-
-    groupLayout->addStretch();
-
     m_actions
         << new QAction(KIcon("document-save"), i18n("Save"), this)
         << new QAction(i18n("Discard"), this)
         ;
 
-    QCheckBox* wordwrapCheckBox = new QCheckBox(i18n("Word wrap"));
-    m_layout->addWidget(wordwrapCheckBox);
-    connect(wordwrapCheckBox, SIGNAL(toggled(bool)), m_messageWidget, SLOT(setWordWrap(bool)));
+    QVBoxLayout* mainLayout = new QVBoxLayout(widget);
 
-    QCheckBox* showActionsCheckBox = new QCheckBox(i18n("Show action buttons"));
-    m_layout->addWidget(showActionsCheckBox);
-    connect(showActionsCheckBox, SIGNAL(toggled(bool)), SLOT(showActions(bool)));
+    // KMessageWidget
+    m_messageWidget = new KMessageWidget(this);
+    m_messageWidget->hide();
+    mainLayout->addWidget(m_messageWidget);
 
-    QCheckBox* showCloseButtonCheckBox = new QCheckBox(i18n("Show close button"));
-    showCloseButtonCheckBox->setChecked(true);
-    m_layout->addWidget(showCloseButtonCheckBox);
-    connect(showCloseButtonCheckBox, SIGNAL(toggled(bool)),m_messageWidget, SLOT(setCloseButtonVisible(bool)));
+    // Message buttons
+    {
+        QGroupBox* groupBox = new QGroupBox();
+        mainLayout->addWidget(groupBox);
+        QVBoxLayout* layout = new QVBoxLayout(groupBox);
 
-    m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
-    m_animatedShowCheckBox->setChecked(true);
-    m_layout->addWidget(m_animatedShowCheckBox);
+        createMessageButton(layout, i18n("Error"), SLOT(showErrorMessage()));
+        createMessageButton(layout, i18n("Warning"), SLOT(showWarningMessage()));
+        createMessageButton(layout, i18n("Information"), SLOT(showInformationMessage()));
+        createMessageButton(layout, i18n("Positive"), SLOT(showPositiveMessage()));
+    }
+
+    // Options
+    {
+        QGroupBox* groupBox = new QGroupBox();
+        mainLayout->addWidget(groupBox);
+        QVBoxLayout* layout = new QVBoxLayout(groupBox);
+
+        QCheckBox* wordwrapCheckBox = new QCheckBox(i18n("Word wrap"));
+        layout->addWidget(wordwrapCheckBox);
+        connect(wordwrapCheckBox, SIGNAL(toggled(bool)), m_messageWidget, SLOT(setWordWrap(bool)));
+
+        QCheckBox* showActionsCheckBox = new QCheckBox(i18n("Show action buttons"));
+        layout->addWidget(showActionsCheckBox);
+        connect(showActionsCheckBox, SIGNAL(toggled(bool)), SLOT(showActions(bool)));
+
+        QCheckBox* showCloseButtonCheckBox = new QCheckBox(i18n("Show close button"));
+        showCloseButtonCheckBox->setChecked(true);
+        layout->addWidget(showCloseButtonCheckBox);
+        connect(showCloseButtonCheckBox, SIGNAL(toggled(bool)),m_messageWidget, SLOT(setCloseButtonVisible(bool)));
+
+        m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
+        m_animatedShowCheckBox->setChecked(true);
+        layout->addWidget(m_animatedShowCheckBox);
+    }
+
+    mainLayout->addStretch();
 
     addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 }
 
-void Window::createButton(const QString& label, const char* slot)
+void Window::createMessageButton(QLayout* layout, const QString& label, const char* slot)
 {
     QPushButton* button = new QPushButton(label);
     connect(button, SIGNAL(clicked(bool)), slot);
-    m_groupBox->layout()->addWidget(button);
+    layout->addWidget(button);
 }
 
 void Window::showErrorMessage()
