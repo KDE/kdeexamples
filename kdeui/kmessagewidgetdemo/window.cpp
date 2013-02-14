@@ -56,6 +56,7 @@ Window::Window(QWidget *parent)
     // Message buttons
     {
         QGroupBox* groupBox = new QGroupBox();
+        groupBox->setTitle(i18n("Show/hide message widget"));
         mainLayout->addWidget(groupBox);
         QVBoxLayout* layout = new QVBoxLayout(groupBox);
 
@@ -80,6 +81,7 @@ Window::Window(QWidget *parent)
     // Options
     {
         QGroupBox* groupBox = new QGroupBox();
+        groupBox->setTitle(i18n("Options"));
         mainLayout->addWidget(groupBox);
         QVBoxLayout* layout = new QVBoxLayout(groupBox);
 
