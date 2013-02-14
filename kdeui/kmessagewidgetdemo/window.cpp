@@ -24,6 +24,7 @@
 #include <KLocale>
 #include <KMessageWidget>
 #include <KStandardAction>
+#include <KTextEdit>
 
 // Qt
 #include <QCheckBox>
@@ -64,6 +65,18 @@ Window::Window(QWidget *parent)
         createMessageButton(layout, i18n("Positive"), SLOT(showPositiveMessage()));
     }
 
+    // Text
+    {
+        QGroupBox* groupBox = new QGroupBox();
+        groupBox->setTitle(i18n("Text"));
+        mainLayout->addWidget(groupBox);
+        QVBoxLayout* layout = new QVBoxLayout(groupBox);
+
+        m_edit = new KTextEdit;
+        m_edit->setClickMessage(i18n("Use default text"));
+        layout->addWidget(m_edit);
+    }
+
     // Options
     {
         QGroupBox* groupBox = new QGroupBox();
@@ -88,8 +101,6 @@ Window::Window(QWidget *parent)
         layout->addWidget(m_animatedShowCheckBox);
     }
 
-    mainLayout->addStretch();
-
     addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 }
 
@@ -105,7 +116,7 @@ void Window::showErrorMessage()
     if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Error) {
         hideMessage();
     } else {
-        m_messageWidget->setText(i18n("Sorry, wrong password"));
+        m_messageWidget->setText(messageText(i18n("Sorry, wrong password")));
         m_messageWidget->setMessageType(KMessageWidget::Error);
         showMessage();
     }
@@ -116,7 +127,7 @@ void Window::showWarningMessage()
     if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Warning) {
         hideMessage();
     } else {
-        m_messageWidget->setText(i18n("You have some unsaved changes"));
+        m_messageWidget->setText(messageText(i18n("You have some unsaved changes")));
         m_messageWidget->setMessageType(KMessageWidget::Warning);
         showMessage();
     }
@@ -127,7 +138,7 @@ void Window::showInformationMessage()
     if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Information) {
         hideMessage();
     } else {
-        m_messageWidget->setText(i18n("The weather is great!"));
+        m_messageWidget->setText(messageText(i18n("The weather is great!")));
         m_messageWidget->setMessageType(KMessageWidget::Information);
         showMessage();
     }
@@ -138,10 +149,16 @@ void Window::showPositiveMessage()
     if (m_messageWidget->isVisible() && m_messageWidget->messageType() == KMessageWidget::Positive) {
         hideMessage();
     } else {
-        m_messageWidget->setText(i18n("All your files have been backed up"));
+        m_messageWidget->setText(messageText(i18n("All your files have been backed up")));
         m_messageWidget->setMessageType(KMessageWidget::Positive);
         showMessage();
     }
+}
+
+QString Window::messageText(const QString& defaultText) const
+{
+    QString text = m_edit->toPlainText().trimmed();
+    return text.isEmpty() ? defaultText : text;
 }
 
 void Window::showMessage()
