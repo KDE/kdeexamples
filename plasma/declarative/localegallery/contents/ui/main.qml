@@ -19,9 +19,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 1.1
-import org.kde.plasma.components 0.1 as PlasmaComponents
-import org.kde.locale 0.1
+import QtQuick 2.0
+import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.locale 2.0 as PlasmaLocale
 
 Item {
     id: root
@@ -56,8 +56,8 @@ Item {
                 console.log("=====Locale Component====")
                 console.log("country:" + locale.country)
 
-                locale.binaryUnitDialect = Locale.IECBinaryDialect
-                locale.calendarSystem = Locale.CopticCalendar
+                locale.binaryUnitDialect = PlasmaLocale.Locale.IECBinaryDialect
+                locale.calendarSystem = PlasmaLocale.Locale.CopticCalendar
 
                 locale.countryDivisionCode = "AL"
                 console.log("countryDivisionCode:" + locale.countryDivisionCode)
@@ -67,7 +67,7 @@ Item {
                 locale.currencySymbol = "$"
                 console.log("currencySymbol:" + locale.currencySymbol)
 
-                locale.dateTimeDigitSet = Locale.EasternArabicIndicDigits
+                locale.dateTimeDigitSet = PlasmaLocale.Locale.EasternArabicIndicDigits
 
                 locale.dateFormat = "Y"
                 console.log("dateFormat:" + locale.dateFormat)
@@ -84,12 +84,12 @@ Item {
                 locale.decimalSymbol = "."
                 console.log("decimalSymbol:" + locale.decimalSymbol)
 
-                locale.digitSet = Locale.EasternArabicIndicDigits
+                locale.digitSet = PlasmaLocale.Locale.EasternArabicIndicDigits
                 console.log("digitSet:" + locale.digitSet)
 
                 console.log("language:" + locale.language)
 
-                locale.measureSystem = Locale.Imperial
+                locale.measureSystem = PlasmaLocale.Locale.Imperial
 
                 locale.monetaryDecimalPlaces = 3
                 console.log("monetaryDecimalPlaces:" + locale.monetaryDecimalPlaces)
@@ -97,12 +97,12 @@ Item {
                 locale.monetaryDecimalSymbol = "."
                 console.log("monetaryDecimalSymbol:" + locale.monetaryDecimalSymbol)
 
-                locale.monetaryDigitSet = Locale.EasternArabicIndicDigits
+                locale.monetaryDigitSet = PlasmaLocale.Locale.EasternArabicIndicDigits
 
                 locale.monetaryThousandsSeparator = "."
                 console.log("monetaryThousandsSeparator:" + locale.monetaryThousandsSeparator)
 
-                locale.negativeMonetarySignPosition = Locale.AfterMoney
+                locale.negativeMonetarySignPosition = PlasmaLocale.Locale.AfterMoney
 
                 locale.negativePrefixCurrencySymbol = false
                 console.log("negativePrefixCurrencySymbol:" + locale.negativePrefixCurrencySymbol)
@@ -113,7 +113,7 @@ Item {
                 locale.pageSize = 6
                 console.log("pageSize:" + locale.pageSize)
 
-                locale.positiveMonetarySignPosition = Locale.AfterMoney
+                locale.positiveMonetarySignPosition = PlasmaLocale.Locale.AfterMoney
 
                 locale.positivePrefixCurrencySymbol = false
                 console.log("positivePrefixCurrencySymbol:" + locale.positivePrefixCurrencySymbol)
@@ -127,7 +127,7 @@ Item {
                 locale.weekDayOfPray = 10
                 console.log("weekDayOfPray:" + locale.weekDayOfPray)
 
-                locale.weekNumberSystem = Locale.FirstFullWeek
+                locale.weekNumberSystem = PlasmaLocale.Locale.FirstFullWeek
 
                 locale.weekStartDay = 3
                 console.log("weekStartDay:" + locale.weekStartDay)
@@ -188,7 +188,7 @@ Item {
 
                 console.log("readNumber:" + locale.readNumber(10.0,3))
 
-                console.log("readDate:" + locale.readDate("2004-02-01", Locale.IsoFormat))
+                console.log("readDate:" + locale.readDate("2004-02-01", PlasmaLocale.Locale.IsoFormat))
 
                 console.log("readTime:" + locale.readTime("11:22:33 AM"))
 
@@ -202,7 +202,7 @@ Item {
 
                 console.log("removeAcceleratorMarker:" + locale.removeAcceleratorMarker("&*hello"))
 
-                console.log("convertDigits:" + locale.convertDigits(locale.digitSet, Locale.ArabicDigits))
+                console.log("convertDigits:" + locale.convertDigits(locale.digitSet, PlasmaLocale.Locale.ArabicDigits))
 
                 for (var i in locale.allDigitSetsList) {
                     console.log("allDigitSetsList:" + locale.allDigitSetsList[i])
@@ -271,7 +271,7 @@ Item {
 
                 console.log("monthsInYear:" + calendar.monthsInYear(2012))
 
-                console.log("weeksInYear:" + calendar.weeksInYear(2012, CalendarSystem.SimpleWeek))
+                console.log("weeksInYear:" + calendar.weeksInYear(2012, PlasmaLocale.CalendarSystem.SimpleWeek))
 
                 console.log("daysInYear:" + calendar.daysInYear("2012-02-03"))
 
@@ -281,7 +281,7 @@ Item {
 
                 console.log("dayOfYear:" + calendar.dayOfYear("2012-02-03"))
 
-                console.log("week:" + calendar.week("2012-02-03", CalendarSystem.SimpleWeek))
+                console.log("week:" + calendar.week("2012-02-03", PlasmaLocale.CalendarSystem.SimpleWeek))
 
                 console.log("isLeapYear:" + calendar.isLeapYear(2012))
 
@@ -297,9 +297,9 @@ Item {
 
                 console.log("weekDayName:" + calendar.weekDayName(3))
 
-                console.log("formatDate:" + calendar.formatDate("2012-02-03", CalendarSystem.Year, CalendarSystem.ShortNumber, CalendarSystem.SimpleWeek))
+                console.log("formatDate:" + calendar.formatDate("2012-02-03", PlasmaLocale.CalendarSystem.Year, PlasmaLocale.CalendarSystem.ShortNumber, PlasmaLocale.CalendarSystem.SimpleWeek))
 
-                console.log("readDate:" + calendar.readDate("2012-02-03", CalendarSystem.IsoFormat))
+                console.log("readDate:" + calendar.readDate("2012-02-03", PlasmaLocale.CalendarSystem.IsoFormat))
 
                 console.log("applyShortYearWindow:" + calendar.applyShortYearWindow(50))
 
@@ -324,15 +324,15 @@ Item {
             }
         }
 
-        Locale {
+        PlasmaLocale.Locale {
             id: locale
 
-            binaryUnitDialect: Locale.DefaultBinaryUnits
+            binaryUnitDialect: PlasmaLocale.Locale.DefaultBinaryUnits
             onBinaryUnitDialectChanged: {
             console.log("the binaryUnitDialect property has been changed")
             }
 
-            calendarSystem: Locale.QDateCalendar
+            calendarSystem: PlasmaLocale.Locale.QDateCalendar
             onCalendarSystemChanged: {
                 console.log("the calendarSystem property has been changed")
             }
@@ -366,7 +366,7 @@ Item {
                 console.log("the dateMonthNamePossessive property has been changed")
             }
 
-            dateTimeDigitSet: Locale.ArabicDigits
+            dateTimeDigitSet: PlasmaLocale.Locale.ArabicDigits
             onDateTimeDigitSetChanged: {
                 console.log("the dateTimeDigitSet property has been changed")
             }
@@ -381,12 +381,12 @@ Item {
                 console.log("the decimalSymbol property has been changed")
             }
 
-            digitSet: Locale.ArabicDigits
+            digitSet: PlasmaLocale.Locale.ArabicDigits
             onDigitSetChanged: {
                 console.log("the digitSet property has been changed")
             }
 
-            measureSystem: Locale.Metric
+            measureSystem: PlasmaLocale.Locale.Metric
             onMeasureSystemChanged: {
                 console.log("the measureSystem property has been changed")
             }
@@ -401,7 +401,7 @@ Item {
                 console.log("the monetaryDecimalSymbol property has been changed")
             }
 
-            monetaryDigitSet: Locale.ArabicDigits
+            monetaryDigitSet: PlasmaLocale.Locale.ArabicDigits
             onMonetaryDigitSetChanged: {
                 console.log("the monetaryDigitSet property has been changed")
             }
@@ -411,7 +411,7 @@ Item {
                 console.log("the monetaryThousandsSeparator property has been changed")
             }
 
-            negativeMonetarySignPosition: Locale.ParensAround
+            negativeMonetarySignPosition: PlasmaLocale.Locale.ParensAround
             onNegativeMonetarySignPositionChanged: {
                 console.log("the negativeMonetarySignPosition property has been changed")
             }
@@ -431,7 +431,7 @@ Item {
                 console.log("the pageSign property has been changed")
             }
 
-            positiveMonetarySignPosition: Locale.ParensAround
+            positiveMonetarySignPosition: PlasmaLocale.Locale.ParensAround
             onPositiveMonetarySignPositionChanged: {
                 console.log("the positiveMonetarySignPosition property has been changed")
             }
@@ -456,7 +456,7 @@ Item {
                 console.log("the weekDayOfPray property has been changed")
             }
 
-            weekNumberSystem: Locale.IsoWeekNumber
+            weekNumberSystem: PlasmaLocale.Locale.IsoWeekNumber
             onWeekNumberSystemChanged: {
                 console.log("the weekNumberSystem property has been changed")
             }
@@ -477,7 +477,7 @@ Item {
             }
         }
 
-        CalendarSystem {
+        PlasmaLocale.CalendarSystem {
             id: calendar
         }
     }
