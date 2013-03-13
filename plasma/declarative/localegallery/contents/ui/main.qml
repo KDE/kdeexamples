@@ -33,19 +33,19 @@ Item {
         height: parent.height
         anchors.horizontalCenter: root.horizontalCenter
         spacing: 20
-        Text {
+        PlasmaComponents.Label {
             id: text1
-            anchors.horizontalCenter: column.horizontalCenter
+            width: parent.width
+            wrapMode: Text.WordWrap
             text: "<B>This is a test plasmoid for the locale bindings</B>"
-            color: "black"
         }
 
-        Text {
+        PlasmaComponents.Label {
             id: text2
-            anchors.horizontalCenter: column.horizontalCenter
+            width: parent.width
+            wrapMode: Text.WordWrap
             text: "<B>If you see this text,that means that every " +
             " non printable property/method has been already set. And it works!!</B>"
-            color: "black"
         }
 
         PlasmaComponents.Button {
