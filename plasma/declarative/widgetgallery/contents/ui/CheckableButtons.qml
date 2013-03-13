@@ -18,7 +18,7 @@
 */
 
 import QtQuick 2.0
-import org.kde.plasma.components 0.1 as PlasmaComponents
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 
 PlasmaComponents.Page {

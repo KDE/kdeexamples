@@ -18,8 +18,7 @@
 */
 
 import QtQuick 2.0
-import org.kde.plasma.components 0.1
-import org.kde.plasma.mobilecomponents 0.1 as MobileComponents
+import org.kde.plasma.components 2.0
 
 Image {
     property int minimumWidth: 300
