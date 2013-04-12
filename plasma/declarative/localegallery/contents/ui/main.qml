@@ -68,6 +68,8 @@ Item {
                 console.log("currencySymbol:" + locale.currencySymbol)
 
                 locale.dateTimeDigitSet = PlasmaLocale.Locale.EasternArabicIndicDigits
+                console.log(locale.formatLocaleTime( "11:12:13", Locale.TimeWithoutAmPm|Locale.TimeWithoutSeconds ))
+                console.log(locale.formatDateTime("2013-04-12", Locale.ShortDate ,Locale.Seconds ))
 
                 locale.dateFormat = "Y"
                 console.log("dateFormat:" + locale.dateFormat)
