@@ -25,9 +25,9 @@
 
 class QCheckBox;
 class QGroupBox;
-class QVBoxLayout;
 
 class KMessageWidget;
+class KTextEdit;
 
 class Window : public KMainWindow
 {
@@ -44,15 +44,16 @@ private Q_SLOTS:
     void showActions(bool show);
 
 private:
-    QVBoxLayout* m_layout;
     KMessageWidget* m_messageWidget;
     QList<QAction*> m_actions;
     QCheckBox* m_animatedShowCheckBox;
-    QGroupBox* m_groupBox;
+    KTextEdit* m_edit;
 
-    void createButton(const QString& label, const char* slot);
+    void createMessageButton(QLayout* layout, const QString& label, const char* slot);
     void showMessage();
     void hideMessage();
+
+    QString messageText(const QString& defaultText) const;
 };
 
 #endif // WINDOW_H
