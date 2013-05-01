@@ -8,7 +8,7 @@ project(kdeexamples)
 
 #add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
-install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples)
+#install(FILES README DESTINATION ${DATA_INSTALL_DIR}/kdeexamples)
 
 #add_subdirectory(attica)
 #add_subdirectory(authorization)
