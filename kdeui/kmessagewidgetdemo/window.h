@@ -24,6 +24,7 @@
 #include <KMainWindow>
 
 class QCheckBox;
+class QComboBox;
 class QGroupBox;
 
 class KMessageWidget;
@@ -43,11 +44,14 @@ private Q_SLOTS:
 
     void showActions(bool show);
 
+    void setIconFromComboBox(int index);
+
 private:
     KMessageWidget* m_messageWidget;
     QList<QAction*> m_actions;
     QCheckBox* m_animatedShowCheckBox;
     KTextEdit* m_edit;
+    QComboBox* m_iconComboBox;
 
     void createMessageButton(QLayout* layout, const QString& label, const char* slot);
     void showMessage();

@@ -29,6 +29,7 @@
 // Qt
 #include <QCheckBox>
 #include <QCoreApplication>
+#include <QComboBox>
 #include <QGroupBox>
 #include <QLabel>
 #include <QPushButton>
@@ -101,6 +102,19 @@ Window::Window(QWidget *parent)
         m_animatedShowCheckBox = new QCheckBox(i18n("Animated"));
         m_animatedShowCheckBox->setChecked(true);
         layout->addWidget(m_animatedShowCheckBox);
+
+        QLabel* iconLabel = new QLabel("Icon:");
+        layout->addWidget(iconLabel);
+
+        m_iconComboBox = new QComboBox;
+        iconLabel->setBuddy(m_iconComboBox);
+        QStringList names = QStringList() << QString() << "preferences-system-network" << "document-save" << "system-users";
+        Q_FOREACH(const QString &name, names) {
+            QIcon icon = QIcon::fromTheme(name);
+            m_iconComboBox->addItem(icon, name.isEmpty() ? "none" : name);
+        }
+        connect(m_iconComboBox, SIGNAL(activated(int)), SLOT(setIconFromComboBox(int)));
+        layout->addWidget(m_iconComboBox);
     }
 
     addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
@@ -192,4 +206,10 @@ void Window::showActions(bool show)
             m_messageWidget->removeAction(action);
         }
     }
+}
+
+void Window::setIconFromComboBox(int index)
+{
+    QIcon icon = m_iconComboBox->itemIcon(index);
+    m_messageWidget->setIcon(icon);
 }
