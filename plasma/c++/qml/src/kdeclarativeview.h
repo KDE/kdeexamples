@@ -24,8 +24,6 @@
 
 #include <QDeclarativeView>
 
-#include "activeapp_export.h"
-
 namespace Plasma
 {
     class Package;
