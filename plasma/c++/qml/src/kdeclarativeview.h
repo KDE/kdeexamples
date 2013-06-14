@@ -32,7 +32,7 @@ namespace Plasma
 class QScriptEngine;
 class KDeclarativeViewPrivate;
 
-class ACTIVEAPP_EXPORT KDeclarativeView : public QDeclarativeView
+class KDeclarativeView : public QDeclarativeView
 {
     Q_OBJECT
 
