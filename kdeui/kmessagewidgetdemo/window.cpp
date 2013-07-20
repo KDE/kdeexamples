@@ -25,6 +25,7 @@
 #include <KMessageWidget>
 #include <KStandardAction>
 #include <KTextEdit>
+#include <kdeversion.h>
 
 // Qt
 #include <QCheckBox>
@@ -210,6 +211,9 @@ void Window::showActions(bool show)
 
 void Window::setIconFromComboBox(int index)
 {
+    // KMessageWidget::setIcon() requires KDE >= 4.11
+#if KDE_VERSION >= KDE_MAKE_VERSION(4,10,60)
     QIcon icon = m_iconComboBox->itemIcon(index);
     m_messageWidget->setIcon(icon);
+#endif
 }
