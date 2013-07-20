@@ -34,7 +34,7 @@ class KVBox;
 class MainWindow : public KMainWindow
 {
   public:
-    MainWindow(QWidget *parent=0);
+    explicit MainWindow(QWidget *parent=0);
 
   private:
     void createWidget(QString name, QWidget *widget, KVBox *parent);
