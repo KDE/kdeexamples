@@ -35,7 +35,7 @@ class MainWindow : public KParts::MainWindow
   public:
     MainWindow();
 
-  public slots:
+  public Q_SLOTS:
     void load(const KUrl &url);
     void load();
 

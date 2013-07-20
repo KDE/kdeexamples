@@ -42,7 +42,7 @@ class MainWindow : public KXmlGuiWindow
 
     void setupActions();
 
-  private slots:
+  private Q_SLOTS:
     void openNew();
     void open();
     void save();
