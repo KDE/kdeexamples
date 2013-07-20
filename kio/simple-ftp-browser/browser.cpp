@@ -46,7 +46,7 @@ void Browser::showEntries(KIO::Job *job, const KIO::UDSEntryList &list)
     Q_UNUSED(job);
     bool dir;
     QString name;
-    foreach (KIO::UDSEntry entry, list) {
+    foreach (const KIO::UDSEntry& entry, list) {
         // Get the info of every entry
         name = entry.stringValue(KIO::UDSEntry::UDS_NAME);
         dir = entry.isDir();
