@@ -47,7 +47,7 @@ using namespace Nepomuk2::Vocabulary;
 class TestObject : public QObject {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void main();
 public:
     TestObject() {

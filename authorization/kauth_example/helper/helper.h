@@ -30,7 +30,7 @@ class MyHelper : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     ActionReply read(QVariantMap args);
     ActionReply write(QVariantMap args);
     ActionReply longaction(QVariantMap args);

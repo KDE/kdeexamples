@@ -43,7 +43,7 @@ public:
 
     void init();
 
-private slots:
+private Q_SLOTS:
 
     void startAll();
     void revertDirection();

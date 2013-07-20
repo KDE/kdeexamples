@@ -49,11 +49,11 @@ class KdeDemo : public Plasma::Applet
 
         void init();
 
-    signals:
+    Q_SIGNALS:
         void hideCategories();
         void showCategories();
 
-    private slots:
+    private Q_SLOTS:
         void loadExampleList();
         void loadExample();
         void backToCategories();

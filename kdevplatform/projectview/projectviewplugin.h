@@ -41,7 +41,7 @@ class ProjectViewPlugin : public KDevelop::IPlugin
     public:
         ProjectViewPlugin(QObject *parent, const QVariantList & args);
         
-    public slots:
+    public Q_SLOTS:
         void projectClosed(KDevelop::IProject*);
         void projectOpened(KDevelop::IProject*);
         

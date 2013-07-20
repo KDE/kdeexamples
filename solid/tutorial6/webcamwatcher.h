@@ -36,7 +36,7 @@ class WebcamWatcher : public QObject
         ~WebcamWatcher();
     protected:
         void getDetails( const Solid::Device & dev );
-    protected slots:
+    protected Q_SLOTS:
         void deviceAdded( const QString& udi );
         void deviceRemoved( const QString& udi );
     private:

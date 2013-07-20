@@ -47,7 +47,7 @@ public:
      */
     UpdateChecker();
 
-private slots:
+private Q_SLOTS:
 
     void updatesFound(const KNS3::Entry::List& updates);
     void entryStatusChanged(const KNS3::Entry& entry);

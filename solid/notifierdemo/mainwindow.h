@@ -37,7 +37,7 @@ class MainWindow : public KMainWindow
   public:
     MainWindow(QWidget *parent = 0);
 
-  private slots:
+  private Q_SLOTS:
     void deviceAdded(const QString &udi);
     void deviceRemoved(const QString &udi);
 

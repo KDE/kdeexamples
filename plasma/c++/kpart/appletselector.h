@@ -31,10 +31,10 @@ Q_OBJECT
 public:
     explicit AppletSelector(QObject* parent = 0, const QVariantList& args = QVariantList());
     ~AppletSelector();
-public slots:
+public Q_SLOTS:
     void selected(const QModelIndex& idx);
 
-signals:
+Q_SIGNALS:
     void addApplet(const QString& name);
 
 private:

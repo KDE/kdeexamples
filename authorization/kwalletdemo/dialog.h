@@ -19,7 +19,7 @@ Q_OBJECT
 public:
     Dialog(QWidget *parent = 0);
 
-private slots:
+private Q_SLOTS:
     void doSave();
     void doRetrieve();
 

@@ -42,7 +42,7 @@ class MainWindow : public KMainWindow
 public:
     MainWindow(QWidget *parent=0);
 
-public slots:
+public Q_SLOTS:
     void checkSpelling();
 
 private:

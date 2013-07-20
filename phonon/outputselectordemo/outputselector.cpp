@@ -132,10 +132,10 @@ class RemoteAudioOutput : public QWidget
         inline void setVolume(double v) { iface->setVolume(v); }
         inline void setMuted(bool m) { iface->setMuted(m); }
 
-    signals:
+    Q_SIGNALS:
         void changed();
 
-    private slots:
+    private Q_SLOTS:
         void nameChanged(const QString &newName);
         void volumeChanged(double v);
         void mutedChanged(bool m);
@@ -249,7 +249,7 @@ class OutputSelector : public QWidget
     public:
         OutputSelector();
 
-    private slots:
+    private Q_SLOTS:
         void newOutputAvailable(const QString &service, const QString &path);
         void introspectDone(const QDBusMessage &msg);
         void cleanupOutput(QObject *o);

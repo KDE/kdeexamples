@@ -39,7 +39,7 @@ class Browser : public QWidget
 public:
     Browser();
 
-private slots:
+private Q_SLOTS:
     void showEntries(KIO::Job *job, const KIO::UDSEntryList &list);
 
 private:

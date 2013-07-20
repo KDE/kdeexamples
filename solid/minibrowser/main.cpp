@@ -112,10 +112,10 @@ public:
         setCentralWidget(central);
     }
 
-public slots:
+public Q_SLOTS:
     void populate();
 
-private slots:
+private Q_SLOTS:
     void currentItemChanged(QTreeWidgetItem *current);
 
 private:

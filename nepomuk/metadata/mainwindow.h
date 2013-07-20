@@ -38,7 +38,7 @@ class MainWindow : public KMainWindow
   public:
     MainWindow(QWidget *parent = 0);
 
-  private slots:
+  private Q_SLOTS:
     void chooseFile();
     void addTag();
 
