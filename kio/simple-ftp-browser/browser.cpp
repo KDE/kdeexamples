@@ -38,7 +38,7 @@ Browser::Browser() : QWidget(NULL)
     layout->addWidget(list_widget);
     // Create a job that lists the contents of the FTP server
     KIO::ListJob *job = KIO::listDir(KUrl("ftp://ftp.kde.org/pub/kde/"));
-    connect(job, SIGNAL(entries(KIO::Job*, const KIO::UDSEntryList&)), this, SLOT(showEntries(KIO::Job*, const KIO::UDSEntryList&)));
+    connect(job, SIGNAL(entries(KIO::Job*,KIO::UDSEntryList)), this, SLOT(showEntries(KIO::Job*,KIO::UDSEntryList)));
 }
 
 void Browser::showEntries(KIO::Job *job, const KIO::UDSEntryList &list)
