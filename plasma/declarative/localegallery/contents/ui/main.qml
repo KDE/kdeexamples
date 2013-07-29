@@ -23,7 +23,7 @@ import QtQuick 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.locale 2.0 as PlasmaLocale
 
-Item {
+Rectangle {
     id: root
     property int minimumHeight: 200
     property int minimumWidth: 500
@@ -147,10 +147,6 @@ Item {
                 console.log("defaultCountry:" + locale.defaultCountry)
 
                 console.log("defaultCurrencyCode:" + locale.defaultCurrencyCode)
-
-                console.log("the useTranscript:" + locale.useTranscript)
-
-                console.log("the encodingMib:" + locale.encodingMib)
 
                 for (var i in locale.languageList) {
                     console.log("languageList:" + locale.languageList[i])
