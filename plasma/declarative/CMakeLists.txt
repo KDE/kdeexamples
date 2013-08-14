@@ -19,4 +19,5 @@ add_subdirectory(wallpapers)
 # widgetgallery
 installPackage(localegallery org.kde.example.locale)
 installPackage(widgetgallery org.kde.example.widgetgallery)
+installPackage(qmltasks org.kde.example.tasks)
 #install(FILES widgetgallery/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME plasma-applet-org.kde.example.widgetgallery.desktop)

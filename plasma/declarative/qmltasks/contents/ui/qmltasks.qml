@@ -19,34 +19,49 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import Qt 4.7
-import org.kde.plasma.graphicswidgets 0.1 as PlasmaWidgets
-import org.kde.plasma.core 0.1 as PlasmaCore
-import org.kde.plasma.graphicslayouts 4.7 as GraphicsLayouts
+import QtQuick 2.0
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
     width: 200
     height: 300
 
     PlasmaCore.DataSource {
-          id: tasksSource
-          dataEngine: "tasks"
-          interval: 0
-          onSourceAdded: {
-             connectSource(source)
-          }
-          Component.onCompleted: {
-              connectedSources = sources
-          }
-      }
+        id: tasksSource
+        dataEngine: "tasks"
+        interval: 0
+        onSourceAdded: {
+            connectSource(source)
+        }
+        Component.onCompleted: {
+            connectedSources = sources
+        }
+    }
+
+    function performOperation(src, what) {
+        var service = tasksSource.serviceForSource(src);
+        var operation = service.operationDescription(what);
+        return service.startOperationCall(operation);
+    }
 
     ListView {
+        clip: true
         anchors.fill: parent
         model: PlasmaCore.DataModel {
             dataSource: tasksSource
         }
-        delegate: Text {
-          text: visibleName+" onAllDesktops: "+onAllDesktops
+
+        delegate: PlasmaComponents.ToolButton {
+            width: parent.width
+            height: 32
+            minimumWidth: 64
+            minimumHeight: 24
+            iconSource: icon
+            text: visibleName
+            onClicked: {
+                performOperation(model["DataEngineSource"], "activate");
+            }
         }
     }
 }
