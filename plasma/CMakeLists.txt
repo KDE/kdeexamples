@@ -132,19 +132,6 @@ if(QCA2_FOUND)
 endif()
 
 
-macro(installPackage dir component)
-   set(root ${ARGV2})
-   set(type ${ARGV3})
-   if(NOT root)
-      set(root plasma/plasmoids)
-   endif()
-   if(NOT type)
-      set(type applet)
-   endif()
-   install(DIRECTORY ${dir}/ DESTINATION ${DATA_INSTALL_DIR}/${root}/${component} PATTERN .svn EXCLUDE PATTERN CMakeLists.txt EXCLUDE PATTERN Messages.sh EXCLUDE)
-   install(FILES ${dir}/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME plasma-${type}-${component}.desktop)
-endmacro()
-
 ################# list the subdirectories #################
 #add_subdirectory(src)
 #add_subdirectory( desktoptheme )
