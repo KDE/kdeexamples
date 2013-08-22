@@ -24,8 +24,8 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
-    width: 200
-    height: 300
+    width: 400
+    height: 32
 
     PlasmaCore.DataSource {
         id: tasksSource
@@ -46,16 +46,20 @@ Item {
     }
 
     ListView {
-        clip: true
+        //clip: true
+        id: tasksList
         anchors.fill: parent
+
+        orientation: ListView.Horizontal
+
         model: PlasmaCore.DataModel {
             dataSource: tasksSource
         }
 
         delegate: PlasmaComponents.ToolButton {
-            width: parent.width
-            height: 32
-            minimumWidth: 64
+            width: (tasksList.width / (tasksSource.connectedSources.length))
+            height: parent.height
+            minimumWidth: 24
             minimumHeight: 24
             iconSource: icon
             text: visibleName
