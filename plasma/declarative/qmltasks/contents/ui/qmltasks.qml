@@ -27,6 +27,9 @@ Item {
     width: 400
     height: 32
 
+    property bool fillWidth: true
+    property bool fillHeight: true
+
     PlasmaCore.DataSource {
         id: tasksSource
         dataEngine: "tasks"
