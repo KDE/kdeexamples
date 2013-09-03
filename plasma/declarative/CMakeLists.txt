@@ -1,8 +1,5 @@
 add_subdirectory(wallpapers)
 
-# # addons
-# install(DIRECTORY addons/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/org.kde.addons-example-qml)
-# install(FILES addons/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME addons-example.desktop)
 # # fakemail
 # install(DIRECTORY fakemail/ DESTINATION ${DATA_INSTALL_DIR}/plasma/plasmoids/fakemail-qml)
 # install(FILES fakemail/metadata.desktop DESTINATION ${SERVICES_INSTALL_DIR} RENAME akemail-example.desktop)
@@ -24,3 +21,5 @@ plasma_install_package(windowlist org.kde.example.windowlist)
 plasma_install_package(conditionalloader org.kde.example.conditionalloader)
 plasma_install_package(testcomponents org.kde.example.testcomponents)
 plasma_install_package(testshaders org.kde.example.testshaders)
+plasma_install_package(helloworld org.kde.examples.helloworld)
+plasma_install_package(compactrepresentation org.kde.examples.compactrepresentation)
