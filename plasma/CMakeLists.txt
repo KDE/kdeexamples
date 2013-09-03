@@ -49,8 +49,8 @@ find_package(kdeqt5staging REQUIRED NO_MODULE)
 
 find_package(KF5 MODULE REQUIRED COMPONENTS CMake Compiler InstallDirs
                                             KIdleTime ItemModels KWidgetsAddons KWindowSystem KCodecs KArchive KCoreAddons Solid ThreadWeaver
-                                            KConfig KAuth KJS KWallet KDBusAddons KConfigWidgets
-                                            KI18n KGuiAddons KService ItemViews KNotifications KIconThemes KCompletion KJobWidgets KConfigWidgets Sonnet KTextWidgets XmlGui KCrash
+                                            KConfig KAuth KJS KWallet KDBusAddons KI18n KGuiAddons KConfigWidgets
+                                            KService ItemViews KNotifications KIconThemes KCompletion KJobWidgets KConfigWidgets Sonnet KTextWidgets XmlGui KCrash
                                             KIO KUnitConversion KDE4Attic)
 
 find_package(KIO REQUIRED NO_MODULE)
