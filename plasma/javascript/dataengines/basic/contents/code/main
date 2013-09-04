@@ -1,0 +1,70 @@
+// sources() allows us to return a set of source names for this engine, even before they are created
+// normally, reimplementing sources() is not needed, as the default implementation returns the list
+// of all sources that are already available and that it is generally what a DataEngine wants to
+// advertise. However, in this example, we want to advertise three sources by default, even before
+// they are requested and setup.
+engine.sources = function()
+{
+    var sources = new Array('vegetables', 'fruits', 'grains')
+    return sources
+}
+
+// sourceRequestEvent is called whenever a source that does not exist is requested by a
+// visualization. The DataEngine can accept or refuse the request, signified by the return
+// value.
+engine.sourceRequestEvent = function(sourceRequested)
+{
+    var attributes = new Array()
+    attributes['healthy'] = true
+    attributes['tasty'] = true
+    attributes['eatenRaw'] = true
+
+    // we'll set some data depending on the name of the source being requested
+    // note that the name of source passed to setData and the name of the source requested
+    // must match!
+    if (sourceRequested == 'vegetables') {
+        setData(sourceRequested, 'favorite', 'asparagus')
+    } else if (sourceRequested == 'fruits') {
+        setData(sourceRequested, 'favorite', 'apple')
+    } else if (sourceRequested == 'grains') {
+        setData(sourceRequested, 'favorite', 'quinoa')
+        attributes['eatenRaw'] = false
+    } else {
+        // returning false here means that the engine does not support that source name
+        return false
+    }
+
+    // we can also set data using an associative array of key->value pairs
+    setData(sourceRequested, attributes)
+
+    // return success; even if the source is asyncronous (so we don't set up any real data yet)
+    // we still need to return true
+    return true
+}
+
+// the DataEngine will get an updateSourceEvent every time a source is scheduled to be updated
+// for instance, if a visualization asks for updates every 500ms, this will get called twice
+// per second. if the DataEngine is push (versus polling) oriented, then this function does
+// not need to be implemented
+engine.updateSourceEvent = function(sourceToUpdate)
+{
+    if (sourceToUpdate == 'vegetables') {
+        setData(sourceToUpdate, 'favorite', 'celery root')
+    } else if (sourceToUpdate == 'fruits') {
+        setData(sourceToUpdate, 'favorite', 'banana')
+    } else if (sourceToUpdate == 'grains') {
+        setData(sourceToUpdate, 'favorite', 'barley')
+    }
+}
+
+// let's set up some default data for vegetables, even before it is requested by a visualization
+/*
+setData('vegetables', 'healthy', true)
+setData('vegetables', 'tasty', true)
+setData('vegetables', 'eatenRaw', true)
+*/
+// and here's how we remove a source; there is also removeData for taking just part of the data
+// associated with a source away and removeAllSources which expunges all sources in the engine
+setData('meat', 'animal', 'yes')
+removeAllData('meat')
+

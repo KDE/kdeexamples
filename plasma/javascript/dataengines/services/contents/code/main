@@ -1,0 +1,55 @@
+function startEcho()
+{
+    // an 'echoText' job has been started (see setupJob below)
+    // the this object is the job being started
+    // let's output some information to console, such as one of the parameters
+    // and the 'foo' property we set below
+    print('Starting echo, text is: ' + this.parameters['text'] + ', and our custom "foo" property is: ' + this.foo)
+
+    // in our case, we're going to take immediate action by setting some data in the engine
+    setData('echo', 'text', this.parameters['text'])
+
+    // set the result to true, since we're already finished. setting the result
+    // will cause the job to finish, including signalling the user of the job
+    // that it has finished. we can set the result to any value / object we wish
+    // though it is recommended to keep to "plain old data" types like boolean,
+    // number, string, array, etc.
+    //
+    // if this job were asynchronous, we would instead start some process in motion
+    // such as a network job and then set the result at some future point
+    // when we are finished
+    this.result = true;
+}
+
+function setupJob(job)
+{
+    // a job has been created upon request, based on our service.
+    // we can use the operationName, destination and parameters
+    // of the job to determine if we accept it.
+    // if we do, then we need to set a startFunction
+    if (job.operationName == 'echoText') {
+        job.start = startEcho
+
+        // we can set other properties, functions, etc on the job
+        // for later use, if we wish
+        job.foo = 'bar'
+    }
+}
+
+// Whenever a Service is requested for a source, this function is called
+// we need to return a Service for it to work properly
+engine.serviceForSource = function(source)
+{
+    if (source == 'echo') {
+        // we recognize this source as being serviceable, and so create a Service
+        // the 'echo' parameter causes the contents/services/echo.operations file
+        // to be loaded as the service description. Any number of operations files
+        // may be included with a DataEngine, allowing for multiple services.
+        var service = new Service('echo')
+        service.setupJob = setupJob
+        return service;
+    }
+}
+
+setData('echo', 'text', 'test')
+
