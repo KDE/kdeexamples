@@ -46,6 +46,9 @@ case "$name" in
     ;;
 esac
 
+# if we have KFooBar, kill the K for KF5FooBar
+kf5name="KF5$(echo $name | sed -e "s/^K//")"
+
 # Copy files
 lowercase_name=$(echo $name | tr A-Z a-z)
 uppercase_name=$(echo $name | tr a-z A-Z)
@@ -58,6 +61,7 @@ echo "Replacing template names"
 cd $dir
 find -type f | while read file ; do
     sed -i \
+        -e "s/KF5FooBar/$kf5name/g" \
         -e "s/FooBar/$name/g" \
         -e "s/foobar/$lowercase_name/g" \
         -e "s/FOOBAR/$uppercase_name/g" \
@@ -66,7 +70,7 @@ find -type f | while read file ; do
     # Rename files matching *FooBar*
     case "$file" in
     *FooBar*)
-        mv $file $(echo $file | sed "s/FooBar/$name/")
+        mv $file $(echo $file | sed -e "s/KF5FooBar/$kf5name/" -e "s/FooBar/$name/")
         ;;
     *)
         ;;
