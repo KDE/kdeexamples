@@ -77,6 +77,7 @@ find -type f | while read file ; do
     esac
 done
 
+echo "Creating README.md"
 cat > README.md <<EOF
 # $name
 
@@ -90,6 +91,20 @@ TODO: write an introduction about this framework
 - IRC channel: #kde-devel on Freenode
 - Git repository: <https://projects.kde.org/projects/frameworks/$lowercase_name/repository>
 EOF
+
+echo "Creating ${lowercase_name}.yaml"
 echo "tier: \"unknown\"" > ${lowercase_name}.yaml
 
+echo "Creating .reviewboardrc"
+cat > .reviewboardrc <<EOF
+REVIEWBOARD_URL = "https://git.reviewboard.kde.org"
+REPOSITORY = 'git://anongit.kde.org/${lowercase_name}
+BRANCH = 'master'
+TARGET_GROUPS = 'kdeframeworks'
+EOF
+
+echo
 echo "Do not forget to edit README.md and ${lowercase_name}.yaml"
+echo "You may also want to add"
+echo "TARGET_PEOPLE = 'your_kde_username'"
+echo "to the .reviewboardrc file"
