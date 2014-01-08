@@ -76,3 +76,20 @@ find -type f | while read file ; do
         ;;
     esac
 done
+
+cat > README.md <<EOF
+# $name
+
+## Introduction
+
+TODO: write an introduction about this framework
+
+## Links
+
+- Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
+- IRC channel: #kde-devel on Freenode
+- Git repository: <https://projects.kde.org/projects/frameworks/$lowercase_name/repository>
+EOF
+echo "tier: \"unknown\"" > ${lowercase_name}.yaml
+
+echo "Do not forget to edit README.md and ${lowercase_name}.yaml"
