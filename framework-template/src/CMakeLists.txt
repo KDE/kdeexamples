@@ -19,6 +19,7 @@ target_link_libraries(KF5FooBar
 set_target_properties(KF5FooBar
   PROPERTIES VERSION ${FOOBAR_VERSION_STRING}
   SOVERSION ${FOOBAR_SOVERSION}
+  EXPORT_NAME "FooBar"
 )
 
 ecm_generate_headers(
