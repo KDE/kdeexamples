@@ -17,11 +17,10 @@ include(KDECMakeSettings)
 
 set(KF5_VERSION "5.0.0")
 
-ecm_setup_version(
-  ${KF5_VERSION}
-  VARIABLE_PREFIX FOOBAR
-  VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/foobar_version.h"
-  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfigVersion.cmake"
+ecm_setup_version(${KF5_VERSION}
+    VARIABLE_PREFIX FOOBAR
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/foobar_version.h"
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfigVersion.cmake"
 )
 
 # Dependencies
@@ -42,29 +41,24 @@ add_subdirectory(tests)
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/FooBar")
 
 configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/KF5FooBarConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfig.cmake"
-  INSTALL_DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/KF5FooBarConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfig.cmake"
+    INSTALL_DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
 )
 
 install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfig.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfigVersion.cmake"
-  DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-  COMPONENT Devel
-)
+            "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfig.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KF5FooBarConfigVersion.cmake"
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel)
 
-install(EXPORT
-  KF5FooBarTargets
-  DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-  FILE KF5FooBarTargets.cmake
-  NAMESPACE KF5::
-)
+install(EXPORT KF5FooBarTargets
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KF5FooBarTargets.cmake
+        NAMESPACE KF5::)
 
-install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/foobar_version.h"
-  DESTINATION "${INCLUDE_INSTALL_DIR}"
-  COMPONENT Devel
-)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/foobar_version.h"
+        DESTINATION "${INCLUDE_INSTALL_DIR}"
+        COMPONENT Devel)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
