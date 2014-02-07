@@ -98,7 +98,7 @@ echo "tier: \"unknown\"" > ${lowercase_name}.yaml
 echo "Creating .reviewboardrc"
 cat > .reviewboardrc <<EOF
 REVIEWBOARD_URL = "https://git.reviewboard.kde.org"
-REPOSITORY = 'git://anongit.kde.org/${lowercase_name}
+REPOSITORY = 'git://anongit.kde.org/${lowercase_name}'
 BRANCH = 'master'
 TARGET_GROUPS = 'kdeframeworks'
 EOF
