@@ -22,19 +22,15 @@ set_target_properties(KF5FooBar
     EXPORT_NAME "FooBar"
 )
 
-ecm_generate_headers(
+ecm_generate_headers(FooBar_HEADERS
+  HEADER_NAMES
     MyClass
     # other classes
 
-    MODULE_NAME FooBar
     REQUIRED_HEADERS FooBar_HEADERS
 )
 
 # Install files
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/FooBar
-        DESTINATION ${INCLUDE_INSTALL_DIR}
-        COMPONENT Devel)
-
 install(TARGETS KF5FooBar
         EXPORT KF5FooBarTargets
         ${INSTALL_TARGETS_DEFAULT_ARGS})
