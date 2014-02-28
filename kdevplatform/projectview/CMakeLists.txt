@@ -26,5 +26,6 @@ target_link_libraries(kdevprojectviewplugin ${KDEVPLATFORM_INTERFACES_LIBRARIES}
 
 install(TARGETS kdevprojectviewplugin DESTINATION ${PLUGIN_INSTALL_DIR})
 
-install(FILES kdevprojectview.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+configure_file(kdevprojectview.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kdevprojectview.desktop)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kdevprojectview.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 
