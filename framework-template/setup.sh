@@ -8,12 +8,14 @@ die() {
 
 usage() {
     cat <<EOF
-Usage: setup.sh <framework-name> <destination-dir>
+Usage: setup.sh <framework-name> <translation-system> <destination-dir>
 
 Copies template files to destination-dir, using the correct file names. Replaces
 all references to the template framework name with framework-name.
 
 framework-name must be in CamelCase.
+
+translation-system must be one of "qt", "i18n", "none".
 
 destination-dir must not exist already.
 EOF
@@ -27,12 +29,15 @@ template_dir=$PWD
 cd $old_pwd
 
 # Check command line arguments
-if [ $# -ne 2 ] ; then
+if [ $# -ne 3 ] ; then
+    echo "Wrong number of arguments."
+    echo
     usage
 fi
 
 name="$1"
-dir="$2"
+tr="$2"
+dir="$3"
 
 if [ -e "$dir" ] ; then
     die "'$dir' already exists"
@@ -43,6 +48,14 @@ case "$name" in
     ;;
 *)
     die "Framework name '$name' must start with a capitalized letter"
+    ;;
+esac
+
+case "$tr" in
+qt|i18n|none)
+    ;;
+*)
+    die "'$tr' is not a valid translation system"
     ;;
 esac
 
@@ -76,6 +89,18 @@ find -type f | while read file ; do
         ;;
     esac
 done
+
+# Handle translations
+case "$tr" in
+qt)
+    sed -i 's/XGETTEXT/XGETTEXT_QT/' Messages.sh
+    ;;
+none)
+    rm Messages.sh
+    ;;
+i18n)
+    ;;
+esac
 
 echo "Creating README.md"
 cat > README.md <<EOF
