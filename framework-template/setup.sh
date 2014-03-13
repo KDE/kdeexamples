@@ -128,8 +128,15 @@ BRANCH = 'master'
 TARGET_GROUPS = 'kdeframeworks'
 EOF
 
-echo
-echo "Do not forget to edit README.md and ${lowercase_name}.yaml"
-echo "You may also want to add"
-echo "TARGET_PEOPLE = 'your_kde_username'"
-echo "to the .reviewboardrc file"
+cat <<EOF
+
+Things to do now:
+
+- Edit README.md and ${lowercase_name}.yaml
+
+- Optionally, add this line to .reviewboardrc:
+
+    TARGET_PEOPLE = 'your_kde_username'
+
+  to be notified when review requests are submitted.
+EOF
