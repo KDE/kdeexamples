@@ -15,4 +15,4 @@ fi
 # Call xgettext on all source files.
 # If your framework depends on KI18n, use $XGETTEXT. If it uses Qt translation
 # system, use $XGETTEXT_QT.
-$XGETTEXT `find . -name \*.cpp -o -name \*.h -name \*.qml` -o $podir/foobar.pot
+$XGETTEXT `find . -name \*.cpp -o -name \*.h -name \*.qml` -o $podir/foobar5.pot
