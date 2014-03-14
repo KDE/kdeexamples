@@ -1,8 +1,8 @@
-#!bin/sh
+#!/bin/sh
 
 # Invoke the extractrc script on all .ui, .rc, and .kcfg files in the sources.
 # The results are stored in a pseudo .cpp file to be picked up by xgettext.
-lst=`find src -name \*.rc -o -name \*.ui -o -name \*.kcfg`
+lst=`find . -name \*.rc -o -name \*.ui -o -name \*.kcfg`
 if [ -n "$lst" ] ; then
     $EXTRACTRC $lst >> rc.cpp
 fi
@@ -13,4 +13,6 @@ if [ -f "data/tips" ] ; then
 fi
 
 # Call xgettext on all source files.
-$XGETTEXT `find src -name \*.cpp -o -name \*.h -name \*.qml` -o $podir/foobar.pot
+# If your framework depends on KI18n, use $XGETTEXT. If it uses Qt translation
+# system, use $XGETTEXT_QT.
+$XGETTEXT `find . -name \*.cpp -o -name \*.h -name \*.qml` -o $podir/foobar.pot

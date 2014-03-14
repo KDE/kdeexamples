@@ -93,10 +93,10 @@ done
 # Handle translations
 case "$tr" in
 qt)
-    sed -i 's/XGETTEXT/XGETTEXT_QT/' Messages.sh
+    sed -i 's/^\$XGETTEXT/$XGETTEXT_QT/' src/Messages.sh
     ;;
 none)
-    rm Messages.sh
+    rm src/Messages.sh
     ;;
 i18n)
     ;;
