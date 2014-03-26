@@ -12,7 +12,7 @@ if [ -f "data/tips" ] ; then
     ( cd data && $PREPARETIPS > ../tips.cpp )
 fi
 
-# Call xgettext on all source files.
+# Extract strings from all source files.
 # If your framework depends on KI18n, use $XGETTEXT. If it uses Qt translation
-# system, use $XGETTEXT_QT.
+# system, use $EXTRACT_TR_STRINGS.
 $XGETTEXT `find . -name \*.cpp -o -name \*.h -name \*.qml` -o $podir/foobar5.pot
