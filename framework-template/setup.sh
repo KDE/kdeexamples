@@ -93,12 +93,15 @@ done
 # Handle translations
 case "$tr" in
 qt)
-    sed -i 's/^\$XGETTEXT/$EXTRACT_TR_STRINGS/' src/Messages.sh
-    ;;
-none)
-    rm src/Messages.sh
+    rm src/Messages-i18n.sh
+    mv src/Messages-qt.sh src/Messages.sh
     ;;
 i18n)
+    rm src/Messages-qt.sh
+    mv src/Messages-i18n.sh src/Messages.sh
+    ;;
+none)
+    rm src/Messages-*.sh
     ;;
 esac
 
