@@ -233,7 +233,7 @@ uppercase_name=$(echo $name | tr a-z A-Z)
 
 echo "Copying files to $dir"
 cp -r $template_dir $dir
-rm $dir/setup.sh
+rm $dir/setup.sh $dir/test-setup.sh
 
 cd $dir
 
