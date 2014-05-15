@@ -42,6 +42,8 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core)
 # include(ECMPoQmTools)
 
 # Translations
+# TODO-i18n: Uncomment if your framework is translated using KI18n
+# add_definitions(-DTRANSLATION_DOMAIN=\"foobar5\")
 if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
     # TODO-i18n: Uncomment if your framework is translated using KI18n
     # ki18n_install(po)
