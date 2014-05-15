@@ -2,6 +2,9 @@ set(foobar_SRCS
     myclass.cpp
 )
 
+# TODO-qt: Uncomment if your framework is translated using Qt
+# ecm_create_qm_loader(${foobar_SRCS} foobar5_qt)
+
 add_library(KF5FooBar ${foobar_SRCS})
 generate_export_header(KF5FooBar BASE_NAME FooBar)
 add_library(KF5::FooBar ALIAS KF5FooBar)
@@ -13,7 +16,9 @@ target_link_libraries(KF5FooBar
         Qt5::Core
 #    PRIVATE
 #        KF5::CoreAddons
-        # Other private libs
+         # Other private libs
+# TODO-i18n: Uncomment if your framework is translated using KI18n
+#        KF5::I18n
 )
 
 set_target_properties(KF5FooBar

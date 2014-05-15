@@ -32,6 +32,27 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core)
 # TODO: Add all required find_package() calls here. For example:
 # find_package(KF5CoreAddons ${KF5_VERSION} REQUIRED)
 
+# TODO-i18n: Uncomment if your framework is translated using KI18n
+# find_package(KF5I18n ${KF5_VERSION} REQUIRED)
+
+# TODO-docbook: Uncomment if you want to provide docbook-based documentation
+# find_package(KF5DocTools ${KF5_VERSION} REQUIRED)
+
+# TODO-qt: Uncomment if your framework is translated using Qt
+# include(ECMPoQmTools)
+
+# Translations
+if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
+    # TODO-i18n: Uncomment if your framework is translated using KI18n
+    # ki18n_install(po)
+
+    # TODO-qt: Uncomment if your framework is translated using Qt
+    # ecm_install_po_files_as_qm(po)
+
+    # TODO-docbook: Uncomment if you want to provide docbook-based documentation
+    # kdoctools_install(po)
+endif()
+
 # Subdirectories
 add_subdirectory(src)
 add_subdirectory(autotests)
