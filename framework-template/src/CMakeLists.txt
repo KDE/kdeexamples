@@ -23,9 +23,9 @@ set_target_properties(KF5FooBar
 )
 
 ecm_generate_headers(FooBar_HEADERS
-  HEADER_NAMES
-    MyClass
-    # other classes
+    HEADER_NAMES
+        MyClass
+        # other classes
 
     REQUIRED_HEADERS FooBar_HEADERS
 )
