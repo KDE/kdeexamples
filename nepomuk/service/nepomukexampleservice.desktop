@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Service
-X-KDE-ServiceTypes=NepomukService
-X-KDE-Library=nepomukexampleservice
-X-KDE-Nepomuk-autostart=false
-X-KDE-Nepomuk-start-on-demand=false
-X-KDE-Nepomuk-dependencies=nepomukstorage
-Name=Nepomuk Example Service
-Comment=Nepomuk Service which serves as an example.

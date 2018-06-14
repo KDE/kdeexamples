@@ -1,9 +1,0 @@
-This directory contains an example which shows how to install a shared
-library built with cmake properly.
-
-It builds a tiny shared library libbar, and installs that along with a
-matching BarConfig.cmake file.
-In example/ there is a usage example of the installed library (i.e. it is
-intentionally not part of the build)
-
-Alex

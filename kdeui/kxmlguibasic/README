@@ -1,5 +1,0 @@
-KXmlGui provides an easy way of creating a full main window view with menubars, toolbars,
-a statusbar and a main area in the centre for a large widget. Most KDE applications will
-derive from this class.
-
-This example defines an application with standard actions.

@@ -1,5 +1,0 @@
-The KNewStuff library adds data sharing capabilities to KDE applications.
-Technically, it implements the Get Hot New Stuff (GHNS) and DXS specifications.
-
-There are standalone applications for Get Hot New Stuff in kdebase/runtime/knewstuff.
-These should get you started together with techbase.kde.org where tutorials can be found.

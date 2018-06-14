@@ -1,3 +1,0 @@
-Kross is a modular scripting framework that provides a complete framework to embed scripting interpreters like Python, Ruby and JavaScript transparently into native applications to bridge the static and dynamic worlds together.
-
-Scripting interpreters are plugins that are loaded dynamicly on demand at runtime by the Kross framework. The application that uses Kross to provide scripting functionality to the user does not need to know anything about the interpreter itself or any other backend-details. All the application needs to know is, that there exists scripting code that should be executed. Kross will then take care of it.

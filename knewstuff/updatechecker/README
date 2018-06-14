@@ -1,4 +1,0 @@
-Simple test application to demonstrage how apps can check for updates using Get Hot New Stuff.
-
-In order to fake an updateable file, change the date of a plasma applet in your config (after installing a plasma applet with KNewStuff).
-$HOME/.kde/share/apps/knewstuff3/plasmoids.knsregistry

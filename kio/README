@@ -1,7 +1,0 @@
-KIO (KDE Input/Output) provides access to files, web sites and other resources through a single consistent API.
-Applications, such as Konqueror which are written using this framework can operate on files stored on remote servers in exactly the same way as they operate on those stored locally.
-This allows for a file browser like Konqueror to be both a highly versatile and powerful file manager as well as a web browser.
-
-KIO slaves are programs that provide support for individual protocols (e.g. HTTP, FTP, SMB, SSH, FISH, SFTP, SVN, TAR).
-
-The protocols page in KInfoCenter provides a list of protocols available on the machine.

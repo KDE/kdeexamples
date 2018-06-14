@@ -1,8 +1,0 @@
-[Ontology]
-Version=1.0
-Name=Nepomuk Template Ontology
-Comment=This is just a template
-Namespace=http://www.nepomuk.kde.org/ontologies/2010/06/16/template#
-Path=${ONTO_INSTALL_DIR}/template.trig
-MimeType=application/x-trig
-Type=Data

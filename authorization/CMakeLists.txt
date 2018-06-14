@@ -1,2 +1,0 @@
-add_subdirectory(kauth_example)
-add_subdirectory(kwalletdemo)

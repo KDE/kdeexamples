@@ -1,6 +1,0 @@
-KPart technology is used in KDE to reuse GUI components. The advantage that a KPart presents
-is that it comes with predefined toolbar actions. By using kparts in applications developers
-can spend less time implementing text editor or command line features, for example and just
-use a katepart or a konsolepart instead.
-
-This example is a simple editor done by loading a KatePart.
